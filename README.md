@@ -1,4 +1,4 @@
-# Potter - The Kubernetes Applications and Services Hub
+# Potter - <br>The Kubernetes Applications and Services Hub
 #### Please note: This repository and the related documentation is very much work-in-progress, so expect to find unfinished work ahead!
 
 ## Description
