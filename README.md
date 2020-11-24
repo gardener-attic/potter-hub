@@ -27,4 +27,5 @@ The current version of the Potter project has the following limitations:
 If you encounter any problems using Potter or if you have feature requests, please don't hesitate to contact us via both GitHub repositories. We will offer further methods for getting in touch with us, which you will find here.
 
 ## Contributing
-Potter is offered as Open Source, using the Apache 2.0 license model.
+Potter is offered as Open Source, using the Apache 2.0 license model.<br>
+If you would like to contribute, please check out the [Gardener contributor guide](https://gardener.cloud/documentation/contribute/).
