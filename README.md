@@ -4,7 +4,7 @@
 ## Description
 Potter - The K8s Applications and Services Hub, is a Kubernetes extension to manage deployments in Kubernetes clusters. It’s a central component in a [Gardener](https://github.com/gardener/gardener) Kubernetes landscape which doesn’t require any additional components running in the managed cluster.
 
-A Potter installation offers a UI (based on the [kubeapps](https://github.com/kubeapps/kubeapps) project), which can be used to manually deploy Helm Charts to Clusters. The UI has been enhanced to work centrally, so that only one Potter installation is required to manage a multitude of Clusters in a remote fashion.
+A complete Potter installation offers a UI (maintain in this repository, heavily based on the [kubeapps](https://github.com/kubeapps/kubeapps) project), which can be used to manually deploy Helm Charts to Clusters. The UI has been enhanced to work centrally, so that only one Potter installation is required to manage a multitude of Clusters in a remote fashion.
 
 The UI also displays status information about the deployments running in a Cluster. Additionally, it offers a Catalog, in which Helm Charts of connected Helm Chart Repositories can be browsed and deployed. The Repositories offered in the Catalog can easily be configured to match specific usecases.
 
