@@ -18,8 +18,8 @@ potter-hub:
 #              - enrico.kaack@sap.com
   jobs:
     minor_release:
-      repo:
-        trigger: false
+#      repo:
+#        trigger: false
       traits:
         version: ~
         component_descriptor: ~
