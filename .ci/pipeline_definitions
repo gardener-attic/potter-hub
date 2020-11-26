@@ -1,5 +1,4 @@
-
-potter-docsgen:
+potter-hub:
   template: 'default'
   base_definition:
     traits:
@@ -30,4 +29,3 @@ potter-docsgen:
         do_release:
           execute:
           - minor_release.py
-              
