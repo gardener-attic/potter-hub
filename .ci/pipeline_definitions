@@ -8,24 +8,26 @@ potter-hub:
           on_error:
             triggering_policy: 'always'
             recipients:
-            - email_addresses:
-#              - achim.weigel@sap.com
-#              - johannes.schicktanz@sap.com
-#              - robert.graeff@sap.com
-              - j.huebel@sap.com
-#              - guenther.wannenmacher@sap.com
-#              - ingo.kober@sap.com
-#              - enrico.kaack@sap.com
+            - email_addresses: ~
   jobs:
-    minor_release:
-#      repo:
-#        trigger: false
+    minor-release:
+      repo:
+        trigger: false
       traits:
-        version: ~
+        version:
+          preprocess: 'finalize'
+          inject_effective_version: true
+        release:
+          nextversion: 'bump_minor'
+          commit_message_prefix: '[skip ci]'
         component_descriptor: ~
-        scheduling:
-          suppress_parallel_execution: true
-      steps:
-        do_release:
-          execute:
-          - minor_release.py
+        publish:
+          dockerimages:
+            buildgohello:
+              registry: 'hub_dev_read_write'
+              image: 'eu.gcr.io/sap-gcp-k8s-wm-dev/examples/potter'
+              tag_as_latest: true
+        steps:
+          run_script:
+            execute:
+            - minor_release.py
