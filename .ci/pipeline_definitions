@@ -27,7 +27,7 @@ potter-hub:
               registry: 'hub_dev_read_write'
               image: 'eu.gcr.io/sap-gcp-k8s-wm-dev/examples/potter'
               tag_as_latest: true
-        steps:
-          run_script:
-            execute:
-            - minor_release.py
+      steps:
+        run_script:
+          execute:
+          - minor_release.py
