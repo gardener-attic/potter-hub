@@ -1,0 +1,21 @@
+apiVersion: v1
+name: <CHART_NAME>
+version: <CHART_VERSION>
+appVersion: <CHART_VERSION>
+description: The kubernetes apps and services hub makes it easy to manage your kubernetes resources remotely for multiple clusters
+#icon: https://raw.githubusercontent.com/kubeapps/kubeapps/master/docs/img/logo.png
+keywords:
+- helm
+- dashboard
+- service catalog
+- deployment
+home: https://github.wdf.sap.corp.com/kuberntes/hub
+sources:
+- https://github.wdf.sap.corp.com/kuberntes/hub
+maintainers:
+- name: Team DL
+  email: DL_5DD55C9CB52A299DF06071EA@global.corp.sap
+dependencies:
+- name: mongodb
+  version: "7.10.10"
+  repository: https://charts.bitnami.com/bitnami

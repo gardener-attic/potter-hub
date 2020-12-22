@@ -1,0 +1,101 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "kubeapps.dashboard-config.fullname" . }}
+  labels:
+    app: {{ template "kubeapps.dashboard-config.fullname" . }}
+    chart: {{ template "kubeapps.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+data:
+  vhost.conf: |-
+    log_format json_log_format escape=json
+      '{'
+          '"request_id":"$request_id",'
+          '"time_local":"$time_local",'
+          '"remote_addr":"$remote_addr",'
+          '"remote_user":"$remote_user",'
+          '"request":"$request",'
+          '"status": "$status",'
+          '"body_bytes_sent":"$body_bytes_sent",'
+          '"request_time":"$request_time",'
+          '"http_referer":"$http_referer",'
+          '"http_user_agent":"$http_user_agent"'
+      '}';
+    # Hsts header
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains; preload;" always;
+
+    # CSP header to whitelist sources
+    add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; img-src * data:; connect-src 'self'; base-uri 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; object-src 'none'";
+
+    # mime sniffing
+    add_header X-Content-Type-Options "nosniff" always;
+
+    # click-jacking attacks
+    add_header X-Frame-Options DENY;
+
+    # Cross side scripting
+    add_header X-XSS-Protection "1; mode=block" always;
+
+    server {
+      listen 8080;
+      root /app;
+      server_name _;
+      access_log /var/log/nginx/access.log json_log_format;
+
+      gzip on;
+      gzip_static  on;
+
+      location / {
+        # Redirects are required to be relative otherwise the internal hostname will be exposed
+        absolute_redirect off;
+
+        # Trailing / is required in the path for the React app to be loaded correctly
+        # The rewrite rule adds a trailing "/" to any path that does not contain "." neither "/".
+        # i.e kubeapps => kubeapps/
+        rewrite ^([^.]*[^/])$ $1/ permanent;
+
+        # Support for ingress prefixes maintaining compatibility with the default /
+        # 1 - Exactly two fragment URLs for files existing inside of the public/ dir
+        # i.e /[prefix]/config.json => /config.json
+        rewrite ^/[^/]+/([^/]+)$ /$1 break;
+
+        # 2 - Any static files bundled by webpack referenced by 3 or more URL segments
+        # i.e /[prefix]/static/main.js => static/main.js
+        rewrite ^/[^/]+/static/(.*) /static/$1 break;
+
+        try_files $uri /index.html;
+      }
+    }
+    server {
+      location /status {
+        stub_status on;
+        access_log   off;
+        allow 127.0.0.1;
+        deny all;
+      }
+    }
+  config.json: |-
+    {
+      {{- if .Values.dashboard.featuredChartIds }}
+      "featuredChartIds": {{ toJson .Values.dashboard.featuredChartIds }},
+      {{- end }}
+      {{- if .Values.dashboard.generalRepoInfo }}
+      "generalRepoInfo": "{{ .Values.dashboard.generalRepoInfo | replace "\"" "\\\"" }}",
+      {{- end }}
+      {{- if .Values.dashboard.staticCatalogInfo }}
+      "staticCatalogInfo": "{{ .Values.dashboard.staticCatalogInfo | replace "\"" "\\\"" }}",
+      {{- end }}
+      {{- if .Values.dashboard.defaultRepo }}
+      "defaultRepo": "{{ .Values.dashboard.defaultRepo }}",
+      {{- end }}
+      "namespace": "{{ .Release.Namespace }}",
+      "appVersion": "{{ .Chart.AppVersion }}",
+      {{- if .Values.dashboard.footer }}
+      "footer": {{ toJson .Values.dashboard.footer }},
+      {{- end }}
+      {{- if .Values.dashboard.header }}
+      "header": {{ toJson .Values.dashboard.header }},
+      {{- end }}
+      "appName": "{{ .Values.dashboard.appName }}"
+    }

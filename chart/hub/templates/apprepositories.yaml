@@ -1,0 +1,58 @@
+{{- range .Values.apprepository.initialRepos }}
+apiVersion: kubeapps.com/v1alpha1
+kind: AppRepository
+metadata:
+  annotations:
+    {{- if .info }}
+    hub.k8s.sap.com/info: {{ .info }}
+    {{- end }}
+    {{- if .hidden }}
+    hub.k8s.sap.com/hidden: "true"
+    {{- else }}
+    hub.k8s.sap.com/hidden: "false"
+    {{- end }}
+  name: {{ .name }}
+  labels:
+    app: {{ template "kubeapps.apprepository.fullname" $ }}
+    chart: {{ template "kubeapps.chart" $ }}
+    release: {{ $.Release.Name }}
+    heritage: {{ $.Release.Service }}
+spec:
+  type: helm
+  url: {{ .url }}
+{{- if or $.Values.securityContext.enabled $.Values.apprepository.initialReposProxy.enabled $.Values.global.imagePullSecrets }}
+  syncJobPodTemplate:
+    spec:
+    {{- include "kubeapps.imagePullSecrets" $ | indent 6 }}
+  {{- if $.Values.apprepository.initialReposProxy.enabled }}
+      containers:
+      - env:
+          - name: https_proxy
+            value: {{ $.Values.apprepository.initialReposProxy.https_proxy }}
+          - name: http_proxy
+            value: {{ $.Values.apprepository.initialReposProxy.http_proxy }}
+          - name: no_proxy
+            value: {{ $.Values.apprepository.initialReposProxy.no_proxy }}
+  {{- end }}
+  {{- if $.Values.securityContext.enabled }}
+        securityContext:
+        runAsUser: {{ $.Values.securityContext.runAsUser }}
+  {{- end }}
+{{- end }}
+  {{- if or .caCert .authorizationHeader }}
+  auth:
+    {{- if .caCert }}
+    customCA:
+      secretKeyRef:
+        key: ca.crt
+        name: {{ template "kubeapps.apprepository-secret.name" . }}
+    {{- end }}
+    {{- if .authorizationHeader }}
+    header:
+      secretKeyRef:
+        key: authorizationHeader
+        name: {{ template "kubeapps.apprepository-secret.name" . }}
+    {{- end }}
+  {{- end }}
+---
+{{ end -}}

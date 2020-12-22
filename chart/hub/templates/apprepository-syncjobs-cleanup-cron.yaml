@@ -1,0 +1,30 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: apprepo-syncjobs-cleanup
+  labels:
+    chart: {{ template "kubeapps.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  schedule: {{ .Values.apprepository.syncjobsCleanupCrontab | quote }}
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: apprepo-syncjobs-cleanup
+{{- include "kubeapps.imagePullSecrets" . | indent 10 }}
+          containers:
+          - name: kubectl
+            image: {{ template "kubeapps.image" (list .Values.hooks.image .Values.global) }}
+            imagePullPolicy: Always
+            command: ["/bin/sh", "-ec"]
+            args:
+            - |
+              for j in $(kubectl get jobs -o json | jq -r '.items[] | select(.metadata.ownerReferences[0].kind=="AppRepository" and (.status.succeeded==1 or .status.failed==1)) |  .metadata.labels["job-name"]  ')
+              do
+                echo "deleting job $j"
+                kubectl delete jobs $j
+              done
+          restartPolicy: OnFailure

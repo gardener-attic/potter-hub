@@ -1,0 +1,97 @@
+.help-menu {
+    background-color: white;
+    top: 100%;
+    right: 0px;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 20;
+    outline: none;
+    min-width: 250px;
+}
+
+.help-menu .header-container {
+    color: #212121;
+    text-align: center;
+}
+
+.help-menu .header-container .heading {
+    margin: 0 0 0 0;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+.help-menu .header-container .version {
+    margin: 0;
+    font-size: 0.75rem;
+}
+
+.help-menu .entry {
+    color: #212121;
+    display: flex;
+    justify-content: left;
+    border-top: 2px solid #f1f1f1;
+}
+
+.entry > a {
+    color: #212121;
+    text-decoration:none;
+}
+
+.entry > a:hover {
+    color: #189f76;
+}
+
+.entry > a:focus {
+    color: #189f76;
+}
+
+.entry > a:active {
+    color: #189f76;
+}
+
+.link-icon {
+    fill: #212121;
+}
+
+.link > svg {
+    transform: scale(0.6);
+}
+
+.help-menu .entry .link {
+    display: flex;
+}
+
+.entry > a:hover .link-icon {
+    fill: #189f76;
+}
+
+.entry > a:focus .link-icon{
+    fill: #189f76;
+}
+
+.entry > a:active .link-icon {
+    fill: #189f76;
+}
+
+.icon-button {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.icon-button-icon {
+    fill: #e0e0e0;
+}
+
+.icon-button:hover .icon-button-icon {
+    fill: #189f76;
+}
+
+.icon-button:focus .icon-button-icon {
+    fill: #189f76;
+}
+
+.icon-button:active .icon-button-icon {
+    fill: #189f76;
+}

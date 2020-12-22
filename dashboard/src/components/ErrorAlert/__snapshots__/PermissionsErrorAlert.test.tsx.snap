@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders an error message for the action 1`] = `
+<UnexpectedErrorPage
+  icon={[Function]}
+  showGenericMessage={false}
+  title={
+    <span>
+      You don't have sufficient permissions to 
+      unit-test
+       in 
+      <span>
+        the 
+        <code>
+          test
+        </code>
+         namespace
+      </span>
+    </span>
+  }
+>
+  <div>
+    <p>
+      Ask your administrator for the following RBAC roles:
+    </p>
+    <ul
+      className="error__permisions-list"
+    />
+    <p>
+      Ask you Gardener project manager to add you as a member, so that you have access to the cluster.
+    </p>
+  </div>
+</UnexpectedErrorPage>
+`;

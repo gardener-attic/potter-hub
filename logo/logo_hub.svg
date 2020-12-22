@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="87px" height="86px" viewBox="0 0 87 86" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>logo_hub</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="82.8133013%" y1="32.2882378%" x2="14.2184829%" y2="73.8042819%" id="linearGradient-1">
+            <stop stop-color="#408444" offset="0%"></stop>
+            <stop stop-color="#1E4D21" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="82.8133013%" y1="49.5322988%" x2="14.2184829%" y2="50.6285818%" id="linearGradient-2">
+            <stop stop-color="#408444" offset="0%"></stop>
+            <stop stop-color="#1E4D21" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="64.5836895%" y1="20.0671219%" x2="34.0971035%" y2="90.2292363%" id="linearGradient-3">
+            <stop stop-color="#408444" offset="0%"></stop>
+            <stop stop-color="#1E4D21" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="59.9260236%" y1="20.0671219%" x2="39.1760911%" y2="90.2292363%" id="linearGradient-4">
+            <stop stop-color="#408444" offset="0%"></stop>
+            <stop stop-color="#1E4D21" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="82.8133013%" y1="47.2513427%" x2="14.2184829%" y2="53.6941448%" id="linearGradient-5">
+            <stop stop-color="#408444" offset="0%"></stop>
+            <stop stop-color="#1E4D21" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="linearGradient-6">
+            <stop stop-color="#F5F9F5" offset="0%"></stop>
+            <stop stop-color="#9AC59B" offset="67.6565839%"></stop>
+            <stop stop-color="#509A53" offset="99.9445735%"></stop>
+            <stop stop-color="#6BA96D" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="100%" y1="34.7299169%" x2="50%" y2="65.2700831%" id="linearGradient-7">
+            <stop stop-color="#FBFDFB" offset="0%"></stop>
+            <stop stop-color="#C4DDC5" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="38.7552401%" y1="50%" x2="76.257622%" y2="81.2608156%" id="linearGradient-8">
+            <stop stop-color="#FBFDFB" offset="0%"></stop>
+            <stop stop-color="#C4DDC5" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo_hub" fill="#009F76" fill-rule="nonzero">
+            <g id="Rectangle-2">
+                <g id="Mask">
+                    <path d="M41.8864954,0.994901575 C42.8830405,0.514990742 44.5028956,0.516982644 45.4953045,0.994901575 L76.8159138,16.0781121 C77.8124589,16.5580229 78.8208647,17.8257185 79.0659694,18.8995926 L86.8015211,52.7912589 C87.0476474,53.8696088 86.6852538,55.4484075 85.9984855,56.3095876 L64.3239514,83.4885938 C63.6343208,84.3533632 62.1740175,85.0543973 61.0725268,85.0543973 L26.3092731,85.0543973 C25.2031915,85.0543973 23.7446167,84.3497739 23.0578485,83.4885938 L1.38331434,56.3095876 C0.693683723,55.4448182 0.335174016,53.865133 0.580278769,52.7912589 L8.31583044,18.8995926 C8.56195675,17.8212428 9.57347722,16.556031 10.5658861,16.0781121 L41.8864954,0.994901575 Z" id="path-1"></path>
+                </g>
+            </g>
+        </g>
+        <circle id="Oval" fill-opacity="0.29" fill="#000000" cx="48" cy="43" r="10"></circle>
+        <circle id="Oval" fill-opacity="0.29" fill="#000000" cx="16" cy="52" r="7"></circle>
+        <circle id="Oval" fill-opacity="0.29" fill="#000000" cx="23" cy="24" r="8"></circle>
+        <circle id="Oval" fill-opacity="0.29" fill="#000000" cx="59.5" cy="23.5" r="5.5"></circle>
+        <circle id="Oval" fill-opacity="0.29" fill="#000000" cx="71.5" cy="46.5" r="7.5"></circle>
+        <circle id="Oval" fill-opacity="0.29" fill="#000000" cx="29.5" cy="72.5" r="7.5"></circle>
+        <path d="M23.5,24.5 L48.5,43.5" id="Line" stroke="#007053" stroke-width="3" stroke-linecap="square"></path>
+        <path d="M71.5,45.5 L48.5,43.5" id="Line-3" stroke="#007053" stroke-width="3" stroke-linecap="square"></path>
+        <path d="M29.5,72.5 L48.5,43.5" id="Line-4" stroke="#007053" stroke-width="3" stroke-linecap="square"></path>
+        <path d="M58.5,24.5 L48.5,43.5" id="Line-2" stroke="#007053" stroke-width="3" stroke-linecap="square"></path>
+        <path d="M16.5,52.5 L48.5,43.5" id="Line-5" stroke="#007053" stroke-width="3" stroke-linecap="square"></path>
+        <path d="M25.5,22.5 L50.5,41.5" id="Line" stroke="url(#linearGradient-1)" stroke-width="3" stroke-linecap="square"></path>
+        <path d="M73.5,43.5 L50.5,41.5" id="Line-3" stroke="url(#linearGradient-2)" stroke-width="3" stroke-linecap="square"></path>
+        <path d="M31.5,70.5 L50.5,41.5" id="Line-4" stroke="url(#linearGradient-3)" stroke-width="3" stroke-linecap="square"></path>
+        <path d="M60.5,22.5 L50.5,41.5" id="Line-2" stroke="url(#linearGradient-4)" stroke-width="3" stroke-linecap="square"></path>
+        <path d="M18.5,50.5 L50.5,41.5" id="Line-5" stroke="url(#linearGradient-5)" stroke-width="3" stroke-linecap="square"></path>
+        <circle id="Oval" fill="url(#linearGradient-6)" cx="25" cy="22" r="8"></circle>
+        <circle id="Oval" fill="url(#linearGradient-6)" cx="61.5" cy="21.5" r="5.5"></circle>
+        <circle id="Oval" fill="url(#linearGradient-6)" cx="50" cy="41" r="10"></circle>
+        <circle id="Oval" fill="url(#linearGradient-6)" cx="73.5" cy="44.5" r="7.5"></circle>
+        <circle id="Oval" fill="url(#linearGradient-6)" cx="18" cy="50" r="7"></circle>
+        <circle id="Oval" fill="url(#linearGradient-6)" cx="31.5" cy="70.5" r="7.5"></circle>
+        <g id="Rectangle-3" transform="translate(47.000000, 60.000000)">
+            <rect id="Rectangle" stroke-opacity="0.650950612" stroke="#4bb898" stroke-width="2" fill="url(#linearGradient-7)" x="1" y="1" width="36" height="19" rx="8"></rect>
+            <g id="path-8-link" transform="translate(5.000000, 0.000000)" fill="#009F76" font-family="BentonSans-Bold, BentonSans" font-size="13" font-weight="bold">
+                <text id="HUB">
+                    <tspan x="0" y="15">HUB</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

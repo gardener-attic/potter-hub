@@ -1,0 +1,37 @@
+.ClusterBomStatus {
+  display: inline-block;
+  font-size: 1em;
+  line-height: 2.5em;
+  padding: 0 0.875em;
+  background-color: #f1f1f1;
+  height: 2.5em;
+}
+
+.ClusterBomStatus--ok {
+  color: #fff;
+  background-color: #1598cb;
+}
+
+.ClusterBomStatus--failed {
+  color: #fff;
+  background-color: #de0606;
+}
+
+.ClusterBomStatus--pending {
+  background-color: #fdba12;
+}
+
+.ClusterBomStatus--pending > .icon {
+  animation: fadeinout 2s linear infinite;
+}
+
+@keyframes fadeinout {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+  

@@ -1,0 +1,44 @@
+.NamespaceSelector {
+  width: 150px;
+  margin-top: -25px;
+  color: #1C2B39;
+}
+
+.NamespaceSelector label {
+  position: relative;
+  top: 3px;
+}
+
+.NamespaceSelector__select {
+  height: 36px;
+}
+
+.NamespaceSelector__control {
+  min-height: 1px !important;
+  height: 36px;
+}
+.NamespaceSelector__dropdownIndicator {
+  color: '#757575';
+}
+
+.NamespaceSelector input {
+  height: 32px;
+  margin: 0 0 0 2px;
+}
+
+.NamespaceSelector input:focus {
+  box-shadow: none;
+  border-color: none;
+}
+.NamespaceSelector .Select-clear {
+  line-height: inherit;
+}
+
+.CreateNamespaceErrorDialogBtnContainer {
+  display: flex;
+  justify-content: flex-end;   
+}
+
+.CreateNamespaceModal {
+    max-width: 40%;
+}

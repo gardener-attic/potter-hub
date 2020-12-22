@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render the children elements 1`] = `
+<div
+  className="CardGrid padding-v-big "
+>
+  <div
+    key=".0"
+  >
+    foo
+  </div>
+</div>
+`;

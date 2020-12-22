@@ -1,0 +1,58 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "kubeapps.fullname" . }}-health
+  labels:
+    app: {{ template "kubeapps.name" . }}
+    chart: {{ template "kubeapps.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    {{- if .Values.ingress.gardenerCertManager }}
+    garden.sapcloud.io/purpose: managed-cert
+    {{- end }}
+  annotations:
+    {{- if .Values.ingress.certManager }}
+    kubernetes.io/tls-acme: "true"
+    {{- end }}
+    {{- if .Values.ingress.gardenerDNS }}
+    dns.gardener.cloud/class: garden
+    dns.gardener.cloud/dnsnames: {{ template "ingress.names" . }}
+    {{- end }}
+    {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: {{ template "kubeapps.fullname" . }}-health-auth
+spec:
+  rules:
+  {{ $uibackendFullname := include "kubeapps.ui-backend.fullname" . }}
+  {{ $frontendFullname := include "kubeapps.fullname" . }}
+  {{- range .Values.ingress.hosts }}
+  {{- range .names }}
+  - host: {{ . }}
+    http:
+      paths:
+        - path: {{ $.Values.uiBackend.health.config.pathPrefix }}/.*
+          backend:
+            serviceName: {{ $uibackendFullname }}
+            servicePort: {{ $.Values.uiBackend.service.port }}
+        # TODO: delete once pipeline avcheck and avs are migrated to the new endpoint
+        - path: /.+/.+/api/ui-backend/availability
+          backend:
+            serviceName: {{ $frontendFullname }}
+            servicePort: {{ $.Values.frontend.service.port }}
+  {{- end }}
+  {{- end }}
+  tls:
+  {{- range .Values.ingress.hosts }}
+  {{- if .tls }}
+  - hosts:
+    {{- range .names }}
+    - {{ . }}
+    {{- end }}
+    secretName: {{ .tlsSecret }}
+  {{- end }}
+  {{- end }}
+{{- end }}

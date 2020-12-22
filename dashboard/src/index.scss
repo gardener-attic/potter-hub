@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:300,400,700|Hind:300,400,700");
+@import url("//unpkg.com/@bitnami/hex@3.2.0/dist/hex.min.css");
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid > .row > div {
+  min-width: 0;
+}
+
+svg.icon {
+  /* Fix positioning */
+  position: relative;
+  bottom: -0.125em;
+}
+
+.centered-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  border: 1px solid rgb(204, 204, 204);
+  background: rgb(255, 255, 255);
+  overflow: auto;
+  border-radius: 4px;
+  outline: none;
+  padding: 20px;
+  margin-right: -50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Override Hex underline text-decoration in buttons in alerts
+see: https://github.com/bitnami/hex/issues/216 */
+// .button {
+//   text-decoration: none;
+// }
+
+/* Override the given values from Bitnami and replace with gardener colors */
+/* Here is the original css file by bitnami: https://unpkg.com/@bitnami/hex@3.2.0/dist/hex.css */
+.gradient-135-brand {
+  background-color: #212121;
+  background-image: none;
+}
+
+.bg-skew {
+  background-image: none;
+  background-color: #555555;
+}
+
+.bg-dark {
+  background-color: #424242;
+}
+
+a {
+  color: #189f76;
+}
+footer a {
+  color: #e0e0e0;
+}
+
+a:hover {
+  color: #0e7254;
+}
+footer a:hover {
+  color: #189f76 !important;
+  text-decoration: none !important;
+}
+
+footer a:focus {
+  color: #e0e0e0;
+  text-decoration: none !important;
+}
+footer a:active {
+  color: #e0e0e0;
+  text-decoration: none !important;
+}
+
+.header__nav__menu > li > a {
+  color: #e0e0e0 !important;
+}
+
+.header__nav__menu > li > a:hover {
+  color: #189f76 !important;
+}
+.header__nav__menu > li > a:active {
+  color: #189f76 !important;
+}
+.header__nav__menu > li > a:focus {
+  color: #189f76 !important;
+}
+
+.header__nav__submenu > li > a:hover {
+  background: none;
+  background-color: #189f76 !important;
+}
+.header__nav__submenu > li > a:active {
+  background: none;
+  background-color: #189f76 !important;
+}
+.header__nav__submenu > li > a:focus {
+  background: none;
+  background-color: #189f76 !important;
+}
+
+// We leave "alert-success", "alert-warning", "alert-danger" and "alert-error" with it's original colors. Optionally we can change these properties as well.
+.alert {
+  border-left-color: #189f76 !important;
+}
+
+.socialIcon {
+  color: #189f76 !important;
+}
+.socialIcon:hover {
+  color: #0e7254 !important;
+}
+.button {
+  color: white !important;
+  text-decoration: none;
+  background-color: #189f76 !important;
+  background-image: none;
+}
+.button:hover {
+  background-color: #0e7254 !important;
+  background-image: none;
+}
+.button:focus {
+  background-color: #0e7254 !important;
+  background-image: none;
+}
+
+.stable {
+  background-color: #378e3b !important;
+}
+.incubator {
+  background-color: #f44336 !important;
+}
+.bitnami {
+  background-color: #607d8b !important;
+}
+
+.type-color-light-blue {
+  color: #111111 !important;
+}
+.subtitle {
+  color: #111111;
+}
+
+.AlertBox {
+    display: flex;
+}
+
+.AlertBoxIconContainer {
+  display: flex;
+  align-items: center;
+  margin-right: 0.5em;
+}
+
+.margin-b-small {
+    margin-bottom: 0.3125em;
+}
+
+.margin-t-small {
+    margin-top: 0.3125em;
+}

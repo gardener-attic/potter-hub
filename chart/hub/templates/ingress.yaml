@@ -1,0 +1,49 @@
+{{- if .Values.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "kubeapps.fullname" . }}
+  labels:
+    app: {{ template "kubeapps.name" . }}
+    chart: {{ template "kubeapps.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+    {{- if .Values.ingress.gardenerCertManager }}
+    garden.sapcloud.io/purpose: managed-cert
+    {{- end }}
+  annotations:
+    {{- if .Values.ingress.certManager }}
+    kubernetes.io/tls-acme: "true"
+    {{- end }}
+    {{- if .Values.ingress.gardenerDNS }}
+    dns.gardener.cloud/class: garden
+    dns.gardener.cloud/dnsnames: {{ template "ingress.names" . }}
+    {{- end }}
+    {{- range $key, $value := .Values.ingress.annotations }}
+    {{ $key }}: {{ $value | quote }}
+    {{- end }}
+spec:
+  rules:
+  {{- range .Values.ingress.hosts }}
+  {{- $h := . }}
+  {{- range .names }}
+  - host: {{ . }}
+    http:
+      paths:
+      - path: {{ default "/" $h.path }}
+        backend:
+          serviceName: {{ template "kubeapps.fullname" $ }}
+          servicePort: http
+  {{- end }}
+  {{- end }}
+  tls:
+  {{- range .Values.ingress.hosts }}
+  {{- if .tls }}
+  - hosts:
+    {{- range .names }}
+    - {{ . }}
+    {{- end }}
+    secretName: {{ .tlsSecret }}
+  {{- end }}
+  {{- end }}
+{{- end }}

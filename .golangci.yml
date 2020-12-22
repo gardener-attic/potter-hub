@@ -1,0 +1,88 @@
+# This is the configuration file for golangci-lint.
+linters-settings:
+  govet:
+    check-shadowing: true
+  goconst:
+    min-len: 2
+    min-occurrences: 3
+  misspell:
+    locale: US
+  goimports:
+    local-prefixes: github.wdf.sap.corp/kubernetes/hub
+  gocritic:
+    enabled-tags:
+      - diagnostic
+      - experimental
+      - opinionated
+      - performance
+      - style
+    disabled-checks:
+      - whyNoLint
+      - wrapperFunc
+      - dupImport # https://github.com/go-critic/go-critic/issues/845
+      - ifElseChain
+      - unnamedResult
+
+linters:
+  # For a list of all supported linters, go here: https://github.com/golangci/golangci-lint#supported-linters
+  # please, do not use `enable-all`: it's deprecated and will be removed soon.
+  # inverted configuration with `enable-all` and `disable` is not scalable during updates of golangci-lint
+  disable-all: true
+  enable:
+    - bodyclose
+    - deadcode
+    - errcheck
+    - gochecknoglobals
+    - gochecknoinits
+    - goconst
+    - gocritic
+    - goimports
+    - golint
+    - gosec
+    - gosimple
+    - govet
+    - ineffassign
+    - interfacer
+    - misspell
+    - nakedret
+    - scopelint
+    - staticcheck
+    - structcheck
+    - stylecheck
+    - typecheck
+    - unconvert
+    - unparam
+    - unused
+    - varcheck
+    - whitespace
+
+    # Don't enable
+    #- depguard
+    #- dogsled
+    #- dupl
+    #- funlen
+    #- gocognit
+    #- gocyclo
+    #- godox
+    #- gofmt
+    #- lll
+    #- maligned
+    #- prealloc
+    #- wsl
+
+run:
+  skip-dirs:
+    - cmd/apprepository-controller
+    - pkg/external
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gosec
+
+  # Maximum issues count per one linter. Set to 0 to disable. Default is 50.
+  max-issues-per-linter: 0
+
+  # Maximum count of issues with the same text. Set to 0 to disable. Default is 3.
+  max-same-issues: 0

@@ -1,0 +1,17 @@
+.ci
+.circleci
+.git
+.githooks
+.github
+chart
+dashboard
+docs
+logo
+integration
+integration-test
+script
+test-protocols
+
+# single files
+CONTRIBUTING.md
+Makefile

@@ -1,0 +1,14 @@
+.TotalApps {
+    display: flex;
+}
+
+.AppStates {
+    display: flex;
+    margin-top: 0;
+}
+
+.AppStates > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+}

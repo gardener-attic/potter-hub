@@ -1,0 +1,101 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ template "kubeapps.ui-backend.fullname" . }}
+  labels:
+    app: {{ template "kubeapps.ui-backend.fullname" . }}
+    chart: {{ template "kubeapps.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.uiBackend.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "kubeapps.ui-backend.fullname" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "kubeapps.ui-backend.fullname" . }}
+        release: {{ .Release.Name }}
+        {{ .Values.uiBackend.affinityLabel.key }}: {{ .Values.uiBackend.affinityLabel.value }}
+    spec:
+      securityContext:
+        runAsUser: 10001
+      serviceAccountName: {{ template "kubeapps.ui-backend.fullname" . }}
+      # Increase termination timeout to let remaining operations to finish before killing the pods
+      # This is because new releases/upgrades/deletions are synchronous operations
+      terminationGracePeriodSeconds: 300
+{{- include "kubeapps.imagePullSecrets" . | indent 6 }}
+      containers:
+      - name: ui-backend
+        image: {{ template "kubeapps.image" (list .Values.uiBackend.image .Values.global) }}
+        command:
+        - /ui-backend
+        args:
+        - --user-agent-comment=hub/{{ .Chart.AppVersion }}
+        - --host-url=http://{{ template "kubeapps.ui-backend.fullname" . }}:{{ .Values.uiBackend.service.port }}
+        {{- if .Values.authProxy.enabled }}
+        - --oidc-cluster-url={{ .Values.authProxy.oidcClusterURL }}
+        - --oidc-cluster-ca={{ .Values.authProxy.oidcClusterCA }}
+        {{- end }}
+        ports:
+        - name: http
+          containerPort: {{ .Values.uiBackend.service.port }}
+        {{- if .Values.debug }}
+        - containerPort: 40000
+          name: debug
+          protocol: TCP
+        {{- end }}
+        env:
+        - name: LOG_LEVEL
+          value: {{ .Values.uiBackend.loglevel }}
+        - name: AVAILABILITY_CHECK
+          value: {{ .Values.uiBackend.health.config | toJson | quote }}
+        - name: DASHBOARD_URL
+          value: "http://{{ template "kubeapps.dashboard.fullname" . }}:{{ .Values.dashboard.service.port }}"
+        - name: CHARTSVC_URL
+          value: "http://{{ template "kubeapps.chartsvc.fullname" . }}:{{ .Values.chartsvc.service.port }}"
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: CONTROLLER_NAMESPACE
+          value: {{ .Values.controllerNamespace }}
+        {{- if .Values.uiBackend.tls }}
+        - name: HELM_HOME
+          value: /etc/certs
+        {{- end }}
+        {{- if .Values.uiBackend.hubsec.enabled }}
+        - name: HUBSEC_DOCKERCONFIGJSON
+          value: {{ .Values.uiBackend.hubsec.dockerconfigjson }}
+        {{- end}}
+        livenessProbe:
+{{ toYaml .Values.uiBackend.livenessProbe | indent 10 }}
+        readinessProbe:
+{{ toYaml .Values.uiBackend.readinessProbe | indent 10 }}
+        resources:
+{{ toYaml .Values.uiBackend.resources | indent 12 }}
+      {{- if .Values.uiBackend.tls }}
+      volumes:
+      - name: tiller-certs
+        secret:
+          secretName: {{ template "kubeapps.ui-backend.fullname" . }}
+      {{- end }}
+    {{- with .Values.uiBackend.nodeSelector }}
+      nodeSelector:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+      {{- if .Values.securityContext.enabled }}
+      securityContext:
+        fsGroup: {{ .Values.securityContext.fsGroup }}
+        runAsUser: {{ .Values.securityContext.runAsUser }}
+      {{- end }}
+    {{- with .Values.uiBackend.affinity }}
+      affinity:
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.uiBackend.tolerations }}
+      tolerations:
+{{ toYaml . | indent 8 }}
+    {{- end }}

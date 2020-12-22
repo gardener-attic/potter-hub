@@ -1,0 +1,29 @@
+.RepoSelector {
+    margin-left: 1.25em;
+    width: 250px;
+    margin-top: -25px;
+}
+
+.RepoSelector label {
+    position: relative;
+    top: 3px;
+}
+.RepoSelector__control {
+    min-height: 1px;
+    height: 36px;
+}
+.RepoSelector__dropdownIndicator {
+    color: '#757575';
+}
+
+.RepoSelector  input {
+    height: 32px;
+    margin: 0 0 0 2px;
+}
+.RepoSelector input:focus {
+    box-shadow: none;
+    border-color: none;
+}
+.RepoSelector .Select-clear {
+    line-height: inherit;
+}

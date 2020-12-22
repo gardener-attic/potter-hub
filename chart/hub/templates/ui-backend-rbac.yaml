@@ -1,0 +1,85 @@
+{{- if .Values.rbac.create -}}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: {{ template "kubeapps.ui-backend.fullname" . }}
+  labels:
+    app: {{ template "kubeapps.ui-backend.fullname" . }}
+    chart: {{ template "kubeapps.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+- apiGroups:
+  - kubeapps.com
+  resources:
+  - apprepositories
+  verbs:
+  - get
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: {{ template "kubeapps.ui-backend.fullname" . }}
+  labels:
+    app: {{ template "kubeapps.ui-backend.fullname" . }}
+    chart: {{ template "kubeapps.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: {{ template "kubeapps.ui-backend.fullname" . }}
+subjects:
+- kind: ServiceAccount
+  name: {{ template "kubeapps.ui-backend.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+
+# the following role and rolebinding will be created in the controller namespace
+# this is needed in order to read the "system-info" configmap
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: system-info-cm-reader
+  namespace: {{ .Values.controllerNamespace }}
+  labels:
+    app: {{ template "kubeapps.ui-backend.fullname" . }}
+    chart: {{ template "kubeapps.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  resourceNames:
+  - system-info
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: system-info-cm-reader
+  namespace: {{ .Values.controllerNamespace }}
+  labels:
+    app: {{ template "kubeapps.ui-backend.fullname" . }}
+    chart: {{ template "kubeapps.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: system-info-cm-reader
+subjects:
+- kind: ServiceAccount
+  name: {{ template "kubeapps.ui-backend.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+{{- end -}}

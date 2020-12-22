@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render an item 1`] = `
+<InfoCard
+  description={
+    <div
+      className="ListItem__content__description"
+    >
+      
+    </div>
+  }
+  highlight={false}
+  icon="api/chartsvc/icon.png"
+  info={
+    <span>
+      Chart: 
+      4.5.6
+      <br />
+      App: 
+      1.0.0
+    </span>
+  }
+  key="[object Object]/foo"
+  link="/charts/foo"
+  tag1Content={
+    <span
+      className="ListItem__content__info_tag_link"
+    />
+  }
+  tagContainerCSS={
+    Object {
+      "alignItems": "center",
+      "display": "flex",
+    }
+  }
+  title="foo"
+/>
+`;

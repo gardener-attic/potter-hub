@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a ResourceItem 1`] = `
+<Fragment>
+  <h6 />
+  <table>
+    <thead>
+      <tr
+        className="flex"
+      >
+        <DeploymentColumns />
+      </tr>
+    </thead>
+    <tbody>
+      <Connect(WorkloadItem)
+        key="api/ui-backend/reverse-proxy/v1/apis/undefined/namespaces/default/deployments/foo"
+        resourceRef={
+          ResourceRef {
+            "apiVersion": undefined,
+            "isOnResourceCluster": false,
+            "kind": "Deployment",
+            "name": "foo",
+            "namespace": "default",
+          }
+        }
+      />
+    </tbody>
+  </table>
+</Fragment>
+`;

@@ -1,0 +1,142 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a string parameter with title and description 1`] = `
+<TextParam
+  handleBasicFormParamChange={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "path": "username",
+            "type": "string",
+            "value": "user",
+          },
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": [MockFunction],
+        },
+      ],
+    }
+  }
+  id="foo"
+  label="Username"
+  param={
+    Object {
+      "path": "username",
+      "type": "string",
+      "value": "user",
+    }
+  }
+>
+  <div>
+    <label
+      htmlFor="foo"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-3 block"
+        >
+          <div
+            className="centered"
+          >
+            Username
+          </div>
+        </div>
+        <div
+          className="col-9 margin-t-small"
+        >
+          <input
+            id="foo"
+            onChange={[MockFunction]}
+            type="text"
+            value="user"
+          />
+        </div>
+      </div>
+    </label>
+  </div>
+</TextParam>
+`;
+
+exports[`should render a textArea parameter with title and description 1`] = `
+<TextParam
+  handleBasicFormParamChange={
+    [MockFunction] {
+      "calls": Array [
+        Array [
+          Object {
+            "path": "configuration",
+            "type": "string",
+            "value": "First line
+Second line",
+          },
+        ],
+        Array [
+          Object {
+            "path": "configuration",
+            "type": "string",
+            "value": "First line
+Second line",
+          },
+        ],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": [MockFunction],
+        },
+        Object {
+          "type": "return",
+          "value": [MockFunction],
+        },
+      ],
+    }
+  }
+  id="bar"
+  inputType="textarea"
+  label="Configuration"
+  param={
+    Object {
+      "path": "configuration",
+      "type": "string",
+      "value": "First line
+Second line",
+    }
+  }
+>
+  <div>
+    <label
+      htmlFor="bar"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col-3 block"
+        >
+          <div
+            className="centered"
+          >
+            Configuration
+          </div>
+        </div>
+        <div
+          className="col-9 margin-t-small"
+        >
+          <textarea
+            id="bar"
+            onChange={[MockFunction]}
+            value="First line
+Second line"
+          />
+        </div>
+      </div>
+    </label>
+  </div>
+</TextParam>
+`;
