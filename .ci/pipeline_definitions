@@ -50,44 +50,46 @@ cfgs:
               image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/mongodb'
               dockerfile: 'mongodb/Dockerfile'
               tag_as_latest: true
-potter-hub:
-  template: 'default'
-  base_definition:
-    traits:
-      version: ~
-      notifications:
-        default:
-          on_error:
-            triggering_policy: 'always'
-            recipients:
-            - email_addresses: ~
-  jobs:
-    minor-release:
-      repo:
-        trigger: false
-      traits:
-        version:
-          preprocess: 'finalize'
-          inject_effective_version: true
-        release:
-          nextversion: 'bump_minor'
-          commit_message_prefix: '[skip ci]'
-        component_descriptor: ~
-        <<: *publish_prod_trait
-      steps:
-        <<: *code_test_trait
-        run_integration_test:
-          execute:
-          - dev_integration_test.py
-          output_dir: integration_test
-        helm:
-          depends:
-          - run_integration_test
-          execute:
-          - build_and_Push_helm.py
-        update_release:
-          inputs:
-            LINT_PATH: lint_path
-            INTEGRATION_TEST_PATH: integration_test_path
-            BACKEND_TEST_PATH: backend_test_path
-            FRONTEND_TEST_PATH: frontend_test_path
+    branches: ['main']
+    inherit:
+      potter-hub:
+        template: 'default'
+        base_definition:
+          traits:
+            version: ~
+            notifications:
+              default:
+                on_error:
+                  triggering_policy: 'always'
+                  recipients:
+                  - email_addresses: ~
+        jobs:
+          minor-release:
+            repo:
+              trigger: false
+            traits:
+              version:
+                preprocess: 'finalize'
+                inject_effective_version: true
+              release:
+                nextversion: 'bump_minor'
+                commit_message_prefix: '[skip ci]'
+              component_descriptor: ~
+              <<: *publish_prod_trait
+            steps:
+              <<: *code_test_trait
+              run_integration_test:
+                execute:
+                - dev_integration_test.py
+                output_dir: integration_test
+              helm:
+                depends:
+                - run_integration_test
+                execute:
+                - build_and_Push_helm.py
+              update_release:
+                inputs:
+                  LINT_PATH: lint_path
+                  INTEGRATION_TEST_PATH: integration_test_path
+                  BACKEND_TEST_PATH: backend_test_path
+                  FRONTEND_TEST_PATH: frontend_test_path
