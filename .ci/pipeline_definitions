@@ -1,53 +1,4 @@
-merge-keys:
-  code_tests: &code_test_trait
-    frontend-tests:
-      image: 'node:12-alpine'
-      execute:
-      - start_yarn_test.sh
-      output_dir: frontend_test
-    backend-tests:
-      image: 'golang:1.14.10'
-      execute:
-      - start_go_tests.sh
-      output_dir: backend_test
-    run_linter:
-      image: 'golang:1.14.10'
-      execute:
-      - run_linter.sh
-      output_dir: lint
-  prod_images: &publish_prod_trait
-    publish:
-      dockerimages:
-        dashboard:
-          registry: 'hub-pipeline-gcr-readwrite'
-          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/dashboard'
-          dir: 'dashboard'
-          tag_as_latest: true
-        ui-backend:
-          registry: 'hub-pipeline-gcr-readwrite'
-          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/ui-backend'
-          dockerfile: 'ui-backend.Dockerfile'
-          tag_as_latest: true
-        apprepo:
-          registry: 'hub-pipeline-gcr-readwrite'
-          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/apprepo'
-          dockerfile: 'apprepo.Dockerfile'
-          tag_as_latest: true
-        hubtokenbutler:
-          registry: 'hub-pipeline-gcr-readwrite'
-          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/hubtokenbutler'
-          dockerfile: 'hubtokenbutler.Dockerfile'
-          tag_as_latest: true
-        kubectl:
-          registry: 'hub-pipeline-gcr-readwrite'
-          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/kubectl'
-          dockerfile: 'kubectl.Dockerfile'
-          tag_as_latest: true
-        mongodb:
-          registry: 'hub-pipeline-gcr-readwrite'
-          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/mongodb'
-          dockerfile: 'mongodb/Dockerfile'
-          tag_as_latest: true
+
 potter-hub:
   template: 'default'
   base_definition:
@@ -59,6 +10,56 @@ potter-hub:
             triggering_policy: 'always'
             recipients:
             - email_addresses: ~
+  merge-keys:
+    code_tests: &code_test_trait
+      frontend-tests:
+        image: 'node:12-alpine'
+        execute:
+        - start_yarn_test.sh
+        output_dir: frontend_test
+      backend-tests:
+        image: 'golang:1.14.10'
+        execute:
+        - start_go_tests.sh
+        output_dir: backend_test
+      run_linter:
+        image: 'golang:1.14.10'
+        execute:
+        - run_linter.sh
+        output_dir: lint
+    prod_images: &publish_prod_trait
+      publish:
+        dockerimages:
+          dashboard:
+            registry: 'hub-pipeline-gcr-readwrite'
+            image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/dashboard'
+            dir: 'dashboard'
+            tag_as_latest: true
+          ui-backend:
+            registry: 'hub-pipeline-gcr-readwrite'
+            image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/ui-backend'
+            dockerfile: 'ui-backend.Dockerfile'
+            tag_as_latest: true
+          apprepo:
+            registry: 'hub-pipeline-gcr-readwrite'
+            image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/apprepo'
+            dockerfile: 'apprepo.Dockerfile'
+            tag_as_latest: true
+          hubtokenbutler:
+            registry: 'hub-pipeline-gcr-readwrite'
+            image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/hubtokenbutler'
+            dockerfile: 'hubtokenbutler.Dockerfile'
+            tag_as_latest: true
+          kubectl:
+            registry: 'hub-pipeline-gcr-readwrite'
+            image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/kubectl'
+            dockerfile: 'kubectl.Dockerfile'
+            tag_as_latest: true
+          mongodb:
+            registry: 'hub-pipeline-gcr-readwrite'
+            image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/mongodb'
+            dockerfile: 'mongodb/Dockerfile'
+            tag_as_latest: true
   jobs:
     minor-release:
       repo:
