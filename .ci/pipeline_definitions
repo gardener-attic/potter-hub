@@ -1,95 +1,91 @@
-cfgs:
-  default:
-    merge-keys:
-      code_tests: &code_test_trait
-        frontend-tests:
-          image: 'node:12-alpine'
+merge-keys:
+  code_tests: &code_test_trait
+    frontend-tests:
+      image: 'node:12-alpine'
+      execute:
+      - start_yarn_test.sh
+      output_dir: frontend_test
+    backend-tests:
+      image: 'golang:1.14.10'
+      execute:
+      - start_go_tests.sh
+      output_dir: backend_test
+    run_linter:
+      image: 'golang:1.14.10'
+      execute:
+      - run_linter.sh
+      output_dir: lint
+  prod_images: &publish_prod_trait
+    publish:
+      dockerimages:
+        dashboard:
+          registry: 'hub-pipeline-gcr-readwrite'
+          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/dashboard'
+          dir: 'dashboard'
+          tag_as_latest: true
+        ui-backend:
+          registry: 'hub-pipeline-gcr-readwrite'
+          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/ui-backend'
+          dockerfile: 'ui-backend.Dockerfile'
+          tag_as_latest: true
+        apprepo:
+          registry: 'hub-pipeline-gcr-readwrite'
+          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/apprepo'
+          dockerfile: 'apprepo.Dockerfile'
+          tag_as_latest: true
+        hubtokenbutler:
+          registry: 'hub-pipeline-gcr-readwrite'
+          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/hubtokenbutler'
+          dockerfile: 'hubtokenbutler.Dockerfile'
+          tag_as_latest: true
+        kubectl:
+          registry: 'hub-pipeline-gcr-readwrite'
+          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/kubectl'
+          dockerfile: 'kubectl.Dockerfile'
+          tag_as_latest: true
+        mongodb:
+          registry: 'hub-pipeline-gcr-readwrite'
+          image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/mongodb'
+          dockerfile: 'mongodb/Dockerfile'
+          tag_as_latest: true
+potter-hub:
+  template: 'default'
+  base_definition:
+    traits:
+      version: ~
+      notifications:
+        default:
+          on_error:
+            triggering_policy: 'always'
+            recipients:
+            - email_addresses: ~
+  jobs:
+    minor-release:
+      repo:
+        trigger: false
+      traits:
+        version:
+          preprocess: 'finalize'
+          inject_effective_version: true
+        release:
+          nextversion: 'bump_minor'
+          commit_message_prefix: '[skip ci]'
+        component_descriptor: ~
+        <<: *publish_prod_trait
+      steps:
+        <<: *code_test_trait
+        run_integration_test:
           execute:
-          - start_yarn_test.sh
-          output_dir: frontend_test
-        backend-tests:
-          image: 'golang:1.14.10'
+          - dev_integration_test.py
+          output_dir: integration_test
+        helm:
+          depends:
+          - run_integration_test
           execute:
-          - start_go_tests.sh
-          output_dir: backend_test
-        run_linter:
-          image: 'golang:1.14.10'
-          execute:
-          - run_linter.sh
-          output_dir: lint
-      prod_images: &publish_prod_trait
-        publish:
-          dockerimages:
-            dashboard:
-              registry: 'hub-pipeline-gcr-readwrite'
-              image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/dashboard'
-              dir: 'dashboard'
-              tag_as_latest: true
-            ui-backend:
-              registry: 'hub-pipeline-gcr-readwrite'
-              image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/ui-backend'
-              dockerfile: 'ui-backend.Dockerfile'
-              tag_as_latest: true
-            apprepo:
-              registry: 'hub-pipeline-gcr-readwrite'
-              image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/apprepo'
-              dockerfile: 'apprepo.Dockerfile'
-              tag_as_latest: true
-            hubtokenbutler:
-              registry: 'hub-pipeline-gcr-readwrite'
-              image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/hubtokenbutler'
-              dockerfile: 'hubtokenbutler.Dockerfile'
-              tag_as_latest: true
-            kubectl:
-              registry: 'hub-pipeline-gcr-readwrite'
-              image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/kubectl'
-              dockerfile: 'kubectl.Dockerfile'
-              tag_as_latest: true
-            mongodb:
-              registry: 'hub-pipeline-gcr-readwrite'
-              image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/mongodb'
-              dockerfile: 'mongodb/Dockerfile'
-              tag_as_latest: true
-    branches: ['main']
-    inherit:
-      potter-hub:
-        template: 'default'
-        base_definition:
-          traits:
-            version: ~
-            notifications:
-              default:
-                on_error:
-                  triggering_policy: 'always'
-                  recipients:
-                  - email_addresses: ~
-        jobs:
-          minor-release:
-            repo:
-              trigger: false
-            traits:
-              version:
-                preprocess: 'finalize'
-                inject_effective_version: true
-              release:
-                nextversion: 'bump_minor'
-                commit_message_prefix: '[skip ci]'
-              component_descriptor: ~
-              <<: *publish_prod_trait
-            steps:
-              <<: *code_test_trait
-              run_integration_test:
-                execute:
-                - dev_integration_test.py
-                output_dir: integration_test
-              helm:
-                depends:
-                - run_integration_test
-                execute:
-                - build_and_Push_helm.py
-              update_release:
-                inputs:
-                  LINT_PATH: lint_path
-                  INTEGRATION_TEST_PATH: integration_test_path
-                  BACKEND_TEST_PATH: backend_test_path
-                  FRONTEND_TEST_PATH: frontend_test_path
+          - build_and_Push_helm.py
+        update_release:
+          inputs:
+            LINT_PATH: lint_path
+            INTEGRATION_TEST_PATH: integration_test_path
+            BACKEND_TEST_PATH: backend_test_path
+            FRONTEND_TEST_PATH: frontend_test_path
