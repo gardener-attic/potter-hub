@@ -108,7 +108,7 @@ class ChartView extends React.Component<IChartViewProps> {
                     <h2>Maintainers</h2>
                     <ChartMaintainers
                       maintainers={chartAttrs.maintainers}
-                      githubIDAsNames={this.isKubernetesCharts(chartAttrs.repo.url)}
+                      githubIDAsNames={false}
                     />
                   </div>
                   {chartAttrs.sources?.length > 0 && (
@@ -133,13 +133,6 @@ class ChartView extends React.Component<IChartViewProps> {
           </div>
         </main>
       </section>
-    );
-  }
-
-  private isKubernetesCharts(repoURL: string) {
-    return (
-      repoURL === "https://kubernetes-charts.storage.googleapis.com" ||
-      repoURL === "https://kubernetes-charts-incubator.storage.googleapis.com"
     );
   }
 

@@ -150,14 +150,9 @@ describe("ChartMaintainers githubIDAsNames prop value", () => {
     repoURL: string;
   }> = [
     {
-      expected: true,
+      expected: false,
       name: "stable Helm repo",
       repoURL: "https://kubernetes-charts.storage.googleapis.com",
-    },
-    {
-      expected: true,
-      name: "incubator Helm repo",
-      repoURL: "https://kubernetes-charts-incubator.storage.googleapis.com",
     },
     { name: "random Helm repo", repoURL: "https://examplerepo.com", expected: false },
   ];
