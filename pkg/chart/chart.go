@@ -46,7 +46,6 @@ import (
 )
 
 const (
-	defaultRepoURL        = "https://kubernetes-charts.storage.googleapis.com"
 	defaultTimeoutSeconds = 180
 )
 
@@ -369,8 +368,7 @@ func (c *Client) InitNetClient(ctx context.Context, details *Details) (HTTPClien
 func (c *Client) GetChart(details *Details, netClient HTTPClient) (*chart.Chart, error) {
 	repoURL := c.appRepo.Spec.URL
 	if repoURL == "" {
-		// FIXME: Make configurable
-		repoURL = defaultRepoURL
+		return nil, errors.New("apprepo URL is empty")
 	}
 	repoURL = strings.TrimSuffix(strings.TrimSpace(repoURL), "/") + "/index.yaml"
 
