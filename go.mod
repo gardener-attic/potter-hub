@@ -1,4 +1,4 @@
-module github.wdf.sap.corp/kubernetes/hub
+module github.com/gardener/potter-hub
 
 go 1.15
 
