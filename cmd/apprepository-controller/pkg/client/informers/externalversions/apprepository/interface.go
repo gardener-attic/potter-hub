@@ -19,8 +19,8 @@ limitations under the License.
 package kubeapps
 
 import (
-	v1alpha1 "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/client/informers/externalversions/apprepository/v1alpha1"
-	internalinterfaces "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/client/informers/externalversions/internalinterfaces"
+	v1alpha1 "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/client/informers/externalversions/apprepository/v1alpha1"
+	internalinterfaces "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/client/informers/externalversions/internalinterfaces"
 )
 
 // Interface provides access to each of this group's versions.

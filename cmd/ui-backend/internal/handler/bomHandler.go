@@ -14,10 +14,10 @@ import (
 	"k8s.io/client-go/rest"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	errUtils "github.wdf.sap.corp/kubernetes/hub/pkg/errors"
-	hubv1 "github.wdf.sap.corp/kubernetes/hub/pkg/external/hubcontroller/api/v1"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/log"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/util"
+	errUtils "github.com/gardener/potter-hub/pkg/errors"
+	hubv1 "github.com/gardener/potter-hub/pkg/external/hubcontroller/api/v1"
+	"github.com/gardener/potter-hub/pkg/log"
+	"github.com/gardener/potter-hub/pkg/util"
 )
 
 const clusternameLabel = "hub.k8s.sap.com/cluster-name"

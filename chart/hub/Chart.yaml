@@ -9,9 +9,9 @@ keywords:
 - dashboard
 - service catalog
 - deployment
-home: https://github.wdf.sap.corp.com/kuberntes/hub
+home: https://github.com/gardener/potter-hub
 sources:
-- https://github.wdf.sap.corp.com/kuberntes/hub
+- https://github.com/gardener/potter-hub
 maintainers:
 - name: Team DL
   email: DL_5DD55C9CB52A299DF06071EA@global.corp.sap

@@ -9,7 +9,7 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
-	errorUtils "github.wdf.sap.corp/kubernetes/hub/pkg/errors"
+	errorUtils "github.com/gardener/potter-hub/pkg/errors"
 )
 
 func GetKubeconfigFromOidcCluster(token, namespace, secretName, oidcClusterURL string, decodedOidcClusterCA []byte) (*string, error) {

@@ -13,7 +13,7 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 
-	hubv1 "github.wdf.sap.corp/kubernetes/hub/pkg/external/hubcontroller/api/v1"
+	hubv1 "github.com/gardener/potter-hub/pkg/external/hubcontroller/api/v1"
 )
 
 type TestClient struct {

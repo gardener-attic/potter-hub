@@ -11,8 +11,8 @@ import (
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/util"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
+	"github.com/gardener/potter-hub/pkg/util"
 )
 
 const (

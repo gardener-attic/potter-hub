@@ -23,7 +23,7 @@ import (
 
 	"helm.sh/helm/v3/pkg/chart"
 
-	chartUtils "github.wdf.sap.corp/kubernetes/hub/pkg/chart"
+	chartUtils "github.com/gardener/potter-hub/pkg/chart"
 )
 
 type Chart struct{}

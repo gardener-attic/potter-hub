@@ -28,13 +28,13 @@ import (
 	logrusTest "github.com/sirupsen/logrus/hooks/test"
 	"helm.sh/helm/v3/pkg/release"
 
-	"github.wdf.sap.corp/kubernetes/hub/pkg/auth"
-	authFake "github.wdf.sap.corp/kubernetes/hub/pkg/auth/fake"
-	chartFake "github.wdf.sap.corp/kubernetes/hub/pkg/chart/fake"
-	errorUtils "github.wdf.sap.corp/kubernetes/hub/pkg/errors"
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
-	proxy2 "github.wdf.sap.corp/kubernetes/hub/pkg/proxy"
-	proxyFake "github.wdf.sap.corp/kubernetes/hub/pkg/proxy/fake"
+	"github.com/gardener/potter-hub/pkg/auth"
+	authFake "github.com/gardener/potter-hub/pkg/auth/fake"
+	chartFake "github.com/gardener/potter-hub/pkg/chart/fake"
+	errorUtils "github.com/gardener/potter-hub/pkg/errors"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
+	proxy2 "github.com/gardener/potter-hub/pkg/proxy"
+	proxyFake "github.com/gardener/potter-hub/pkg/proxy/fake"
 )
 
 func TestErrorCodeWithDefault(t *testing.T) {

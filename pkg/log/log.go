@@ -12,7 +12,7 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/negroni"
 
-	errorUtils "github.wdf.sap.corp/kubernetes/hub/pkg/errors"
+	errorUtils "github.com/gardener/potter-hub/pkg/errors"
 )
 
 //nolint:gochecknoglobals

@@ -229,7 +229,7 @@ class ServiceInstanceView extends React.Component<IServiceInstanceViewProps> {
                         please report it{" "}
                         <a
                           target="_blank"
-                          href="https://github.wdf.sap.corp/kubernetes/hub/issues/new/choose"
+                          href="https://github.com/gardener/potter-hub/issues/new/choose"
                         >
                           {" "}
                           here

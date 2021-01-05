@@ -8,10 +8,10 @@ import (
 
 	"github.com/pkg/errors"
 
-	errorUtils "github.wdf.sap.corp/kubernetes/hub/pkg/errors"
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
-	utils "github.wdf.sap.corp/kubernetes/hub/pkg/util"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/wsproxy"
+	errorUtils "github.com/gardener/potter-hub/pkg/errors"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
+	utils "github.com/gardener/potter-hub/pkg/util"
+	"github.com/gardener/potter-hub/pkg/wsproxy"
 )
 
 func (rp *K8sReverseProxy) ProxyRequestToResourceCluster(w http.ResponseWriter, r *http.Request, params Params) {

@@ -14,8 +14,8 @@ import (
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	errorUtils "github.wdf.sap.corp/kubernetes/hub/pkg/errors"
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
+	errorUtils "github.com/gardener/potter-hub/pkg/errors"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
 )
 
 const (

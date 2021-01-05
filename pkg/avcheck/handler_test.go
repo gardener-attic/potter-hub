@@ -12,7 +12,7 @@ import (
 	"github.com/sirupsen/logrus/hooks/test"
 	"github.com/stretchr/testify/mock"
 
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
 )
 
 type chartServiceCheckerMock struct {

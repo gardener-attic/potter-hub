@@ -19,7 +19,7 @@ limitations under the License.
 package fake
 
 import (
-	kubeappsv1alpha1 "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/apis/apprepository/v1alpha1"
+	kubeappsv1alpha1 "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/apis/apprepository/v1alpha1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"

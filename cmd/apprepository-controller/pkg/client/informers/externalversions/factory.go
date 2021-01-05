@@ -23,9 +23,9 @@ import (
 	sync "sync"
 	time "time"
 
-	versioned "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/client/clientset/versioned"
-	apprepository "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/client/informers/externalversions/apprepository"
-	internalinterfaces "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/client/informers/externalversions/internalinterfaces"
+	versioned "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/client/clientset/versioned"
+	apprepository "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/client/informers/externalversions/apprepository"
+	internalinterfaces "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/client/informers/externalversions/internalinterfaces"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	runtime "k8s.io/apimachinery/pkg/runtime"
 	schema "k8s.io/apimachinery/pkg/runtime/schema"

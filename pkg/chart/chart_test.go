@@ -38,9 +38,9 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	fakeK8s "k8s.io/client-go/kubernetes/fake"
 
-	appRepov1 "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/apis/apprepository/v1alpha1"
-	fakeAppRepo "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/client/clientset/versioned/fake"
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
+	appRepov1 "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/apis/apprepository/v1alpha1"
+	fakeAppRepo "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/client/clientset/versioned/fake"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
 )
 
 func Test_resolveChartURL(t *testing.T) {

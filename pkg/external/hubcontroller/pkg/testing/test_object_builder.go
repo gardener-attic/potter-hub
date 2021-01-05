@@ -4,7 +4,7 @@ import (
 	corev1 "k8s.io/api/core/v1"
 	v1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 
-	hubv1 "github.wdf.sap.corp/kubernetes/hub/pkg/external/hubcontroller/api/v1"
+	hubv1 "github.com/gardener/potter-hub/pkg/external/hubcontroller/api/v1"
 )
 
 func CreateClusterBom(clusterBomName, overallState string) *hubv1.ClusterBom {

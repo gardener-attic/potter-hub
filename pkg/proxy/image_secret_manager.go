@@ -11,7 +11,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
 )
 
 // imageSecretManager manages the creation and deletion of image pull secrets for private repositories

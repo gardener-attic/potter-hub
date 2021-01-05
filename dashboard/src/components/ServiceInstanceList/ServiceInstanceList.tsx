@@ -161,7 +161,7 @@ class ServiceInstanceList extends React.PureComponent<
           <div>
             Service Catalog integration is under heavy development. If you find an issue please
             report it{" "}
-            <a target="_blank" href="https://github.wdf.sap.corp/kubernetes/hub/issues/new/choose">
+            <a target="_blank" href="https://github.com/gardener/potter-hub/issues/new/choose">
               {" "}
               here.
             </a>

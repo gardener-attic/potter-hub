@@ -8,8 +8,8 @@ import (
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
 
-	"github.wdf.sap.corp/kubernetes/hub/pkg/log"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/util"
+	"github.com/gardener/potter-hub/pkg/log"
+	"github.com/gardener/potter-hub/pkg/util"
 )
 
 func NewSystemInfoHandler(config *rest.Config) (*SystemInfoHandler, error) {

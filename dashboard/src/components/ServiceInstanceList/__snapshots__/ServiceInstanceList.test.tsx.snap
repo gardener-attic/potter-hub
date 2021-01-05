@@ -44,7 +44,7 @@ exports[`when all the components are loaded shows a card list with the different
       Service Catalog integration is under heavy development. If you find an issue please report it
        
       <a
-        href="https://github.wdf.sap.corp/kubernetes/hub/issues/new/choose"
+        href="https://github.com/gardener/potter-hub/issues/new/choose"
         target="_blank"
       >
          
@@ -118,7 +118,7 @@ exports[`when all the components are loaded shows a forbiden error if it exists 
       Service Catalog integration is under heavy development. If you find an issue please report it
        
       <a
-        href="https://github.wdf.sap.corp/kubernetes/hub/issues/new/choose"
+        href="https://github.com/gardener/potter-hub/issues/new/choose"
         target="_blank"
       >
          
@@ -214,7 +214,7 @@ exports[`when all the components are loaded shows a warning to install no servic
       Service Catalog integration is under heavy development. If you find an issue please report it
        
       <a
-        href="https://github.wdf.sap.corp/kubernetes/hub/issues/new/choose"
+        href="https://github.com/gardener/potter-hub/issues/new/choose"
         target="_blank"
       >
          
@@ -277,7 +277,7 @@ exports[`when all the components are loaded shows a warning to install the Servi
       Service Catalog integration is under heavy development. If you find an issue please report it
        
       <a
-        href="https://github.wdf.sap.corp/kubernetes/hub/issues/new/choose"
+        href="https://github.com/gardener/potter-hub/issues/new/choose"
         target="_blank"
       >
          
@@ -340,7 +340,7 @@ exports[`when all the components are loaded shows information of how to deploy a
       Service Catalog integration is under heavy development. If you find an issue please report it
        
       <a
-        href="https://github.wdf.sap.corp/kubernetes/hub/issues/new/choose"
+        href="https://github.com/gardener/potter-hub/issues/new/choose"
         target="_blank"
       >
          
@@ -426,7 +426,7 @@ exports[`while fetching components loading spinner matches the snapshot 1`] = `
       Service Catalog integration is under heavy development. If you find an issue please report it
        
       <a
-        href="https://github.wdf.sap.corp/kubernetes/hub/issues/new/choose"
+        href="https://github.com/gardener/potter-hub/issues/new/choose"
         target="_blank"
       >
          
@@ -489,7 +489,7 @@ exports[`while fetching components matches the snapshot 1`] = `
       Service Catalog integration is under heavy development. If you find an issue please report it
        
       <a
-        href="https://github.wdf.sap.corp/kubernetes/hub/issues/new/choose"
+        href="https://github.com/gardener/potter-hub/issues/new/choose"
         target="_blank"
       >
          

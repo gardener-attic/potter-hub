@@ -14,7 +14,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
 )
 
 type MockedKubernetesClient struct {

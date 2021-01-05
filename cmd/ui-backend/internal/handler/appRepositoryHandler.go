@@ -8,10 +8,10 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/rest"
 
-	appRepoClientSet "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/client/clientset/versioned"
-	errUtils "github.wdf.sap.corp/kubernetes/hub/pkg/errors"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/log"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/util"
+	appRepoClientSet "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/client/clientset/versioned"
+	errUtils "github.com/gardener/potter-hub/pkg/errors"
+	"github.com/gardener/potter-hub/pkg/log"
+	"github.com/gardener/potter-hub/pkg/util"
 )
 
 func NewAppRepositoryHandler(config *rest.Config) (*AppRepositoryHandler, error) {

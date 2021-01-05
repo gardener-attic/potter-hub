@@ -7,7 +7,7 @@ import (
 
 	"github.com/pkg/errors"
 
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
 )
 
 const completeCheckKey = "completeCheck"

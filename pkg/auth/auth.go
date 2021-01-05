@@ -33,7 +33,7 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 
-	yamlUtils "github.wdf.sap.corp/kubernetes/hub/pkg/yaml"
+	yamlUtils "github.com/gardener/potter-hub/pkg/yaml"
 )
 
 type resource struct {

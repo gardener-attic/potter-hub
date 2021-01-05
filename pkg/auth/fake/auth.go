@@ -17,7 +17,7 @@ limitations under the License.
 package fake
 
 import (
-	authUtils "github.wdf.sap.corp/kubernetes/hub/pkg/auth"
+	authUtils "github.com/gardener/potter-hub/pkg/auth"
 )
 
 type Auth struct {

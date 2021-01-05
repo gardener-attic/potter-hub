@@ -20,9 +20,9 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/client/fake"
 
-	hubv1 "github.wdf.sap.corp/kubernetes/hub/pkg/external/hubcontroller/api/v1"
-	testUtils "github.wdf.sap.corp/kubernetes/hub/pkg/external/hubcontroller/pkg/testing"
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
+	hubv1 "github.com/gardener/potter-hub/pkg/external/hubcontroller/api/v1"
+	testUtils "github.com/gardener/potter-hub/pkg/external/hubcontroller/pkg/testing"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
 )
 
 func createFakeClientFactory(initObjects ...runtime.Object) K8sClientFactory {

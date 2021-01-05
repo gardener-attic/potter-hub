@@ -7,7 +7,7 @@ import (
 
 	"github.com/golang/glog"
 
-	"github.wdf.sap.corp/kubernetes/hub/pkg/util"
+	"github.com/gardener/potter-hub/pkg/util"
 )
 
 const authHeaderKey = "AUTHORIZATION_HEADER"

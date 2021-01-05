@@ -33,7 +33,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"sigs.k8s.io/yaml"
 
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
 )
 
 // nolint

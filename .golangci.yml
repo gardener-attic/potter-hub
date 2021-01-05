@@ -8,7 +8,7 @@ linters-settings:
   misspell:
     locale: US
   goimports:
-    local-prefixes: github.wdf.sap.corp/kubernetes/hub
+    local-prefixes: github.com/gardener/potter-hub
   gocritic:
     enabled-tags:
       - diagnostic

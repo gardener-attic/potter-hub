@@ -10,8 +10,8 @@ import (
 	"github.com/sirupsen/logrus"
 	"github.com/sirupsen/logrus/hooks/test"
 
-	errorUtils "github.wdf.sap.corp/kubernetes/hub/pkg/errors"
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
+	errorUtils "github.com/gardener/potter-hub/pkg/errors"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
 )
 
 func TestSendErrResponse(t *testing.T) {

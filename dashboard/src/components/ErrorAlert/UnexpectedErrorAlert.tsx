@@ -19,7 +19,7 @@ export const genericMessage = (
       <li>Check for network issues.</li>
       <li>Check your browser's JavaScript console for additional errors.</li>
       <li>
-        <a href="https://github.wdf.sap.corp/kubernetes/hub/issues/new/choose" target="_blank" rel="noopener noreferrer">
+        <a href="https://github.com/gardener/potter-hub/issues/new/choose" target="_blank" rel="noopener noreferrer">
           Open an issue on GitHub
         </a>{" "}
         if you think you've encountered a bug.

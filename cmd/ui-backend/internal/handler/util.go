@@ -10,7 +10,7 @@ import (
 
 	"github.com/pkg/errors"
 
-	errorUtils "github.wdf.sap.corp/kubernetes/hub/pkg/errors"
+	errorUtils "github.com/gardener/potter-hub/pkg/errors"
 )
 
 func getClusterCredentialsFromKubeconfig(kubeconfig *UnmarshalKubeconfig) (ClusterCredentials, error) {

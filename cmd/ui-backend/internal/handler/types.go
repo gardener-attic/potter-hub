@@ -7,7 +7,7 @@ import (
 	"github.com/pkg/errors"
 	"gopkg.in/yaml.v2"
 
-	"github.wdf.sap.corp/kubernetes/hub/pkg/kubeval"
+	"github.com/gardener/potter-hub/pkg/kubeval"
 )
 
 type UnmarshalKubeconfig struct {

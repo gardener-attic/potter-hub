@@ -14,8 +14,8 @@ import (
 	"github.com/gorilla/websocket"
 	"github.com/pkg/errors"
 
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
-	utils "github.wdf.sap.corp/kubernetes/hub/pkg/util"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
+	utils "github.com/gardener/potter-hub/pkg/util"
 )
 
 // WebsocketProxy is an HTTP Handler that takes an incoming WebSocket

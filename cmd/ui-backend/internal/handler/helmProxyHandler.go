@@ -32,13 +32,13 @@ import (
 	"github.com/urfave/negroni"
 	"helm.sh/helm/v3/pkg/chart"
 
-	"github.wdf.sap.corp/kubernetes/hub/pkg/auth"
-	chartUtils "github.wdf.sap.corp/kubernetes/hub/pkg/chart"
-	errorUtils "github.wdf.sap.corp/kubernetes/hub/pkg/errors"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/kubeval"
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/proxy"
-	utils "github.wdf.sap.corp/kubernetes/hub/pkg/util"
+	"github.com/gardener/potter-hub/pkg/auth"
+	chartUtils "github.com/gardener/potter-hub/pkg/chart"
+	errorUtils "github.com/gardener/potter-hub/pkg/errors"
+	"github.com/gardener/potter-hub/pkg/kubeval"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
+	"github.com/gardener/potter-hub/pkg/proxy"
+	utils "github.com/gardener/potter-hub/pkg/util"
 )
 
 // userKey is the context key for the user data in the request context

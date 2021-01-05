@@ -24,7 +24,7 @@ import (
 	"helm.sh/helm/v3/pkg/chart"
 	"helm.sh/helm/v3/pkg/release"
 
-	"github.wdf.sap.corp/kubernetes/hub/pkg/proxy"
+	"github.com/gardener/potter-hub/pkg/proxy"
 )
 
 type Proxy struct {

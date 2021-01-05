@@ -195,7 +195,7 @@ class DeploymentFormBody extends React.Component<
                     <a
                       target="_blank"
                       rel="noopener noreferrer"
-                      href="https://github.wdf.sap.corp/kubernetes/hub/issues/new/choose"
+                      href="https://github.com/gardener/potter-hub/issues/new/choose"
                     >
                       here.
                     </a>

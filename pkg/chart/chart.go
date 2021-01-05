@@ -39,10 +39,10 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/client-go/kubernetes"
 
-	appRepov1 "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/apis/apprepository/v1alpha1"
-	appRepoClientSet "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/client/clientset/versioned"
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/util"
+	appRepov1 "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/apis/apprepository/v1alpha1"
+	appRepoClientSet "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/client/clientset/versioned"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
+	"github.com/gardener/potter-hub/pkg/util"
 )
 
 const (

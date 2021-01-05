@@ -36,13 +36,13 @@ import (
 	"k8s.io/client-go/rest"
 	"k8s.io/client-go/tools/clientcmd"
 
-	appRepo "github.wdf.sap.corp/kubernetes/hub/cmd/apprepository-controller/pkg/client/clientset/versioned"
-	"github.wdf.sap.corp/kubernetes/hub/cmd/ui-backend/internal/handler"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/avcheck"
-	chartUtils "github.wdf.sap.corp/kubernetes/hub/pkg/chart"
-	logUtils "github.wdf.sap.corp/kubernetes/hub/pkg/log"
-	helmProxy "github.wdf.sap.corp/kubernetes/hub/pkg/proxy"
-	"github.wdf.sap.corp/kubernetes/hub/pkg/util"
+	appRepo "github.com/gardener/potter-hub/cmd/apprepository-controller/pkg/client/clientset/versioned"
+	"github.com/gardener/potter-hub/cmd/ui-backend/internal/handler"
+	"github.com/gardener/potter-hub/pkg/avcheck"
+	chartUtils "github.com/gardener/potter-hub/pkg/chart"
+	logUtils "github.com/gardener/potter-hub/pkg/log"
+	helmProxy "github.com/gardener/potter-hub/pkg/proxy"
+	"github.com/gardener/potter-hub/pkg/util"
 )
 
 func main() {
