@@ -92,3 +92,5 @@ potter-hub:
             INTEGRATION_TEST_PATH: integration_test_path
             BACKEND_TEST_PATH: backend_test_path
             FRONTEND_TEST_PATH: frontend_test_path
+          depends:
+            - release
