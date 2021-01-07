@@ -55,11 +55,11 @@ potter-hub:
             image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/kubectl'
             dockerfile: 'kubectl.Dockerfile'
             tag_as_latest: true
-          mongodb:
-            registry: 'hub-pipeline-gcr-readwrite'
-            image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/mongodb'
-            dockerfile: 'mongodb/Dockerfile'
-            tag_as_latest: true
+#          mongodb:
+#            registry: 'hub-pipeline-gcr-readwrite'
+#            image: 'eu.gcr.io/sap-gcp-k8s-wm-live/hub-os/mongodb'
+#            dockerfile: 'mongodb/Dockerfile'
+#            tag_as_latest: true
   jobs:
     minor-release:
       repo:
