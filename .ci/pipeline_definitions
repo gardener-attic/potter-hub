@@ -95,7 +95,5 @@ potter-hub:
           execute:
           - update_release.py
           depends:
-          - frontend-tests
-          - backend-tests 
-          - run_linter
+          - release
           
