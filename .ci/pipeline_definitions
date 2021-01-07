@@ -81,7 +81,9 @@ potter-hub:
 #          output_dir: integration_test
         helm:
           depends:
-          - run_integration_test
+#          - run_integration_test
+          - publish
+
           execute:
           - build_and_Push_helm.py
         update_release:
