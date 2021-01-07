@@ -85,7 +85,7 @@ potter-hub:
           - publish
 
           execute:
-          - build_and_Push_helm.py
+          - build_and_push_helm.py
         update_release:
           inputs:
             LINT_PATH: lint_path
