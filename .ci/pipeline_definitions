@@ -93,4 +93,8 @@ potter-hub:
             BACKEND_TEST_PATH: backend_test_path
             FRONTEND_TEST_PATH: frontend_test_path
           depends:
-            - release
+          - release
+          - frontend-tests
+          - backend-tests 
+          - run_linter
+          
