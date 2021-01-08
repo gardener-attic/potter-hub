@@ -3,6 +3,7 @@
 import os
 from subprocess import Popen, PIPE, STDOUT, run
 import sys
+import shutil
 import utils
 import yaml
 
@@ -42,6 +43,16 @@ utils.write_data(landscape_test_kubeconfig_path, yaml.dump(
 landscape_config = utils.get_landscape_config("hub-" + landscape)
 int_test_config = landscape_config.raw["int-test"]["config"]
 token = int_test_config["auth"]["token"]
+
+golang_found = shutil.which("go")
+if golang_found:
+    print(f"Found go compiler in {golang_found}")
+else:
+    print("No Go compiler found, installing Go")
+    command = ['apk', 'add', 'go', '--no-progress']
+    result = run(command)
+    result.check_returncode()
+
 
 os.chdir(os.path.join(root_path, hub_path, "integration-test"))
 
