@@ -1,0 +1,7 @@
+telepresence.log
+.idea/
+.DS_Store
+.vscode*
+.project
+.ci/__pycache__/*
+chart/hub/charts/*.tgz
