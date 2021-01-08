@@ -75,15 +75,14 @@ potter-hub:
         <<: *publish_prod_trait
       steps:
         <<: *code_test_trait
-#        run_integration_test:
-#          execute:
-#          - dev_integration_test.py
-#          output_dir: integration_test
+        run_integration_test:
+          execute:
+          - dev_integration_test.py
+          output_dir: integration_test
         helm:
           depends:
-#          - run_integration_test
+          - run_integration_test
           - publish
-
           execute:
           - build_and_push_helm.py
         update_release:
