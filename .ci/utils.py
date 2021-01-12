@@ -152,6 +152,7 @@ def replace_chart_placeholder(chart_path: str, version_path: str, chart_version:
 class TempFileAuto(object):
     def __init__(self, prefix=None, mode='w+', suffix=".yaml"):
         self.file_obj = tempfile.NamedTemporaryFile(mode=mode, prefix=prefix, suffix=suffix, delete=False)
+        self.name = self.file_obj.name
     def __enter__(self):
         return self
     def write(self, b):
