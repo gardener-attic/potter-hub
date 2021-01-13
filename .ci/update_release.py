@@ -59,16 +59,16 @@ gh_release.upload_asset(
     name=f'frontend-test-result-{version_file_contents}.txt',
     asset=frontend_test_path.open(mode='rb'),
 )
-# try:
-#     os.environ['INTEGRATION_TEST_PATH']
-# except KeyError:
-#     print("No integration test output path found. Output will not be added to release")
-# else:
-#     integration_test_path = util.check_env('INTEGRATION_TEST_PATH')
-#     integration_test_path = pathlib.Path(integration_test_path).resolve()
-#     integration_test_path = integration_test_path / OUTPUT_FILE_NAME
-#     gh_release.upload_asset(
-#         content_type='text/plain',
-#         name=f'intgration-test-result-{version_file_contents}.txt',
-#         asset=integration_test_path.open(mode='rb'),
-#     )
+try:
+    os.environ['INTEGRATION_TEST_PATH']
+except KeyError:
+    print("No integration test output path found. Output will not be added to release")
+else:
+    integration_test_path = util.check_env('INTEGRATION_TEST_PATH')
+    integration_test_path = pathlib.Path(integration_test_path).resolve()
+    integration_test_path = integration_test_path / OUTPUT_FILE_NAME
+    gh_release.upload_asset(
+        content_type='text/plain',
+        name=f'intgration-test-result-{version_file_contents}.txt',
+        asset=integration_test_path.open(mode='rb'),
+    )
