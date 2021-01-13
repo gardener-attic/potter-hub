@@ -69,6 +69,6 @@ else:
     integration_test_path = integration_test_path / OUTPUT_FILE_NAME
     gh_release.upload_asset(
         content_type='text/plain',
-        name=f'intgration-test-result-{version_file_contents}.txt',
+        name=f'integration-test-result-{version_file_contents}.txt',
         asset=integration_test_path.open(mode='rb'),
     )
