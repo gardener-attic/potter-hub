@@ -89,11 +89,12 @@ potter-hub:
         update_release:
           inputs:
             LINT_PATH: lint_path
-#            INTEGRATION_TEST_PATH: integration_test_path
+            INTEGRATION_TEST_PATH: integration_test_path
             BACKEND_TEST_PATH: backend_test_path
             FRONTEND_TEST_PATH: frontend_test_path
           execute:
           - update_release.py
           depends:
           - release
+          - run_integration_test
           
