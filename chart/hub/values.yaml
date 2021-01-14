@@ -448,8 +448,8 @@ dashboard:
 ## mongodb image is now part of our build
 mongodb:
   image:
-    registry: eu.gcr.io
-    repository: sap-gcp-k8s-wm-live/hub/mongodb
+    registry: <MONGODB_REGISTRY>
+    repository: <MONGODB_REPOSITORY>
     tag: <MONGODB_TAG>
 
   volumePermissions:

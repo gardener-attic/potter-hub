@@ -128,11 +128,8 @@ def replace_chart_placeholder(chart_path: str, version_path: str, chart_version:
     values_yaml = chart_path + "/values.yaml"
     chart_yaml = chart_path + "/Chart.yaml"
 
-    image_repo = "sap-gcp-k8s-wm-dev/hub/"
-    release_only_image_version = 'latest'
-    if is_release_job():
-        image_repo = "sap-gcp-k8s-wm-live/hub/"
-        release_only_image_version = image_version
+    image_repo = "sap-gcp-cp-k8s-stable-hub/potter-charts/"
+    release_only_image_version = image_version
 
     replace_placeholder_in_yaml(values_yaml, "<DASHBOARD_REPO>", image_repo + "dashboard")
     replace_placeholder_in_yaml(values_yaml, "<UI_BACKEND_REPO>", image_repo + "ui-backend")
@@ -142,7 +139,12 @@ def replace_chart_placeholder(chart_path: str, version_path: str, chart_version:
     replace_placeholder_in_yaml(values_yaml, "<UI_BACKEND_TAG>", image_version)
     replace_placeholder_in_yaml(values_yaml, "<APPREPOSITORY_CONTROLLER_TAG>", image_version)
 
-    replace_placeholder_in_yaml(values_yaml, "<MONGODB_TAG>", release_only_image_version)
+
+    # for public repo check latest version at: https://github.com/bitnami/charts/blob/master/bitnami/mongodb/values.yaml
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_REGISTRY>", "docker.io")
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_REPOSITORY>", "bitnami/mongodb")
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_TAG>", "4.4.3-debian-10-r21")
+
     replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_TAG>", release_only_image_version)
     replace_placeholder_in_yaml(values_yaml, "<KUBECTL_VERSION_TAG>", release_only_image_version)
 
