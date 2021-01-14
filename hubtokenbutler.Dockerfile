@@ -24,7 +24,7 @@ RUN adduser \
 --uid "${UID}" \
 "${USER}"
 
-FROM eu.gcr.io/sap-gcp-k8s-wm-live/baseimages/kubeapps-chart-repo:1.9.0-r2
+FROM eu-gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/kubeapps-chart-repo:1.9.0-r2
 WORKDIR /
 
 # Import the user and group files from the builder.
