@@ -1,4 +1,4 @@
-FROM eu.gcr.io/gardener-project/3rd/node:15-alpine13.12 as build     
+FROM eu.gcr.io/gardener-project/3rd/node:14.15-alpine3.12 as build     
 WORKDIR /app
 
 COPY package.json yarn.lock tsconfig.json tsconfig.prod.json tslint.json ./
