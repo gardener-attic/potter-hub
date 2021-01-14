@@ -1,4 +1,4 @@
-FROM eu.gcr.io/gardener-project/3rd/node:14.15-alpine3.12 as build     
+FROM eu.gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/node:12.18.3 as build     
 WORKDIR /app
 
 COPY package.json yarn.lock tsconfig.json tsconfig.prod.json tslint.json ./
