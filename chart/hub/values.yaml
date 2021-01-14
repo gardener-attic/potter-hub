@@ -462,9 +462,9 @@ mongodb:
   metrics:
     enabled: false
     image:
-      registry: eu.gcr.io
-      repository: sap-gcp-k8s-wm-live/oss/mongodb-exporter
-      tag: 0.10.0-debian-10-r69
+      registry: <MONGODB_EXPORTER_REGISTRY>
+      repository: <MONGODB_EXPORTER_REPOSITORY>
+      tag: <MONGODB_EXPORTER_TAG>
 
   # Potter-Hub uses MongoDB as a cache and persistence is not required
   persistence:

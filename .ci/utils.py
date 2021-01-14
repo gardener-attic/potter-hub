@@ -145,6 +145,11 @@ def replace_chart_placeholder(chart_path: str, version_path: str, chart_version:
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_REPOSITORY>", "bitnami/mongodb")
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_TAG>", "4.4.3-debian-10-r21")
 
+    # for public repo see https://hub.docker.com/r/ssheehy/mongodb-exporter 
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REGISTRY>", "docker.io")
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REPOSITORY>", "ssheehy/mongodb-exporter")
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_AG>", "0.11.0")
+
     replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_TAG>", release_only_image_version)
     replace_placeholder_in_yaml(values_yaml, "<KUBECTL_VERSION_TAG>", release_only_image_version)
 
