@@ -1,5 +1,5 @@
 # Potter - <br>The Kubernetes Applications and Services Hub
-#### Please note: This repository and the related documentation is very much work-in-progress, so expect to find unfinished work ahead!
+#### Please note: This repository and the related documentation is very much work-in-progress, so expect to find unfinished work ahead! All releases are currently only test releases and not intended for use.
 
 ## Description
 Potter - The K8s Applications and Services Hub, is a Kubernetes extension to manage deployments in Kubernetes clusters. It’s a central component in a [Gardener](https://github.com/gardener/gardener) Kubernetes landscape which doesn’t require any additional components running in the managed cluster.
