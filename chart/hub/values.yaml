@@ -157,11 +157,13 @@ apprepository:
     registry: eu.gcr.io
     repository: <APPREPOSITORY_CONTROLLER_REPO>
     tag: <APPREPOSITORY_CONTROLLER_TAG>
+    imagePullPolicy: <IMAGE_PULL_POLICY>
     # Image used to perform chart repository syncs
   syncImage:
     registry: eu.gcr.io
     repository: sap-gcp-k8s-wm-live/hub/hubtokenbutler
     tag: <HUB_TOKEN_BUTLER_TAG>
+    imagePullPolicy: <IMAGE_PULL_POLICY>
   initialReposProxy:
     enabled: false
 #    http_proxy: "http://yourproxy:3128"
@@ -219,6 +221,7 @@ hooks:
     registry: eu.gcr.io
     repository: sap-gcp-k8s-wm-live/hub/kubectl
     tag: <KUBECTL_VERSION_TAG>
+    imagePullPolicy: <IMAGE_PULL_POLICY>
   nodeSelector: {}
   tolerations: []
   affinity: {}
@@ -229,6 +232,7 @@ uiBackend:
     registry: eu.gcr.io
     repository: <UI_BACKEND_REPO>
     tag: <UI_BACKEND_TAG>
+    imagePullPolicy: <IMAGE_PULL_POLICY>
   service:
     port: 8080
   tls: {}
@@ -359,6 +363,7 @@ dashboard:
     registry: eu.gcr.io
     repository: <DASHBOARD_REPO>
     tag: <DASHBOARD_TAG>
+    imagePullPolicy: <IMAGE_PULL_POLICY>
   service:
     port: 8080
   livenessProbe:
@@ -451,6 +456,7 @@ mongodb:
     registry: <MONGODB_REGISTRY>
     repository: <MONGODB_REPOSITORY>
     tag: <MONGODB_TAG>
+    imagePullPolicy: <IMAGE_PULL_POLICY>
 
   volumePermissions:
     enabled: false

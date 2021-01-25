@@ -86,9 +86,14 @@ if __name__ == "__main__":
         print(f"Rendering helm chart in {chart_path_out}")
         shutil.copytree(chart_path, chart_path_out)
 
+        # get the image version from file
+        image_version_file = version_path + "/version"
+        with open(image_version_file) as image_file:
+            image_version = image_file.read()
+
         utils.replace_chart_placeholder(
             chart_path=chart_path_out,
-            version_path=version_path,
+            image_version=image_version,
             chart_version=chart_version,
             chart_name=chart_name
         )

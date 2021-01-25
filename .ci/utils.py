@@ -120,10 +120,8 @@ def is_release_job():
         return False
 
 
-def replace_chart_placeholder(chart_path: str, version_path: str, chart_version: str, chart_name: str):
-    image_version_file = version_path + "/version"
-    with open(image_version_file) as image_file:
-        image_version = image_file.read()
+def replace_chart_placeholder(chart_path: str, image_version: str, chart_version: str, chart_name: str):
+
 
     values_yaml = chart_path + "/values.yaml"
     chart_yaml = chart_path + "/Chart.yaml"
@@ -152,6 +150,8 @@ def replace_chart_placeholder(chart_path: str, version_path: str, chart_version:
 
     replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_TAG>", release_only_image_version)
     replace_placeholder_in_yaml(values_yaml, "<KUBECTL_VERSION_TAG>", release_only_image_version)
+
+    replace_placeholder_in_yaml(values_yaml, "<IMAGE_PULL_POLICY>", "IfNotPresent")
 
     replace_placeholder_in_yaml(chart_yaml, "<CHART_VERSION>", chart_version)
     replace_placeholder_in_yaml(chart_yaml, "<CHART_NAME>", chart_name)
