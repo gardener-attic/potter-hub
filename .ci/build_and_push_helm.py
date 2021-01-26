@@ -65,6 +65,12 @@ if __name__ == "__main__":
 
     source_path = os.environ['SOURCE_PATH']
     version_path = os.environ['VERSION_PATH']
+    if os.environ.get('HELM_CHART_PATH'):
+        pipeline_out_path =  os.environ['HELM_CHART_PATH']
+        pipeline_out_path = os.path.join(pipeline_out_path, "out")
+    else:
+        print(f"Environment: {os.environ}")
+        pipeline_out_path = None
 
     secret_server_client = secret_server.SecretServer('hub')
     helm_client = helm.HelmClient()
@@ -109,5 +115,8 @@ if __name__ == "__main__":
             cred_file.switch()
 
             packageChartRepo(temp_out, "potter-charts")
+        
+        if pipeline_out_path:
+            shutil.copy(chart_tgz_path, pipeline_out_path)
 
     print("\n ===== Finished Helm Packaging - Python Over =====")

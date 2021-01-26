@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import pathlib
+import re
 import util
 import os
 
@@ -15,7 +16,7 @@ repo_dir = util.check_env('MAIN_REPO_DIR')
 lint_path = util.check_env('LINT_PATH')
 backend_test_path = util.check_env('BACKEND_TEST_PATH')
 frontend_test_path = util.check_env('FRONTEND_TEST_PATH')
-
+helm_chart_path = os.environ.get('HELM_CHART_PATH')
 
 lint_path = pathlib.Path(lint_path).resolve()
 backend_test_path = pathlib.Path(backend_test_path).resolve()
@@ -41,6 +42,7 @@ github_repo_helper = GitHubRepositoryHelper(
     name=repo_name,
     github_cfg=github_cfg,
 )
+
 
 gh_release = github_repo_helper.repository.release_from_tag(version_file_contents)
 
@@ -72,3 +74,51 @@ else:
         name=f'integration-test-result-{version_file_contents}.txt',
         asset=integration_test_path.open(mode='rb'),
     )
+
+if helm_chart_path:
+    files = os.listdir(helm_chart_path)
+    print(f"Found helm_chart_path with content: {files}")
+
+# Update description of the release notes
+release_notes = gh_release.body
+if not release_notes:
+    release_notes = "n/a"
+
+description_md = f"""# Release {version_file_contents} of the potter-hub"
+This is release {version_file_contents} of the Gardener Potter-Hub project.
+The artifacts of this release are used in deployments of the 
+[potter-hub](https://github.com/gardener/potter-hub) Potter is distributed
+and installed via Helm. A public helm chart is available [here]
+(https://console.cloud.google.com/storage/browser/potter-charts). You 
+can add this repository to helm with the following command:
+
+```
+ helm repo add potter https://storage.googleapis.com/potter-charts
+```
+
+To list the content use
+```
+helm search repo potter
+```
+
+To get chart information use:
+
+```
+helm show chart potter/k8s-potter-hub
+```
+
+For detailed installation instructions, visit the 
+Helm Chart's README.md. To make the most out of a Potter Deployment, 
+you should also take a look at the README.md of the corresponding 
+Potter-Controller.
+
+```
+helm show readme potter/k8s-potter-hub
+```
+
+## Release Notes
+{release_notes}
+
+"""
+
+gh_release.edit(body=description_md)

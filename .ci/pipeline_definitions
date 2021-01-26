@@ -85,12 +85,14 @@ potter-hub:
           - publish
           execute:
           - build_and_push_helm.py
+          output_dir: helm_chart
         update_release:
           inputs:
             LINT_PATH: lint_path
             INTEGRATION_TEST_PATH: integration_test_path
             BACKEND_TEST_PATH: backend_test_path
             FRONTEND_TEST_PATH: frontend_test_path
+            HELM_CHART_PATH: helm_chart_path
           execute:
           - update_release.py
           depends:
