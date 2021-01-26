@@ -43,7 +43,6 @@ github_repo_helper = GitHubRepositoryHelper(
     github_cfg=github_cfg,
 )
 
-
 gh_release = github_repo_helper.repository.release_from_tag(version_file_contents)
 
 gh_release.upload_asset(
@@ -76,15 +75,26 @@ else:
     )
 
 if helm_chart_path:
+    helm_chart_path = os.path.join(helm_chart_path, "out")
     files = os.listdir(helm_chart_path)
     print(f"Found helm_chart_path with content: {files}")
+    helm_chart_name = f"k8s-potter-hub-{version_file_contents}.tgz"
+    helm_tgz_path = os.path.join(helm_chart_path, helm_chart_name)
+    if os.path.exists(helm_tgz_path):
+        gh_release.upload_asset(
+            content_type='application/x-tar',
+            name=helm_chart_name,
+            asset=helm_tgz_path.open(mode='rb'),
+        )
+    else:
+        print(f"Warning: Helm Chart not found: {helm_tgz_path}")
 
 # Update description of the release notes
 release_notes = gh_release.body
 if not release_notes:
     release_notes = "n/a"
 
-description_md = f"""# Release {version_file_contents} of the potter-hub"
+description_md = f"""# Release {version_file_contents} of the potter-hub
 This is release {version_file_contents} of the Gardener Potter-Hub project.
 The artifacts of this release are used in deployments of the 
 [potter-hub](https://github.com/gardener/potter-hub) Potter is distributed
