@@ -75,7 +75,6 @@ else:
     )
 
 if helm_chart_path:
-    helm_chart_path = os.path.join(helm_chart_path, "out")
     files = os.listdir(helm_chart_path)
     print(f"Found helm_chart_path with content: {files}")
     helm_chart_name = f"k8s-potter-hub-{version_file_contents}.tgz"

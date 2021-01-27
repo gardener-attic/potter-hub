@@ -67,7 +67,6 @@ if __name__ == "__main__":
     version_path = os.environ['VERSION_PATH']
     if os.environ.get('HELM_CHART_PATH'):
         pipeline_out_path =  os.environ['HELM_CHART_PATH']
-        pipeline_out_path = os.path.join(pipeline_out_path, "out")
     else:
         print(f"Environment: {os.environ}")
         pipeline_out_path = None
@@ -117,6 +116,7 @@ if __name__ == "__main__":
             packageChartRepo(temp_out, "potter-charts")
         
         if pipeline_out_path:
+            print(f"Copying helm chart {chart_tgz_path} to pipeline-oit dir {pipeline_out_path}")
             shutil.copy(chart_tgz_path, pipeline_out_path)
 
     print("\n ===== Finished Helm Packaging - Python Over =====")
