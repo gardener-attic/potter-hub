@@ -96,39 +96,52 @@ if not release_notes:
 
 description_md = f"""# Release {version_file_contents} of the potter-hub
 This is release {version_file_contents} of the Gardener Potter-Hub project.
-The artifacts of this release are used in deployments of the 
-[potter-hub](https://github.com/gardener/potter-hub) Potter is distributed
-and installed via Helm. A public helm chart is available [here]
-(https://console.cloud.google.com/storage/browser/potter-charts). You 
-can add this repository to helm with the following command:
+The artifacts of this release are used in deployments of the
+[potter-hub](https://github.com/gardener/potter-hub) project. Potter is distributed
+and installed via Helm. A helm chart is available [here](https://storage.googleapis.com/potter-charts/k8s-potter-hub-{version_file_contents}.tgz).
+You can add the corresponding helam chart repository to helm with the following command:
 
 ```
  helm repo add potter https://storage.googleapis.com/potter-charts
+
 ```
 
 To list the content use
+
 ```
 helm search repo potter
+
 ```
 
 To get chart information use:
 
 ```
 helm show chart potter/k8s-potter-hub
+
+
 ```
 
-For detailed installation instructions, visit the 
-Helm Chart's README.md. To make the most out of a Potter Deployment, 
-you should also take a look at the README.md of the corresponding 
-Potter-Controller.
+For detailed installation instructions, visit the
+Helm Chart's [README.md](https://github.com/gardener/potter-hub/blob/{version_file_contents}/chart/hub/README.md).
+To make the most out of a Potter Deployment, you should also take a
+look at the [README.md](https://github.com/gardener/potter-controller/blob/main/chart/hub-controller/Readme.md)
+of the corresponding Potter-Controller.
 
 ```
 helm show readme potter/k8s-potter-hub
+
 ```
 
 ## Release Notes
-{release_notes}
 
+{release_notes}
 """
+
+# Github behaves a bit strange with respect to line endings, so replace all '\n' with spaces but
+# preserve double '\n'
+description_md = description_md.replace("\n\n", " $$$###$$$ ")
+description_md = description_md.replace("\n", " ")
+description_md = description_md.replace(" $$$###$$$ ", "\n\n")
+
 
 gh_release.edit(body=description_md)
