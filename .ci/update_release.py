@@ -80,11 +80,12 @@ if helm_chart_path:
     helm_chart_name = f"k8s-potter-hub-{version_file_contents}.tgz"
     helm_tgz_path = os.path.join(helm_chart_path, helm_chart_name)
     if os.path.exists(helm_tgz_path):
-        gh_release.upload_asset(
-            content_type='application/x-tar',
-            name=helm_chart_name,
-            asset=helm_tgz_path.open(mode='rb'),
-        )
+        with open(helm_tgz_path, mode='rb') as asset:
+            gh_release.upload_asset(
+                content_type='application/x-tar',
+                name=helm_chart_name,
+                asset=asset,
+            )
     else:
         print(f"Warning: Helm Chart not found: {helm_tgz_path}")
 
