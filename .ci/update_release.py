@@ -45,21 +45,25 @@ github_repo_helper = GitHubRepositoryHelper(
 
 gh_release = github_repo_helper.repository.release_from_tag(version_file_contents)
 
-gh_release.upload_asset(
-    content_type='text/plain',
-    name=f'linting-result-{version_file_contents}.txt',
-    asset=lint_path.open(mode='rb'),
-)
-gh_release.upload_asset(
-    content_type='text/plain',
-    name=f'backend-test-result-{version_file_contents}.txt',
-    asset=backend_test_path.open(mode='rb'),
-)
-gh_release.upload_asset(
-    content_type='text/plain',
-    name=f'frontend-test-result-{version_file_contents}.txt',
-    asset=frontend_test_path.open(mode='rb'),
-)
+with open(lint_path, mode='rb') as asset:
+    gh_release.upload_asset(
+        content_type='text/plain',
+        name=f'linting-result-{version_file_contents}.txt',
+        asset=asset,
+    )
+with open(backend_test_path, mode='rb') as asset:
+    gh_release.upload_asset(
+        content_type='text/plain',
+        name=f'backend-test-result-{version_file_contents}.txt',
+        asset=asset,
+    )
+with open(frontend_test_path, mode='rb') as asset:
+    gh_release.upload_asset(
+        content_type='text/plain',
+        name=f'frontend-test-result-{version_file_contents}.txt',
+        asset=asset,
+    )
+
 try:
     os.environ['INTEGRATION_TEST_PATH']
 except KeyError:
@@ -68,11 +72,13 @@ else:
     integration_test_path = util.check_env('INTEGRATION_TEST_PATH')
     integration_test_path = pathlib.Path(integration_test_path).resolve()
     integration_test_path = integration_test_path / OUTPUT_FILE_NAME
-    gh_release.upload_asset(
-        content_type='text/plain',
-        name=f'integration-test-result-{version_file_contents}.txt',
-        asset=integration_test_path.open(mode='rb'),
-    )
+
+    with open(integration_test_path, mode='rb') as asset:
+        gh_release.upload_asset(
+            content_type='text/plain',
+            name=f'integration-test-result-{version_file_contents}.txt',
+            asset=asset,
+        )
 
 if helm_chart_path:
     files = os.listdir(helm_chart_path)
@@ -95,13 +101,15 @@ if not release_notes:
     release_notes = "n/a"
 
 description_md = f"""# Release {version_file_contents} of the potter-hub
+
 This is release {version_file_contents} of the Gardener Potter-Hub project.
 The artifacts of this release are used in deployments of the
 [potter-hub](https://github.com/gardener/potter-hub) project. Potter is distributed
 and installed via Helm. A helm chart is available [here](https://storage.googleapis.com/potter-charts/k8s-potter-hub-{version_file_contents}.tgz).
-You can add the corresponding helam chart repository to helm with the following command:
+You can add the corresponding helm chart repository to helm with the following command:
 
 ```
+
  helm repo add potter https://storage.googleapis.com/potter-charts
 
 ```
@@ -109,6 +117,7 @@ You can add the corresponding helam chart repository to helm with the following 
 To list the content use
 
 ```
+
 helm search repo potter
 
 ```
@@ -116,8 +125,9 @@ helm search repo potter
 To get chart information use:
 
 ```
-helm show chart potter/k8s-potter-hub
 
+helm show chart potter/k8s-potter-hub
+helm show readme potter/k8s-potter-hub
 
 ```
 
@@ -126,11 +136,6 @@ Helm Chart's [README.md](https://github.com/gardener/potter-hub/blob/{version_fi
 To make the most out of a Potter Deployment, you should also take a
 look at the [README.md](https://github.com/gardener/potter-controller/blob/main/chart/hub-controller/Readme.md)
 of the corresponding Potter-Controller.
-
-```
-helm show readme potter/k8s-potter-hub
-
-```
 
 ## Release Notes
 
@@ -141,7 +146,6 @@ helm show readme potter/k8s-potter-hub
 # preserve double '\n'
 description_md = description_md.replace("\n\n", " $$$###$$$ ")
 description_md = description_md.replace("\n", " ")
-description_md = description_md.replace(" $$$###$$$ ", "\n\n")
-
+description_md = description_md.replace(" $$$###$$$ ", "\n")
 
 gh_release.edit(body=description_md)
