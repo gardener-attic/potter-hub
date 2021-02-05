@@ -12,6 +12,16 @@ RUN CGO_ENABLED=0 go build -a -installsuffix cgo ./cmd/apprepository-controller
 
 FROM eu.gcr.io/gardenlinux/gardenlinux:184.0
 RUN apt-get -y update && apt-get -y install ca-certificates && update-ca-certificates
+
+
+# Disable start of Berkeley DB
+# copied installation package files from https://github.wdf.sap.corp/devx-wing/noberkeley/wiki/NoBerkeley-Packages
+COPY noberkeley/noberkeley_1.0.0-3_amd64.deb .
+COPY noberkeley/noberkeley-dev_1.0.0-3_amd64.deb .
+RUN apt-get -y install ./noberkeley_1.0.0-3_amd64.deb ./noberkeley-dev_1.0.0-3_amd64.deb && \
+    rm noberkeley_1.0.0-3_amd64.deb && \
+    rm noberkeley-dev_1.0.0-3_amd64.deb 
+ 
 WORKDIR /app
 
 # Create appuser
