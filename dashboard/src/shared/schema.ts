@@ -1,9 +1,11 @@
 // WARN: yaml doesn't have updated definitions for TypeScript
 // In particular, it doesn't contain definitions for `get` and `set`
 // that are used in this package
+import AJV, { ErrorObject } from "ajv";
 import * as jsonpatch from "fast-json-patch";
-import { JSONSchema4, validate as jsonSchemaValidate, ValidationResult } from "json-schema";
+import * as jsonSchema from "json-schema";
 import { isEmpty, set } from "lodash";
+// @ts-ignore
 import * as YAML from "yaml";
 import { IBasicFormParam } from "./types";
 
@@ -17,13 +19,13 @@ nullOptions.nullStr = "";
 // It returns a key:value map for easier handling.
 export function retrieveBasicFormParams(
   defaultValues: string,
-  schema?: JSONSchema4,
+  schema?: jsonSchema.JSONSchema4,
   parentPath?: string,
 ): IBasicFormParam[] {
   let params: IBasicFormParam[] = [];
   if (schema && schema.properties) {
     const properties = schema.properties!;
-    Object.keys(properties).map(propertyKey => {
+    Object.keys(properties).forEach(propertyKey => {
       // The param path is its parent path + the object key
       const itemPath = `${parentPath || ""}${propertyKey}`;
       const { type, form } = properties[propertyKey];
@@ -124,6 +126,11 @@ export function setValue(values: string, path: string, newValue: any) {
   return doc.toString();
 }
 
+// parseValues returns a processed version of the values without modifying anything
+export function parseValues(values: string) {
+  return YAML.parseDocument(values).toString();
+}
+
 export function deleteValue(values: string, path: string) {
   const doc = YAML.parseDocument(values);
   const { splittedPath } = parsePathAndValue(doc, path);
@@ -141,7 +148,11 @@ export function getValue(values: string, path: string, defaultValue?: any) {
   return value === undefined || value === null ? defaultValue : value;
 }
 
-export function validate(values: string, schema: JSONSchema4): ValidationResult {
-  const validationResult = jsonSchemaValidate(YAML.parse(values), schema);
-  return validationResult;
+export function validate(
+  values: string,
+  schema: jsonSchema.JSONSchema4,
+): { valid: boolean; errors: ErrorObject[] | null | undefined } {
+  const ajv = new AJV();
+  const valid = ajv.validate(schema, YAML.parse(values));
+  return { valid: !!valid, errors: ajv.errors };
 }

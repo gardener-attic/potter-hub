@@ -260,7 +260,7 @@ export function deployChart(
         if (!validation.valid) {
           const errorText =
             validation.errors &&
-            validation.errors.map((e: any) => `  - ${e.property}: ${e.message}`).join("\n");
+            validation.errors.map(e => `  - ${e.dataPath}: ${e.message}`).join("\n");
           throw new UnprocessableEntity(
             `The given values don't match the required format. The following errors were found:\n${errorText}`,
           );
@@ -299,7 +299,7 @@ export function upgradeApp(
         if (!validation.valid) {
           const errorText =
             validation.errors &&
-            validation.errors.map((e: any) => `  - ${e.property}: ${e.message}`).join("\n");
+            validation.errors.map(e => `  - ${e.dataPath}: ${e.message}`).join("\n");
           throw new UnprocessableEntity(
             `The given values don't match the required format. The following errors were found:\n${errorText}`,
           );

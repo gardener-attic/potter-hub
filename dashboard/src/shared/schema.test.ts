@@ -428,7 +428,7 @@ describe("validate", () => {
       values: "foo: bar\n",
       schema: { properties: { foo: { type: "string" } } } as JSONSchema4,
       valid: true,
-      errors: [],
+      errors: null,
     },
     {
       description: "Should validate an invalid object",
@@ -437,8 +437,13 @@ describe("validate", () => {
       valid: false,
       errors: [
         {
-          property: "foo",
-          message: "bar - string value found, but a integer is required",
+          "dataPath": ".foo",
+          "keyword": "type",
+          "message": "should be integer",
+          "params": {
+            "type": "integer",
+          },
+          "schemaPath": "#/properties/foo/type",
         },
       ],
     },

@@ -274,7 +274,7 @@ describe("deploy chart", () => {
       {
         type: getType(actions.apps.errorApps),
         payload: new UnprocessableEntity(
-          "The given values don't match the required format. The following errors were found:\n  - foo: 1 - number value found, but a string is required",
+          "The given values don't match the required format. The following errors were found:\n  - .foo: should be string",
         ),
       },
       {
@@ -341,11 +341,13 @@ describe("upgradeApp", () => {
 
     expect(res).toBe(false);
     const expectedActions = [
-      { type: getType(actions.apps.requestUpgradeApp) },
+      {
+        type: getType(actions.apps.requestUpgradeApp)
+      },
       {
         type: getType(actions.apps.errorApps),
         payload: new UnprocessableEntity(
-          "The given values don't match the required format. The following errors were found:\n  - foo: 1 - number value found, but a string is required",
+          "The given values don't match the required format. The following errors were found:\n  - .foo: should be string",
         ),
       },
     ];
