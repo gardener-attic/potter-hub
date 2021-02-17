@@ -1,9 +1,9 @@
 // WARN: yaml doesn't have updated definitions for TypeScript
 // In particular, it doesn't contain definitions for `get` and `set`
 // that are used in this package
-import AJV, { ErrorObject } from "ajv";
 import * as jsonpatch from "fast-json-patch";
 import * as jsonSchema from "json-schema";
+import { Validator } from "jsonschema";
 import { isEmpty, set } from "lodash";
 // @ts-ignore
 import * as YAML from "yaml";
@@ -148,11 +148,8 @@ export function getValue(values: string, path: string, defaultValue?: any) {
   return value === undefined || value === null ? defaultValue : value;
 }
 
-export function validate(
-  values: string,
-  schema: jsonSchema.JSONSchema4,
-): { valid: boolean; errors: ErrorObject[] | null | undefined } {
-  const ajv = new AJV();
-  const valid = ajv.validate(schema, YAML.parse(values));
-  return { valid: !!valid, errors: ajv.errors };
+export function validate(values: string, schema: jsonSchema.JSONSchema4) {
+  const validator = new Validator();
+  const result = validator.validate(YAML.parse(values), schema);
+  return result;
 }

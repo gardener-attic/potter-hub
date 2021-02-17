@@ -1,4 +1,5 @@
 import { JSONSchema4 } from "json-schema";
+import { ValidationError } from "jsonschema";
 
 import { deleteValue, getValue, retrieveBasicFormParams, setValue, validate } from "./schema";
 import { IBasicFormParam } from "./types";
@@ -428,7 +429,7 @@ describe("validate", () => {
       values: "foo: bar\n",
       schema: { properties: { foo: { type: "string" } } } as JSONSchema4,
       valid: true,
-      errors: null,
+      errors: [],
     },
     {
       description: "Should validate an invalid object",
@@ -437,15 +438,18 @@ describe("validate", () => {
       valid: false,
       errors: [
         {
-          "dataPath": ".foo",
-          "keyword": "type",
-          "message": "should be integer",
-          "params": {
-            "type": "integer",
+          argument: ["integer"],
+          instance: "bar",
+          message: "is not of a type(s) integer",
+          name: "type",
+          path: ["foo"],
+          property: "instance.foo",
+          schema: {
+            type: "integer",
           },
-          "schemaPath": "#/properties/foo/type",
+          stack: "instance.foo is not of a type(s) integer",
         },
-      ],
+      ] as ValidationError[],
     },
   ].forEach(t => {
     it(t.description, () => {
