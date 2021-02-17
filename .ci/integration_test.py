@@ -53,8 +53,9 @@ else:
     result = run(command)
     result.check_returncode()
 
-
-os.chdir(os.path.join(root_path, hub_path, "integration-test"))
+dir = os.path.join(root_path, hub_path, "integration-test")
+print(f"Change to dir: {dir}")
+os.chdir(dir)
 
 command = ["go", "run", "main.go",
            "--kubeconfig", landscape_kubeconfig_name,
@@ -63,8 +64,10 @@ command = ["go", "run", "main.go",
 
 try:
     # check if path var is set
+    print(f" Running test command: {command}")
     integration_test_path
 except NameError:
+    print(f" Running command after name error: {command}")
     run = run(command)
 else:
     output_path = os.path.join(root_path, integration_test_path, "out")
