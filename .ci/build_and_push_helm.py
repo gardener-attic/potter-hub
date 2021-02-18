@@ -35,13 +35,10 @@ def runHelmIndex(packagedChartsDir, bucketname):
 
     if blob.exists():
         blob.download_to_filename(indexFile)
-        command = ["helm", "repo", "index", "--merge", indexFile, packagedChartsDir]
     else:
-        command = ["helm", "repo", "index", packagedChartsDir]
+        indexFile = None
 
-    result = subprocess.run(command, capture_output=True)
-    if result.returncode != 0:
-        raise Exception("Cannot build index.yaml: " + str(result))
+    helm_client.helm_index(packagedChartsDir, indexFile)
 
 def prepare_gcs_credentials(gcs_credentials_cfg_name, credentials_file):
     print("==== Reading GCS credentials from cc-config ====")

@@ -111,3 +111,17 @@ class HelmClient:
         print(result.stderr)
         if result.returncode != 0:
             raise RuntimeError("Could not uninstall helm chart on cluster")
+
+    @ensure_helm_binary
+    def helm_index(self, chart_dir: str, index_yaml_file: str):
+        if index_yaml_file:
+            command = ["helm", "repo", "index", "--merge", index_yaml_file, chart_dir]
+        else:
+            command = ["helm", "repo", "index", chart_dir]
+
+        print(f"  Run: {' '.join(command)}\n")
+        result = subprocess.run(command, capture_output=True, text=True)
+        print(result.stdout)
+        print(result.stderr)
+        if result.returncode != 0:
+            raise RuntimeError("Failed to update index.yaml")
