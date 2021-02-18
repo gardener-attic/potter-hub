@@ -25,7 +25,7 @@ class NginxConsts(Enum):
 
 
 class HubConsts(Enum):
-    chart_name = "k8s-apps-hub"
+    chart_name = "k8s-potter-hub"
     namespace = 'hub'
     release_name = 'hub'
 
