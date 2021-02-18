@@ -15,7 +15,7 @@ Ideally, Cluster-BoMs are used to fully automate the management of deployments f
 The underlying architecture enables easy extensibility, so that further Kubernetes deployment types can be integrated, Helm Chart and Kapp support is provided out-of-the-box. The deployment itself is technically based on the [Landscaper Project](https://github.com/gardener/landscaper).
 
 ## Installation
-Potter is distributed and installed via [Helm](https://github.com/helm/helm). For detailed installation instructions, visit the Helm Chart's [README.md](https://github.com/gardener/potter-hub/chart/hub/README.md). To make the most out of a Potter Deployment, you should also take a look at the  [README.md](https://github.com/gardener/potter-controller/chart/hub/README.md) of the corresponding Potter-Controller.
+Potter is distributed and installed via [Helm](https://github.com/helm/helm). For detailed installation instructions, visit the Helm Chart's [README.md](https://github.com/gardener/potter-hub/blob/main/chart/hub/README.md). To make the most out of a Potter Deployment, you should also take a look at the  [README.md](https://github.com/gardener/potter-controller/blob/main/chart/hub/README.md) of the corresponding Potter-Controller.
 
 ## Limitations
 The current version of the Potter project has the following limitations:
