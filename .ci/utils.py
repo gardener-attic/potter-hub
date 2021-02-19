@@ -145,7 +145,7 @@ def replace_chart_placeholder(chart_path: str, image_version: str, chart_version
     replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_REPOSITORY>", image_repo + "hubtokenbutler")
     replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_TAG>", image_version)
 
-    replace_placeholder_in_yaml(values_yaml, "<KUBECTL_REGISTRY>", image_repo + "kubectl")
+    replace_placeholder_in_yaml(values_yaml, "<KUBECTL_REGISTRY>", image_registry)
     replace_placeholder_in_yaml(values_yaml, "<KUBECTL_REPOSITORY>", image_repo + "kubectl")
     replace_placeholder_in_yaml(values_yaml, "<KUBECTL_TAG>", image_version)
 
