@@ -126,9 +126,8 @@ def replace_chart_placeholder(chart_path: str, image_version: str, chart_version
     chart_yaml = chart_path + "/Chart.yaml"
 
     image_registry = "eu.gcr.io"
-    image_repo = "sap-gcp-k8s-wm-dev/potter/"
-    image_repo_3rd = "sap-gcp-k8s-wm-dev/3rd/"
-    release_only_image_version = image_version
+    image_repo = "sap-gcp-cp-k8s-stable-hub/potter/"
+    image_repo_3rd = "sap-gcp-cp-k8s-stable-hub/3rd/"
 
     replace_placeholder_in_yaml(values_yaml, "<UI_BACKEND_REGISTRY>", image_registry)
     replace_placeholder_in_yaml(values_yaml, "<UI_BACKEND_REPO>", image_repo + "ui-backend")
@@ -144,11 +143,11 @@ def replace_chart_placeholder(chart_path: str, image_version: str, chart_version
     
     replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_REGISTRY>", image_registry)
     replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_REPOSITORY>", image_repo + "hubtokenbutler")
-    replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_TAG>", release_only_image_version)
+    replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_TAG>", image_version)
 
     replace_placeholder_in_yaml(values_yaml, "<KUBECTL_REGISTRY>", image_repo + "kubectl")
     replace_placeholder_in_yaml(values_yaml, "<KUBECTL_REPOSITORY>", image_repo + "kubectl")
-    replace_placeholder_in_yaml(values_yaml, "<KUBECTL_TAG>", release_only_image_version)
+    replace_placeholder_in_yaml(values_yaml, "<KUBECTL_TAG>", image_version)
 
     # 3rd party images
     replace_placeholder_in_yaml(values_yaml, "<AUTH_PROXY_REGISTRY>", image_registry)
