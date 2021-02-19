@@ -38,7 +38,7 @@ func setupTestEnvironment() *helmProxyWrapper.HelmProxyWrapper {
 
 	centralKubeClient := k8sClient.NewK8sClient(kubeconfigPath)
 
-	ingressURL := centralKubeClient.GetIngressURL("hub-k8s-apps-hub", "hub")
+	ingressURL := centralKubeClient.GetIngressURL("hub-k8s-potter-hub", "hub")
 	log.Infof("Using ingress: %s", ingressURL)
 	baseURL = ingressURL
 	helmURL := "https://" + ingressURL + "/" + util.PROJECT_NAME + "/" + util.SECRET_NAME + "/api/ui-backend/helm/v1/namespaces/" + namespace + "/releases"
