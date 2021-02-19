@@ -122,34 +122,59 @@ def is_release_job():
 
 def replace_chart_placeholder(chart_path: str, image_version: str, chart_version: str, chart_name: str):
 
-
     values_yaml = chart_path + "/values.yaml"
     chart_yaml = chart_path + "/Chart.yaml"
 
-    image_repo = "sap-gcp-cp-k8s-stable-hub/potter-charts/"
+    image_registry = "eu.gcr.io"
+    image_repo = "sap-gcp-k8s-wm-dev/potter/"
+    image_repo_3rd = "sap-gcp-k8s-wm-dev/3rd/"
     release_only_image_version = image_version
 
-    replace_placeholder_in_yaml(values_yaml, "<DASHBOARD_REPO>", image_repo + "dashboard")
+    replace_placeholder_in_yaml(values_yaml, "<UI_BACKEND_REGISTRY>", image_registry)
     replace_placeholder_in_yaml(values_yaml, "<UI_BACKEND_REPO>", image_repo + "ui-backend")
-    replace_placeholder_in_yaml(values_yaml, "<APPREPOSITORY_CONTROLLER_REPO>", image_repo + "apprepo")
-
-    replace_placeholder_in_yaml(values_yaml, "<DASHBOARD_TAG>", image_version)
     replace_placeholder_in_yaml(values_yaml, "<UI_BACKEND_TAG>", image_version)
+
+    replace_placeholder_in_yaml(values_yaml, "<APPREPOSITORY_REGISTRY>", image_registry)
+    replace_placeholder_in_yaml(values_yaml, "<APPREPOSITORY_CONTROLLER_REPO>", image_repo + "apprepo")
     replace_placeholder_in_yaml(values_yaml, "<APPREPOSITORY_CONTROLLER_TAG>", image_version)
 
+    replace_placeholder_in_yaml(values_yaml, "<DASHBOARD_REGISTRY>", image_registry)
+    replace_placeholder_in_yaml(values_yaml, "<DASHBOARD_REPO>", image_repo + "dashboard")
+    replace_placeholder_in_yaml(values_yaml, "<DASHBOARD_TAG>", image_version)
+    
+    replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_REGISTRY>", image_registry)
+    replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_REPOSITORY>", image_repo + "hubtokenbutler")
+    replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_TAG>", release_only_image_version)
 
+    replace_placeholder_in_yaml(values_yaml, "<KUBECTL_REGISTRY>", image_repo + "kubectl")
+    replace_placeholder_in_yaml(values_yaml, "<KUBECTL_REPOSITORY>", image_repo + "kubectl")
+    replace_placeholder_in_yaml(values_yaml, "<KUBECTL_TAG>", release_only_image_version)
+
+    # 3rd party images
+    replace_placeholder_in_yaml(values_yaml, "<AUTH_PROXY_REGISTRY>", image_registry)
+    replace_placeholder_in_yaml(values_yaml, "<AUTH_PROXY_REPOSITORY>", image_repo_3rd + "keycloak-gatekeeper")
+    replace_placeholder_in_yaml(values_yaml, "<AUTH_PROXY_TAG>", "2.3.0-scratch-r4")
+
+    replace_placeholder_in_yaml(values_yaml, "<CHART_SERVICE_REGISTRY>", image_registry)
+    replace_placeholder_in_yaml(values_yaml, "<CHART_SERVICE_REPOSITORY>", image_repo_3rd + "kubeapps-chartsvc")
+    replace_placeholder_in_yaml(values_yaml, "<CHART_SERVICE_TAG>", "1.9.0-r0") 
+    
     # for public repo check latest version at: https://github.com/bitnami/charts/blob/master/bitnami/mongodb/values.yaml
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_REGISTRY>", "docker.io")
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_REPOSITORY>", "bitnami/mongodb")
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_TAG>", "4.4.3-debian-10-r21")
 
-    # for public repo see https://hub.docker.com/r/ssheehy/mongodb-exporter 
-    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REGISTRY>", "docker.io")
-    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REPOSITORY>", "ssheehy/mongodb-exporter")
-    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_AG>", "0.11.0")
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REGISTRY>", "eu.gcr.io")
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REPOSITORY>", image_repo_3rd + "mongodb-exporter")
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_TAG>", "0.10.0-debian-10-r69")
 
-    replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_TAG>", release_only_image_version)
-    replace_placeholder_in_yaml(values_yaml, "<KUBECTL_VERSION_TAG>", release_only_image_version)
+    replace_placeholder_in_yaml(values_yaml, "<MINIDEB_REGISTRY>", "eu.gcr.io")
+    replace_placeholder_in_yaml(values_yaml, "<MINIDEB_REPOSITORY>", image_repo_3rd + "minideb")
+    replace_placeholder_in_yaml(values_yaml, "<MINIDEB_TAG>", "buster")
+
+    replace_placeholder_in_yaml(values_yaml, "<NGINX_REGISTRY>", "eu.gcr.io")
+    replace_placeholder_in_yaml(values_yaml, "<NGINX_REPOSITORY>", image_repo_3rd + "nginx")
+    replace_placeholder_in_yaml(values_yaml, "<NGINX_TAG>", "1.19.2-alpine")
 
     replace_placeholder_in_yaml(values_yaml, "<IMAGE_PULL_POLICY>", "IfNotPresent")
 

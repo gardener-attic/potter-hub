@@ -82,9 +82,9 @@ ingress:
 frontend:
   replicaCount: 2
   image:
-    registry: eu.gcr.io
-    repository: sap-gcp-k8s-wm-live/securityapprovedbaseimages/nginx
-    tag: 1.18.0-alpine
+    registry: <NGINX_REGISTRY>
+    repository: <NGINX_REPOSITORY>
+    tag: <NGINX_TAG>
   service:
     port: 80
     # Set type to LoadBalancer and enable the parameter below with a value to have a static load balancer IP
@@ -154,14 +154,14 @@ apprepository:
   # Schedule for syncing apprepositories. Every ten minutes by default
   crontab: "*/10 * * * *"
   image:
-    registry: eu.gcr.io
+    registry: <APPREPOSITORY_REGISTRY>
     repository: <APPREPOSITORY_CONTROLLER_REPO>
     tag: <APPREPOSITORY_CONTROLLER_TAG>
     imagePullPolicy: <IMAGE_PULL_POLICY>
     # Image used to perform chart repository syncs
   syncImage:
-    registry: eu.gcr.io
-    repository: sap-gcp-k8s-wm-live/hub/hubtokenbutler
+    registry: <HUB_TOKEN_BUTLER_REGISTRY>
+    repository: <HUB_TOKEN_BUTLER_REPOSITORY>
     tag: <HUB_TOKEN_BUTLER_TAG>
     imagePullPolicy: <IMAGE_PULL_POLICY>
   initialReposProxy:
@@ -218,9 +218,9 @@ apprepository:
 # or creating required resources during installation or upgrade
 hooks:
   image:
-    registry: eu.gcr.io
-    repository: sap-gcp-k8s-wm-live/hub/kubectl
-    tag: <KUBECTL_VERSION_TAG>
+    registry: <KUBECTL_REGISTRY>
+    repository: <KUBECTL_REPOSITORY> 
+    tag: <KUBECTL_TAG>
     imagePullPolicy: <IMAGE_PULL_POLICY>
   nodeSelector: {}
   tolerations: []
@@ -229,7 +229,7 @@ hooks:
 uiBackend:
   replicaCount: 2
   image:
-    registry: eu.gcr.io
+    registry: <UI_BACKEND_REGISTRY>
     repository: <UI_BACKEND_REPO>
     tag: <UI_BACKEND_TAG>
     imagePullPolicy: <IMAGE_PULL_POLICY>
@@ -304,9 +304,9 @@ uiBackend:
 chartsvc:
   replicaCount: 2
   image:
-    registry: eu.gcr.io
-    repository: sap-gcp-k8s-wm-live/oss/kubeapps-chartsvc
-    tag: 1.9.0-r0
+    registry: <CHART_SERVICE_REGISTRY>
+    repository: <CHART_SERVICE_REPOSITORY>
+    tag: <CHART_SERVICE_TAG>
   service:
     port: 8080
   resources:
@@ -360,7 +360,7 @@ chartsvc:
 dashboard:
   replicaCount: 2
   image:
-    registry: eu.gcr.io
+    registry: <DASHBOARD_REGISTRY>
     repository: <DASHBOARD_REPO>
     tag: <DASHBOARD_TAG>
     imagePullPolicy: <IMAGE_PULL_POLICY>
@@ -461,9 +461,9 @@ mongodb:
   volumePermissions:
     enabled: false
     image:
-      registry: eu.gcr.io
-      repository: sap-gcp-k8s-wm-live/oss/minideb
-      tag: buster
+      registry: <MINIDEB_REGISTRY>
+      repository: <MINIDEB_REPOSITORY>
+      tag: <MINIDEB_TAG>
 
   metrics:
     enabled: false
@@ -525,9 +525,9 @@ authProxy:
     # - --oauth-uri=<your-uri>
   enableLogging: false
   image:
-    registry: eu.gcr.io
-    repository: sap-gcp-k8s-wm-live/oss/keycloak-gatekeeper
-    tag: 2.3.0-scratch-r4
+    registry: <AUTH_PROXY_REGISTRY>
+    repository: <AUTH_PROXY_REPOSITORY>
+    tag: <AUTH_PROXY_TAG>
   resources:
     limits:
       cpu: 250m
