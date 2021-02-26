@@ -127,6 +127,7 @@ To get chart information use:
 ```
 
 helm show chart potter/k8s-potter-hub
+
 helm show readme potter/k8s-potter-hub
 
 ```
