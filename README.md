@@ -8,6 +8,8 @@ A complete Potter installation offers a UI (maintain in this repository, heavily
 
 The UI also displays status information about the deployments running in a Cluster. Additionally, it offers a Catalog, in which Helm Charts of connected Helm Chart Repositories can be browsed and deployed. The Repositories offered in the Catalog can easily be configured to match specific usecases.
 
+The end user documentation could be found [here](https://gardener.github.io/potter-docs/hub-docs/home/).
+
 Apart from the UI, Potter introduces the concept of so-called "Cluster Bill-of-Materials" (in short: 'Cluster-BoMs'). These entities are YAML files, describing a list of Kubernetes Deployments which should run in a specific Cluster. Such a YAML file describes the "desired state" of all applications which should be running in a Cluster. Cluster-BoMs can easily be applied to a Cluster with kubectl. After applying such a Cluster-BoM, the Potter-Controller (located in [this](https://github.com/gardener/potter-controller) repository) will start deploying whatever is part of the Cluster-BoM. A Status Section at the end of the BoM provides the detailed deployment states.
 
 Ideally, Cluster-BoMs are used to fully automate the management of deployments for a Kubernetes Cluster. By using Cluster-BoMs, not only Helm Charts, but also Kapp-Deployments can be managed.
