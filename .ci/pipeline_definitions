@@ -9,7 +9,7 @@ potter-hub:
             triggering_policy: 'always'
             recipients:
             - email_addresses:
-              - DL_5FE20D672BF0A1703D213F8C@global.corp.sap
+              - K8SAppHubPipelineNotification@sap.com
   merge-keys:
     code_tests: &code_test_trait
       frontend-tests:
