@@ -12,7 +12,7 @@ COPY cmd/apprepository-controller/ cmd/apprepository-controller/
 
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -a -o ui-backend cmd/ui-backend/main.go
 
-FROM eu.gcr.io/gardenlinux/gardenlinux:184.0
+FROM debian:bullseye-slim
 RUN apt-get -y update && apt-get -y install ca-certificates && update-ca-certificates
 
 WORKDIR /app
