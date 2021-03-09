@@ -5,6 +5,7 @@ telepresence.log
 .project
 .ci/__pycache__/*
 chart/hub/charts/*.tgz
+whitesource*
 
 # security relevant
 *kubeconfig*

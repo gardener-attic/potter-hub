@@ -1,4 +1,4 @@
-FROM eu.gcr.io/gardener-project/3rd/golang:1.15.5 as builder
+FROM eu.gcr.io/gardener-project/3rd/golang:1.16.0 as builder
 WORKDIR /app
 
 RUN apt-get install git
@@ -10,7 +10,7 @@ COPY cmd/apprepository-controller/ cmd/apprepository-controller/
 #RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=on go build -a -o apprepository-controller cmd/apprepository-controller/main.go
 RUN CGO_ENABLED=0 go build -a -installsuffix cgo ./cmd/apprepository-controller
 
-FROM debian:bullseye-slim
+FROM eu.gcr.io/gardenlinux/gardenlinux:318.4-oci-base-318.4-14bd4f
 RUN apt-get -y update && apt-get -y install ca-certificates && update-ca-certificates
 
 WORKDIR /app
