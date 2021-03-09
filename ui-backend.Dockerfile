@@ -1,4 +1,4 @@
-FROM eu.gcr.io/gardener-project/3rd/golang:1.16.0 as builder
+FROM eu.gcr.io/gardener-project/3rd/golang:1.15.5 as builder
 
 WORKDIR /app
 

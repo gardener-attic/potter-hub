@@ -1,6 +1,6 @@
 module github.com/gardener/potter-hub
 
-go 1.15
+go 1.16
 
 replace (
 	github.com/Azure/go-autorest => github.com/Azure/go-autorest v14.1.1+incompatible
