@@ -40,7 +40,7 @@ func NewReactiveMockClient(funcs map[string]func() error, initObjs ...runtime.Ob
 // Get retrieves an obj for the given object key from the Kubernetes Cluster.
 // obj must be a struct pointer so that obj can be updated with the response
 // returned by the Server.
-func (rmc *ReactiveMockClient) Get(ctx context.Context, key client.ObjectKey, obj runtime.Object) error {
+func (rmc *ReactiveMockClient) Get(ctx context.Context, key client.ObjectKey, obj client.Object) error {
 	fun := rmc.ReactorFuncs[key.String()]
 	if fun != nil {
 		return fun()
@@ -52,8 +52,8 @@ func (rmc *ReactiveMockClient) Get(ctx context.Context, key client.ObjectKey, ob
 // List retrieves list of objects for a given namespace and list options. On a
 // successful call, Items field in the list will be populated with the
 // result returned from the server.
-func (rmc *ReactiveMockClient) List(ctx context.Context, list runtime.Object, opts ...client.ListOption) error {
-	fun := getReactorFuncForObject(list, &rmc.ReactorFuncs)
+func (rmc *ReactiveMockClient) List(ctx context.Context, list client.ObjectList, opts ...client.ListOption) error {
+	fun := getReactorFuncForObjectList(list, &rmc.ReactorFuncs)
 	if fun != nil {
 		return fun()
 	}
@@ -61,7 +61,7 @@ func (rmc *ReactiveMockClient) List(ctx context.Context, list runtime.Object, op
 	return rmc.FakeClient.List(ctx, list, opts...)
 }
 
-func (rmc *ReactiveMockClient) Create(ctx context.Context, obj runtime.Object, opts ...client.CreateOption) error {
+func (rmc *ReactiveMockClient) Create(ctx context.Context, obj client.Object, opts ...client.CreateOption) error {
 	fun := getReactorFuncForObject(obj, &rmc.ReactorFuncs)
 	if fun != nil {
 		return fun()
@@ -71,7 +71,7 @@ func (rmc *ReactiveMockClient) Create(ctx context.Context, obj runtime.Object, o
 }
 
 // Delete deletes the given obj from Kubernetes cluster.
-func (rmc *ReactiveMockClient) Delete(ctx context.Context, obj runtime.Object, opts ...client.DeleteOption) error {
+func (rmc *ReactiveMockClient) Delete(ctx context.Context, obj client.Object, opts ...client.DeleteOption) error {
 	fun := getReactorFuncForObject(obj, &rmc.ReactorFuncs)
 	if fun != nil {
 		return fun()
@@ -82,7 +82,7 @@ func (rmc *ReactiveMockClient) Delete(ctx context.Context, obj runtime.Object, o
 
 // Update updates the given obj in the Kubernetes cluster. obj must be a
 // struct pointer so that obj can be updated with the content returned by the Server.
-func (rmc *ReactiveMockClient) Update(ctx context.Context, obj runtime.Object, opts ...client.UpdateOption) error {
+func (rmc *ReactiveMockClient) Update(ctx context.Context, obj client.Object, opts ...client.UpdateOption) error {
 	fun := getReactorFuncForObject(obj, &rmc.ReactorFuncs)
 	if fun != nil {
 		return fun()
@@ -93,7 +93,7 @@ func (rmc *ReactiveMockClient) Update(ctx context.Context, obj runtime.Object, o
 
 // Patch patches the given obj in the Kubernetes cluster. obj must be a
 // struct pointer so that obj can be updated with the content returned by the Server.
-func (rmc *ReactiveMockClient) Patch(ctx context.Context, obj runtime.Object, patch client.Patch, opts ...client.PatchOption) error {
+func (rmc *ReactiveMockClient) Patch(ctx context.Context, obj client.Object, patch client.Patch, opts ...client.PatchOption) error {
 	fun := getReactorFuncForObject(obj, &rmc.ReactorFuncs)
 	if fun != nil {
 		return fun()
@@ -103,7 +103,7 @@ func (rmc *ReactiveMockClient) Patch(ctx context.Context, obj runtime.Object, pa
 }
 
 // DeleteAllOf deletes all objects of the given type matching the given options.
-func (rmc *ReactiveMockClient) DeleteAllOf(ctx context.Context, obj runtime.Object, opts ...client.DeleteAllOfOption) error {
+func (rmc *ReactiveMockClient) DeleteAllOf(ctx context.Context, obj client.Object, opts ...client.DeleteAllOfOption) error {
 	fun := getReactorFuncForObject(obj, &rmc.ReactorFuncs)
 	if fun != nil {
 		return fun()
@@ -121,7 +121,7 @@ func (rmc *ReactiveMockClient) Status() client.StatusWriter {
 	return rmc.StatusWriter
 }
 
-func (rms *ReactiveMockStatusWriter) Update(ctx context.Context, obj runtime.Object, opts ...client.UpdateOption) error {
+func (rms *ReactiveMockStatusWriter) Update(ctx context.Context, obj client.Object, opts ...client.UpdateOption) error {
 	fun := getReactorFuncForObject(obj, &rms.ReactorFuncs)
 	if fun != nil {
 		return fun()
@@ -133,7 +133,7 @@ func (rms *ReactiveMockStatusWriter) Update(ctx context.Context, obj runtime.Obj
 // Patch patches the given object's subresource. obj must be a struct
 // pointer so that obj can be updated with the content returned by the
 // Server.
-func (rms *ReactiveMockStatusWriter) Patch(ctx context.Context, obj runtime.Object, patch client.Patch, opts ...client.PatchOption) error {
+func (rms *ReactiveMockStatusWriter) Patch(ctx context.Context, obj client.Object, patch client.Patch, opts ...client.PatchOption) error {
 	fun := getReactorFuncForObject(obj, &rms.ReactorFuncs)
 	if fun != nil {
 		return fun()
@@ -142,13 +142,15 @@ func (rms *ReactiveMockStatusWriter) Patch(ctx context.Context, obj runtime.Obje
 	return rms.FakeClient.Patch(ctx, obj, patch, opts...)
 }
 
-func getReactorFuncForObject(obj runtime.Object, reactorFuncs *ReactorFuncs) func() error {
-	key, err := client.ObjectKeyFromObject(obj)
-	if err != nil {
-		return nil
-	}
+func getReactorFuncForObject(obj client.Object, reactorFuncs *ReactorFuncs) func() error {
+	key := client.ObjectKeyFromObject(obj)
+
 	if fun, ok := (*reactorFuncs)[key.String()]; ok {
 		return fun
 	}
+	return nil
+}
+
+func getReactorFuncForObjectList(obj client.ObjectList, reactorFuncs *ReactorFuncs) func() error {
 	return nil
 }

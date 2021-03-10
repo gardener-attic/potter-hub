@@ -66,7 +66,8 @@ func NewSecureProxy(target *url.URL, caData []byte) *WebsocketProxy {
 		Proxy:            http.ProxyFromEnvironment,
 		HandshakeTimeout: 45 * time.Second,
 		TLSClientConfig: &tls.Config{
-			RootCAs: pool,
+			RootCAs:    pool,
+			MinVersion: tls.VersionTLS12,
 		},
 	}
 	return &WebsocketProxy{Backend: backend, Dialer: &dialer}

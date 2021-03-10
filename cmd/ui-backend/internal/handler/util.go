@@ -66,7 +66,8 @@ func newReverseProxy(targetURL string, encodedCAData []byte) (*httputil.ReverseP
 	proxy := httputil.NewSingleHostReverseProxy(apiServerURL)
 	proxy.Transport = &http.Transport{
 		TLSClientConfig: &tls.Config{
-			RootCAs: pool,
+			RootCAs:    pool,
+			MinVersion: tls.VersionTLS12,
 		},
 	}
 

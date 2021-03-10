@@ -307,7 +307,7 @@ type UnitTestStatusWriter struct {
 	unitTestClient UnitTestClient
 }
 
-func (w *UnitTestStatusWriter) Update(ctx context.Context, obj runtime.Object, opts ...client.UpdateOption) error {
+func (w *UnitTestStatusWriter) Update(ctx context.Context, obj client.Object, opts ...client.UpdateOption) error {
 	switch typedObj := obj.(type) {
 	case *hubv1.ClusterBom:
 		key := typedObj.Name
@@ -336,7 +336,7 @@ func (w *UnitTestStatusWriter) Update(ctx context.Context, obj runtime.Object, o
 	}
 }
 
-func (w *UnitTestStatusWriter) Patch(ctx context.Context, obj runtime.Object, patch client.Patch, opts ...client.PatchOption) error {
+func (w *UnitTestStatusWriter) Patch(ctx context.Context, obj client.Object, patch client.Patch, opts ...client.PatchOption) error {
 	return nil
 }
 
@@ -405,11 +405,11 @@ func (t UnitTestDeleteErrorClient) Delete(context.Context, runtime.Object, ...cl
 type UnitTestStatusErrorWriter struct {
 }
 
-func (w *UnitTestStatusErrorWriter) Update(ctx context.Context, obj runtime.Object, opts ...client.UpdateOption) error {
+func (w *UnitTestStatusErrorWriter) Update(ctx context.Context, obj client.Object, opts ...client.UpdateOption) error {
 	return errors.New("dummy error")
 }
 
-func (w *UnitTestStatusErrorWriter) Patch(ctx context.Context, obj runtime.Object, patch client.Patch, opts ...client.PatchOption) error {
+func (w *UnitTestStatusErrorWriter) Patch(ctx context.Context, obj client.Object, patch client.Patch, opts ...client.PatchOption) error {
 	return nil
 }
 
