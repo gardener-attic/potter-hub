@@ -356,7 +356,8 @@ func (c *Client) InitNetClient(ctx context.Context, details *Details) (HTTPClien
 			Transport: &http.Transport{
 				Proxy: http.ProxyFromEnvironment,
 				TLSClientConfig: &tls.Config{
-					RootCAs: caCertPool,
+					RootCAs:    caCertPool,
+					MinVersion: tls.VersionTLS12,
 				},
 			},
 		},

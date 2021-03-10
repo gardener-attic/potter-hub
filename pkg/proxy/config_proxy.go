@@ -16,6 +16,20 @@ func logf(format string, v ...interface{}) {
 	log.Infof(format, v...)
 }
 
+// KubeconfigValidation stores a kubeconfig, which can be used to create access via *ValidationObject* methods
+type KubeconfigValidation struct {
+	Kubeconfig []byte
+}
+
+func (kv KubeconfigValidation) getClientSet(namespace string) (*kubernetes.Clientset, error) {
+	restClientGetter := NewRemoteRESTClientGetter(kv.Kubeconfig, namespace)
+
+	kc := kube.New(restClientGetter)
+	kc.Log = logf
+
+	return kc.Factory.KubernetesClientSet()
+}
+
 func (kv KubeconfigValidation) initActionConfig(namespace string) *action.Configuration {
 	actionConfig := new(action.Configuration)
 
@@ -60,13 +74,9 @@ func getStorageType(clientset *kubernetes.Clientset, namespace string) *storage.
 	return store
 }
 
-func (kv KubeconfigValidation) getClientSet(namespace string) (*kubernetes.Clientset, error) {
-	restClientGetter := NewRemoteRESTClientGetter(kv.Kubeconfig, namespace)
-
-	kc := kube.New(restClientGetter)
-	kc.Log = logf
-
-	return kc.Factory.KubernetesClientSet()
+// TokenValidation stores a token, which can be used to create access via *ValidationObject* methods
+type TokenValidation struct {
+	Token string
 }
 
 func (tv TokenValidation) initActionConfig(namespace string) *action.Configuration {
@@ -106,14 +116,4 @@ func (tv TokenValidation) getClientSet(namespace string) (*kubernetes.Clientset,
 type ValidationObject interface {
 	initActionConfig(string) *action.Configuration
 	getClientSet(namespace string) (*kubernetes.Clientset, error)
-}
-
-// TokenValidation stores a token, which can be used to create access via *ValidationObject* methods
-type TokenValidation struct {
-	Token string
-}
-
-// KubeconfigValidation stores a kubeconfig, which can be used to create access via *ValidationObject* methods
-type KubeconfigValidation struct {
-	Kubeconfig []byte
 }

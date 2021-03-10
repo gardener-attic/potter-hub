@@ -27,7 +27,7 @@ import (
 
 func createFakeClientFactory(initObjects ...runtime.Object) K8sClientFactory {
 	return func(config *rest.Config) (client.Client, error) {
-		fakeClient := fake.NewFakeClientWithScheme(scheme, initObjects...)
+		fakeClient := fake.NewFakeClientWithScheme(scheme, initObjects...) // nolint
 		return fakeClient, nil
 	}
 }
