@@ -3,15 +3,13 @@ module github.com/gardener/potter-hub
 go 1.16
 
 replace (
-	// github.com/Azure/go-autorest => github.com/Azure/go-autorest v14.1.1+incompatible
 	github.com/docker/distribution => github.com/distribution/distribution v2.7.1+incompatible
-	// replace needed for hub-controller dependency
 	github.com/docker/docker => github.com/moby/moby v20.10.5+incompatible
 )
 
 require (
 	github.com/Shopify/logrus-bugsnag v0.0.0-20171204204709-577dee27f20d // indirect
-	github.com/arschles/assert v1.0.0
+	github.com/arschles/assert v2.0.0+incompatible
 	github.com/bshuster-repo/logrus-logstash-hook v1.0.0 // indirect
 	github.com/bugsnag/bugsnag-go v2.1.0+incompatible // indirect
 	github.com/bugsnag/panicwrap v1.3.1 // indirect
@@ -22,7 +20,7 @@ require (
 	github.com/go-test/deep v1.0.7
 	github.com/gofrs/uuid v4.0.0+incompatible // indirect
 	github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b
-	github.com/google/go-cmp v0.5.4
+	github.com/google/go-cmp v0.5.5
 	github.com/googleapis/gnostic v0.5.3
 	github.com/gorilla/handlers v1.5.1 // indirect
 	github.com/gorilla/mux v1.8.0
@@ -31,7 +29,7 @@ require (
 	github.com/kr/pretty v0.2.1 // indirect
 	github.com/kubeapps/common v0.0.0-20200304064434-f6ba82e79f47
 	github.com/pkg/errors v0.9.1
-	github.com/sirupsen/logrus v1.7.0
+	github.com/sirupsen/logrus v1.8.0
 	github.com/spf13/pflag v1.0.5
 	github.com/stretchr/testify v1.7.0
 	github.com/unrolled/render v1.0.3 // indirect
@@ -44,12 +42,12 @@ require (
 	gopkg.in/yaml.v2 v2.3.0
 	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b // indirect
 	// If you update helm you need to update the kubernetes libs as well
-	helm.sh/helm/v3 v3.5.2
-	k8s.io/api v0.20.2
-	k8s.io/apimachinery v0.20.2
+	helm.sh/helm/v3 v3.5.3
+	k8s.io/api v0.20.4
+	k8s.io/apimachinery v0.20.4
 	k8s.io/cli-runtime v0.20.2
-	k8s.io/client-go v0.20.2
+	k8s.io/client-go v0.20.4
 	rsc.io/letsencrypt v0.0.3 // indirect
-	sigs.k8s.io/controller-runtime v0.8.1
+	sigs.k8s.io/controller-runtime v0.8.3
 	sigs.k8s.io/yaml v1.2.0
 )
