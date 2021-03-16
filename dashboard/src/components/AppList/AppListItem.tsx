@@ -18,9 +18,9 @@ class AppListItem extends React.Component<IAppListItemProps> {
         ? "Update available"
         : undefined;
     const info = <span className="AppListItemInfo">
-        {app.chart}<br/>
-        Chart:&nbsp;{app.chartMetadata.version}<br/>
-        App:&nbsp;{app.chartMetadata.appVersion || "-"}
+        <span title={app.chart}>{app.chart}</span><br/>
+        <span title={app.chartMetadata.version}>Chart:&nbsp;{app.chartMetadata.version}</span><br/>
+        <span title={app.chartMetadata.appVersion || "-"}>App:&nbsp;{app.chartMetadata.appVersion || "-"}</span>
     </span>
     return (
       <InfoCard
