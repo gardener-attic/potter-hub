@@ -17,6 +17,10 @@
   justify-content: space-between;
 }
 
+.ListItem__content__info > p {
+  overflow: hidden;
+}
+
 .ListItem__content__info_tag {
   float: right;
   margin-left: 3px;
