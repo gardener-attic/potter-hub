@@ -80,9 +80,10 @@ potter-hub:
           - dev_integration_test.py
           output_dir: integration_test
         helm:
+          trait_depends:
+          - publish
           depends:
           - run_integration_test
-          - publish
           execute:
           - build_and_push_helm.py
           output_dir: helm_chart
@@ -95,6 +96,7 @@ potter-hub:
             HELM_CHART_PATH: helm_chart_path
           execute:
           - update_release.py
-          depends:
+          trait_depends:
           - release
+          depends:
           - run_integration_test
