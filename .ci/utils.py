@@ -140,7 +140,7 @@ def replace_chart_placeholder(chart_path: str, image_version: str, chart_version
     replace_placeholder_in_yaml(values_yaml, "<DASHBOARD_REGISTRY>", image_registry)
     replace_placeholder_in_yaml(values_yaml, "<DASHBOARD_REPO>", image_repo + "dashboard")
     replace_placeholder_in_yaml(values_yaml, "<DASHBOARD_TAG>", image_version)
-    
+
     replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_REGISTRY>", image_registry)
     replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_REPOSITORY>", image_repo + "hubtokenbutler")
     replace_placeholder_in_yaml(values_yaml, "<HUB_TOKEN_BUTLER_TAG>", image_version)
@@ -156,8 +156,8 @@ def replace_chart_placeholder(chart_path: str, image_version: str, chart_version
 
     replace_placeholder_in_yaml(values_yaml, "<CHART_SERVICE_REGISTRY>", image_registry)
     replace_placeholder_in_yaml(values_yaml, "<CHART_SERVICE_REPOSITORY>", image_repo_3rd + "kubeapps-chartsvc")
-    replace_placeholder_in_yaml(values_yaml, "<CHART_SERVICE_TAG>", "1.9.0-r0") 
-    
+    replace_placeholder_in_yaml(values_yaml, "<CHART_SERVICE_TAG>", "1.9.0-r0")
+
     # for public repo check latest version at: https://github.com/bitnami/charts/blob/master/bitnami/mongodb/values.yaml
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_REGISTRY>", "docker.io")
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_REPOSITORY>", "bitnami/mongodb")
@@ -165,7 +165,7 @@ def replace_chart_placeholder(chart_path: str, image_version: str, chart_version
 
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REGISTRY>", "eu.gcr.io")
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REPOSITORY>", image_repo_3rd + "mongodb-exporter")
-    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_TAG>", "0.10.0-debian-10-r69")
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_TAG>", "0.11.2-debian-10-r139")
 
     replace_placeholder_in_yaml(values_yaml, "<MINIDEB_REGISTRY>", "eu.gcr.io")
     replace_placeholder_in_yaml(values_yaml, "<MINIDEB_REPOSITORY>", image_repo_3rd + "minideb")
