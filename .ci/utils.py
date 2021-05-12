@@ -165,7 +165,7 @@ def replace_chart_placeholder(chart_path: str, image_version: str, chart_version
 
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REGISTRY>", "eu.gcr.io")
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REPOSITORY>", image_repo_3rd + "mongodb-exporter")
-    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_TAG>", "0.11.2-debian-10-r139")
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_TAG>", "0.20.4-debian-10-r22")
 
     replace_placeholder_in_yaml(values_yaml, "<MINIDEB_REGISTRY>", "eu.gcr.io")
     replace_placeholder_in_yaml(values_yaml, "<MINIDEB_REPOSITORY>", image_repo_3rd + "minideb")
