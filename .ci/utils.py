@@ -173,7 +173,7 @@ def replace_chart_placeholder(chart_path: str, image_version: str, chart_version
 
     replace_placeholder_in_yaml(values_yaml, "<NGINX_REGISTRY>", "eu.gcr.io")
     replace_placeholder_in_yaml(values_yaml, "<NGINX_REPOSITORY>", image_repo_3rd + "nginx")
-    replace_placeholder_in_yaml(values_yaml, "<NGINX_TAG>", "1.19.10-alpine")
+    replace_placeholder_in_yaml(values_yaml, "<NGINX_TAG>", "1.20.0-alpine")
 
     replace_placeholder_in_yaml(values_yaml, "<IMAGE_PULL_POLICY>", "IfNotPresent")
 
