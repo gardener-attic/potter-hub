@@ -19,7 +19,7 @@ class EfkConsts(Enum):
 
 class NginxConsts(Enum):
     chart_name = 'ingress-nginx'
-    chart_version = '2.11.1'
+    chart_version = '3.31.0'
     namespace = 'ingress-nginx'
     release_name = 'ingress-nginx'
 
