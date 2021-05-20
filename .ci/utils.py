@@ -17,13 +17,6 @@ class EfkConsts(Enum):
     efk_release_name = 'efk'
 
 
-class NginxConsts(Enum):
-    chart_name = 'ingress-nginx'
-    chart_version = '3.31.0'
-    namespace = 'ingress-nginx'
-    release_name = 'ingress-nginx'
-
-
 class HubConsts(Enum):
     chart_name = "k8s-potter-hub"
     namespace = 'hub'
