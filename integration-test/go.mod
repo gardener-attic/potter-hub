@@ -2,7 +2,7 @@ module integration-test
 
 go 1.13
 
-replace k8s.io/client-go => k8s.io/client-go v0.18.3
+replace k8s.io/client-go => k8s.io/client-go v0.18.8
 
 require (
 	github.com/googleapis/gnostic v0.3.1 // indirect
@@ -20,8 +20,8 @@ require (
 	google.golang.org/appengine v1.6.6 // indirect
 	google.golang.org/protobuf v1.24.0 // indirect
 	gopkg.in/yaml.v2 v2.3.0 // indirect
-	k8s.io/api v0.18.3
-	k8s.io/apimachinery v0.18.3
+	k8s.io/api v0.18.8
+	k8s.io/apimachinery v0.18.8
 	k8s.io/client-go v11.0.0+incompatible
 	k8s.io/utils v0.0.0-20200603063816-c1c6865ac451 // indirect
 )
