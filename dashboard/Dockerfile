@@ -19,7 +19,8 @@ RUN chown -R nginx:nginx /app &&  \
     chown -R nginx:nginx /var/cache/nginx && \
     chown -R nginx:nginx /var/log/nginx && \
     chown -R nginx:nginx /etc/nginx/conf.d && \
-    mkdir /var/run && \
+    rm -r /var/run && \
+    mkdir -p /var/run && \
     touch /var/run/nginx.pid && \
     chown -R nginx:nginx /var/run/nginx.pid
 
