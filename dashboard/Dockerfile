@@ -18,10 +18,12 @@ RUN chown -R nginx:nginx /app &&  \
     chmod -R 755 /app && \
     chown -R nginx:nginx /var/cache/nginx && \
     chown -R nginx:nginx /var/log/nginx && \
-    echo "pid         /var/log/nginx/nginx.pid;" >> /etc/nginx/conf.d/default.conf && \
     chown -R nginx:nginx /etc/nginx/conf.d && \
     touch /var/log/nginx/nginx.pid && \
     chown -R nginx:nginx /var/log/nginx/nginx.pid
+
+# Change the path to the nginx.pid since /var/log is not persistent during builds
+RUN sed -i 's/\/var\/run\/nginx.pid/\/var\/log\/nginx\/nginx.pid/g' /etc/nginx/nginx.conf
 
 USER nginx:nginx
 # forward request and error logs to docker log collector
