@@ -18,10 +18,10 @@ RUN chown -R nginx:nginx /app &&  \
     chmod -R 755 /app && \
     chown -R nginx:nginx /var/cache/nginx && \
     chown -R nginx:nginx /var/log/nginx && \
+    echo "pid         /var/log/nginx/nginx.pid;" >> /etc/nginx/conf.d/default.conf && \
     chown -R nginx:nginx /etc/nginx/conf.d && \
-    mkdir -p /var/run && \
-    touch /var/run/nginx.pid && \
-    chown -R nginx:nginx /var/run/nginx.pid
+    touch /var/log/nginx/nginx.pid && \
+    chown -R nginx:nginx /var/log/nginx/nginx.pid
 
 USER nginx:nginx
 # forward request and error logs to docker log collector
