@@ -8,7 +8,7 @@ COPY public/ public/
 COPY src/ src/
 RUN yarn run build
 
-FROM nginx:1.19.7-alpine
+FROM eu.gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/nginx:1.20.1-alpine
 
 WORKDIR /app
 # Serve the frontend
