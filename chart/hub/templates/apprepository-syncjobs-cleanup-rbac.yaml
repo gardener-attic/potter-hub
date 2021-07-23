@@ -32,4 +32,7 @@ subjects:
 - kind: ServiceAccount
   name: apprepo-syncjobs-cleanup
   namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
+  name: apprepo-syncjobs-cleanup2
+  namespace: {{ .Release.Namespace }}
 {{- end -}}

@@ -153,6 +153,8 @@ apprepository:
   syncjobsCleanupCrontab: "0 0 * * *"
   # Schedule for syncing apprepositories. Every ten minutes by default
   crontab: "*/10 * * * *"
+  # name of service account used by cleanup job, only apprepo-syncjobs-cleanup or apprepo-syncjobs-cleanup allowed
+  syncJobCleanupServiceAccount: apprepo-syncjobs-cleanup
   image:
     registry: <APPREPOSITORY_REGISTRY>
     repository: <APPREPOSITORY_CONTROLLER_REPO>

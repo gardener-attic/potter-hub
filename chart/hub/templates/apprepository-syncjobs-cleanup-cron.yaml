@@ -13,7 +13,7 @@ spec:
     spec:
       template:
         spec:
-          serviceAccountName: apprepo-syncjobs-cleanup
+          serviceAccountName: {{ .Values.apprepository.syncJobCleanupServiceAccount }}
 {{- include "kubeapps.imagePullSecrets" . | indent 10 }}
           containers:
           - name: kubectl
