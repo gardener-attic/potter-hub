@@ -155,9 +155,13 @@ apprepository:
   crontab: "*/10 * * * *"
   # name of service account used by cleanup job, only apprepo-syncjobs-cleanup or apprepo-syncjobs-cleanup2 allowed
   syncJobCleanupServiceAccount: apprepo-syncjobs-cleanup
-  # name of service account used by cleanup job, only hub-k8s-apps-hub-internal-apprepository-jobs-cleanup or
-  # hub-k8s-apps-hub-internal-apprepository-jobs-cleanup2 allowed
+  # Name of service account used by cleanup job.
+  # Only hub-k8s-apps-hub-internal-apprepository-jobs-cleanup and hub-k8s-apps-hub-internal-apprepository-jobs-cleanup2 allowed.
   apprepositoryJobCleanupServiceAccount: hub-k8s-apps-hub-internal-apprepository-jobs-cleanup
+  # Name of service account used by cleanup job.
+  # Only hub-k8s-apps-hub-internal-mongodb-jobs-cleanup and hub-k8s-apps-hub-internal-mongodb-jobs-cleanup2 allowed.
+  mongodbJobCleanupServiceAccount: hub-k8s-apps-hub-internal-mongodb-jobs-cleanup
+
   image:
     registry: <APPREPOSITORY_REGISTRY>
     repository: <APPREPOSITORY_CONTROLLER_REPO>
