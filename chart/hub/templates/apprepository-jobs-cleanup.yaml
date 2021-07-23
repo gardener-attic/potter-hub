@@ -2,12 +2,12 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {{ template "kubeapps.apprepository-jobs-cleanup.fullname" . }}
+  name: hub-k8s-apps-hub-internal-apprepository-jobs-cleanup
   annotations:
     helm.sh/hook: post-delete
     helm.sh/hook-delete-policy: hook-succeeded
   labels:
-    app: {{ template "kubeapps.apprepository-jobs-cleanup.fullname" . }}
+    app: hub-k8s-apps-hub-internal-apprepository-jobs-cleanup
     chart: {{ template "kubeapps.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -15,7 +15,7 @@ spec:
   template:
     metadata:
       labels:
-        app: {{ template "kubeapps.apprepository-jobs-cleanup.fullname" . }}
+        app: hub-k8s-apps-hub-internal-apprepository-jobs-cleanup
         release: {{ .Release.Name }}
     spec:
 {{- include "kubeapps.imagePullSecrets" . | indent 6 }}
@@ -30,7 +30,7 @@ spec:
           kubectl delete apprepositories.kubeapps.com -n {{ .Release.Namespace }} --all
           kubectl delete secrets -n {{ .Release.Namespace }} -l app={{ template "kubeapps.name" $ }},release={{ $.Release.Name }}
       restartPolicy: OnFailure
-      serviceAccountName: {{ template "kubeapps.apprepository-jobs-cleanup.fullname" . }}
+      serviceAccountName: {{ .Values.apprepository.apprepositoryJobCleanupServiceAccount }}
     {{- with .Values.hooks.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
