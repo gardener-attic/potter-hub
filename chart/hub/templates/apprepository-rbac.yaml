@@ -2,9 +2,9 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: {{ template "kubeapps.apprepository.fullname" . }}
+  name: hub-k8s-potter-hub-internal-apprepository-controller
   labels:
-    app: {{ template "kubeapps.apprepository.fullname" . }}
+    app: hub-k8s-potter-hub-internal-apprepository-controller
     chart: {{ template "kubeapps.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -42,24 +42,29 @@ rules:
   - list
   - update
   - watch
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: {{ template "kubeapps.apprepository.fullname" . }}
+  name: hub-k8s-potter-hub-internal-apprepository-controller
   labels:
-    app: {{ template "kubeapps.apprepository.fullname" . }}
+    app: hub-k8s-potter-hub-internal-apprepository-controller
     chart: {{ template "kubeapps.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: {{ template "kubeapps.apprepository.fullname" . }}
+  name: hub-k8s-potter-hub-internal-apprepository-controller
 subjects:
 - kind: ServiceAccount
-  name: {{ template "kubeapps.apprepository.fullname" . }}
+  name: hub-k8s-potter-hub-internal-apprepository-controller
   namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
+  name: hub-k8s-potter-hub-internal-apprepository-controller2
+  namespace: {{ .Release.Namespace }}
+
 ---
 # Define role, but no binding, so users can be bound to this role
 apiVersion: rbac.authorization.k8s.io/v1
@@ -74,6 +79,7 @@ rules:
   verbs:
   - list
   - get
+
 ---
 # Define role, but no binding, so users can be bound to this role
 apiVersion: rbac.authorization.k8s.io/v1

@@ -13,7 +13,7 @@ metadata:
     {{- end }}
   name: {{ .name }}
   labels:
-    app: {{ template "kubeapps.apprepository.fullname" $ }}
+    app: hub-k8s-potter-hub-internal-apprepository-controller
     chart: {{ template "kubeapps.chart" $ }}
     release: {{ $.Release.Name }}
     heritage: {{ $.Release.Service }}

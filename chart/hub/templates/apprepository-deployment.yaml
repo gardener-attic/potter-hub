@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "kubeapps.apprepository.fullname" . }}
+  name: hub-k8s-potter-hub-internal-apprepository-controller
   labels:
-    app: {{ template "kubeapps.apprepository.fullname" . }}
+    app: hub-k8s-potter-hub-internal-apprepository-controller
     chart: {{ template "kubeapps.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -11,16 +11,16 @@ spec:
   replicas: {{ .Values.apprepository.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "kubeapps.apprepository.fullname" . }}
+      app: hub-k8s-potter-hub-internal-apprepository-controller
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "kubeapps.apprepository.fullname" . }}
+        app: hub-k8s-potter-hub-internal-apprepository-controller
         release: {{ .Release.Name }}
         {{ .Values.apprepository.affinityLabel.key }}: {{ .Values.apprepository.affinityLabel.value }}
     spec:
-      serviceAccountName: {{ template "kubeapps.apprepository.fullname" . }}
+      serviceAccountName: {{ .Values.apprepository.apprepositoryControllerServiceAccount }}
 {{- include "kubeapps.imagePullSecrets" . | indent 6 }}
       containers:
       - name: controller

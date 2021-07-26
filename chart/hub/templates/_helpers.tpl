@@ -63,13 +63,6 @@ Create chart name and version as used by the chart label.
 {{- end -}}
 
 {{/*
-Create name for the apprepository-controller based on the fullname
-*/}}
-{{- define "kubeapps.apprepository.fullname" -}}
-{{ template "kubeapps.fullname" . }}-internal-apprepository-controller
-{{- end -}}
-
-{{/*
 Create name for the apprepository bootstrap job
 */}}
 {{- define "kubeapps.apprepository-jobs-bootstrap.fullname" -}}

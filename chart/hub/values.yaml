@@ -161,6 +161,9 @@ apprepository:
   # Name of service account used by cleanup job.
   # Only hub-k8s-apps-hub-internal-mongodb-jobs-cleanup and hub-k8s-apps-hub-internal-mongodb-jobs-cleanup2 allowed.
   mongodbJobCleanupServiceAccount: hub-k8s-apps-hub-internal-mongodb-jobs-cleanup
+  # Name of service account for the apprepository controller.
+  # Only hub-k8s-potter-hub-internal-apprepository-controller and hub-k8s-potter-hub-internal-apprepository-controller2 allowed.
+  apprepositoryControllerServiceAccount: hub-k8s-potter-hub-internal-apprepository-controller
 
   image:
     registry: <APPREPOSITORY_REGISTRY>
