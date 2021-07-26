@@ -27,7 +27,6 @@ metadata:
     nginx.ingress.kubernetes.io/auth-secret: {{ template "kubeapps.fullname" . }}-health-auth
 spec:
   rules:
-  {{ $uibackendFullname := include "kubeapps.ui-backend.fullname" . }}
   {{ $frontendFullname := include "kubeapps.fullname" . }}
   {{- range .Values.ingress.hosts }}
   {{- range .names }}
@@ -36,7 +35,7 @@ spec:
       paths:
         - path: {{ $.Values.uiBackend.health.config.pathPrefix }}/.*
           backend:
-            serviceName: {{ $uibackendFullname }}
+            serviceName: hub-k8s-potter-hub-ui-backend
             servicePort: {{ $.Values.uiBackend.service.port }}
         # TODO: delete once pipeline avcheck and avs are migrated to the new endpoint
         - path: /.+/.+/api/ui-backend/availability

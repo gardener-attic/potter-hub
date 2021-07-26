@@ -240,6 +240,9 @@ hooks:
 
 uiBackend:
   replicaCount: 2
+  # Name of service account for the ui backend.
+  # Only hub-k8s-potter-hub-ui-backend and hub-k8s-potter-hub-ui-backend2 allowed.
+  serviceAccountName: hub-k8s-potter-hub-ui-backend
   image:
     registry: <UI_BACKEND_REGISTRY>
     repository: <UI_BACKEND_REPO>

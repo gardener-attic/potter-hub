@@ -2,9 +2,9 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: {{ template "kubeapps.ui-backend.fullname" . }}
+  name: hub-k8s-potter-hub-ui-backend
   labels:
-    app: {{ template "kubeapps.ui-backend.fullname" . }}
+    app: hub-k8s-potter-hub-ui-backend
     chart: {{ template "kubeapps.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -23,22 +23,26 @@ rules:
   - get
   - list
 ---
+
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: {{ template "kubeapps.ui-backend.fullname" . }}
+  name: hub-k8s-potter-hub-ui-backend
   labels:
-    app: {{ template "kubeapps.ui-backend.fullname" . }}
+    app: hub-k8s-potter-hub-ui-backend
     chart: {{ template "kubeapps.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: {{ template "kubeapps.ui-backend.fullname" . }}
+  name: hub-k8s-potter-hub-ui-backend
 subjects:
 - kind: ServiceAccount
-  name: {{ template "kubeapps.ui-backend.fullname" . }}
+  name: hub-k8s-potter-hub-ui-backend
+  namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
+  name: hub-k8s-potter-hub-ui-backend2
   namespace: {{ .Release.Namespace }}
 
 # the following role and rolebinding will be created in the controller namespace
@@ -50,7 +54,7 @@ metadata:
   name: system-info-cm-reader
   namespace: {{ .Values.controllerNamespace }}
   labels:
-    app: {{ template "kubeapps.ui-backend.fullname" . }}
+    app: hub-k8s-potter-hub-ui-backend
     chart: {{ template "kubeapps.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -63,6 +67,7 @@ rules:
   - system-info
   verbs:
   - get
+
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -70,7 +75,7 @@ metadata:
   name: system-info-cm-reader
   namespace: {{ .Values.controllerNamespace }}
   labels:
-    app: {{ template "kubeapps.ui-backend.fullname" . }}
+    app: hub-k8s-potter-hub-ui-backend
     chart: {{ template "kubeapps.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -79,7 +84,10 @@ roleRef:
   kind: Role
   name: system-info-cm-reader
 subjects:
-- kind: ServiceAccount
-  name: {{ template "kubeapps.ui-backend.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  - kind: ServiceAccount
+    name: hub-k8s-potter-hub-ui-backend
+    namespace: {{ .Release.Namespace }}
+  - kind: ServiceAccount
+    name: hub-k8s-potter-hub-ui-backend2
+    namespace: {{ .Release.Namespace }}
 {{- end -}}

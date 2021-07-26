@@ -1,9 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ template "kubeapps.ui-backend.fullname" . }}
+  name: hub-k8s-potter-hub-ui-backend
   labels:
-    app: {{ template "kubeapps.ui-backend.fullname" . }}
+    app: hub-k8s-potter-hub-ui-backend
     chart: {{ template "kubeapps.chart" . }}
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
@@ -11,18 +11,18 @@ spec:
   replicas: {{ .Values.uiBackend.replicaCount }}
   selector:
     matchLabels:
-      app: {{ template "kubeapps.ui-backend.fullname" . }}
+      app: hub-k8s-potter-hub-ui-backend
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ template "kubeapps.ui-backend.fullname" . }}
+        app: hub-k8s-potter-hub-ui-backend
         release: {{ .Release.Name }}
         {{ .Values.uiBackend.affinityLabel.key }}: {{ .Values.uiBackend.affinityLabel.value }}
     spec:
       securityContext:
         runAsUser: 10001
-      serviceAccountName: {{ template "kubeapps.ui-backend.fullname" . }}
+      serviceAccountName: {{ .Values.uiBackend.serviceAccountName }}
       # Increase termination timeout to let remaining operations to finish before killing the pods
       # This is because new releases/upgrades/deletions are synchronous operations
       terminationGracePeriodSeconds: 300
@@ -34,7 +34,7 @@ spec:
         - /ui-backend
         args:
         - --user-agent-comment=hub/{{ .Chart.AppVersion }}
-        - --host-url=http://{{ template "kubeapps.ui-backend.fullname" . }}:{{ .Values.uiBackend.service.port }}
+        - --host-url=http://hub-k8s-potter-hub-ui-backend:{{ .Values.uiBackend.service.port }}
         {{- if .Values.authProxy.enabled }}
         - --oidc-cluster-url={{ .Values.authProxy.oidcClusterURL }}
         - --oidc-cluster-ca={{ .Values.authProxy.oidcClusterCA }}
@@ -80,7 +80,7 @@ spec:
       volumes:
       - name: tiller-certs
         secret:
-          secretName: {{ template "kubeapps.ui-backend.fullname" . }}
+          secretName: hub-k8s-potter-hub-ui-backend
       {{- end }}
     {{- with .Values.uiBackend.nodeSelector }}
       nodeSelector:

@@ -105,13 +105,6 @@ Create name for the frontend config based on the fullname
 {{- end -}}
 
 {{/*
-Create name for the ui-backend based on the fullname
-*/}}
-{{- define "kubeapps.ui-backend.fullname" -}}
-{{ template "kubeapps.fullname" . }}-ui-backend
-{{- end -}}
-
-{{/*
 Create name for the secrets related to an app repository
 */}}
 {{- define "kubeapps.apprepository-secret.name" -}}
