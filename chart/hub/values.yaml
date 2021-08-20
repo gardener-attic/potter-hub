@@ -550,3 +550,6 @@ authProxy:
     requests:
       cpu: 25m
       memory: 32Mi
+
+linkerd:
+  enabled: false
