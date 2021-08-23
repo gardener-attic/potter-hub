@@ -17,6 +17,9 @@ spec:
     metadata:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/kubeapps-frontend-config.yaml") . | sha256sum }}
+        {{- if .Values.linkerd.enabled }}
+        linkerd.io/inject: enabled
+        {{- end }}
       labels:
         app: {{ template "kubeapps.fullname" . }}
         release: {{ .Release.Name }}

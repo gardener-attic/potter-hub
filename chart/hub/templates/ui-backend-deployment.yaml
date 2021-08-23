@@ -15,10 +15,10 @@ spec:
       release: {{ .Release.Name }}
   template:
     metadata:
-      {{ - if .Values.linkerd.enabled }}
+      {{- if .Values.linkerd.enabled }}
       annotations:
         linkerd.io/inject: enabled
-      {{ - end }}
+      {{- end }}
       labels:
         app: hub-k8s-potter-hub-ui-backend
         release: {{ .Release.Name }}
