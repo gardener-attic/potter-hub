@@ -182,8 +182,8 @@ apprepository:
 #    https_proxy: "http://yourproxy:3128"
 #    no_proxy: "0.0.0.0/0"
   initialRepos:
-  - name: svc-cat
-    url: https://svc-catalog-charts.storage.googleapis.com
+  # - name: svc-cat
+  #   url: https://svc-catalog-charts.storage.googleapis.com
   # Additional repositories
   # - name: chartmuseum
   #   url: https://chartmuseum.default:8080
@@ -231,7 +231,7 @@ apprepository:
 hooks:
   image:
     registry: <KUBECTL_REGISTRY>
-    repository: <KUBECTL_REPOSITORY> 
+    repository: <KUBECTL_REPOSITORY>
     tag: <KUBECTL_TAG>
     imagePullPolicy: <IMAGE_PULL_POLICY>
   nodeSelector: {}
