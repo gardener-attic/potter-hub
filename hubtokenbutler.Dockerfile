@@ -1,4 +1,4 @@
-FROM eu.gcr.io/gardener-project/3rd/golang:1.17.2 as builder
+FROM eu.gcr.io/gardener-project/3rd/golang:1.17.5 as builder
 WORKDIR /app
 
 # Copy relevant code
@@ -24,7 +24,7 @@ RUN adduser \
 --uid "${UID}" \
 "${USER}"
 
-FROM eu.gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/kubeapps-chart-repo:1.9.0-r2
+FROM eu.gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/kubeapps-chart-repo:1.10.0
 WORKDIR /
 
 # Import the user and group files from the builder.
