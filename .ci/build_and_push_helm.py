@@ -111,7 +111,7 @@ if __name__ == "__main__":
             cred_file.switch()
 
             packageChartRepo(temp_out, "potter-charts")
-        
+
         if pipeline_out_path:
             print(f"Copying helm chart {chart_tgz_path} to pipeline-oit dir {pipeline_out_path}")
             shutil.copy(chart_tgz_path, pipeline_out_path)
