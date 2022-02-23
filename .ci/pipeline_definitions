@@ -31,32 +31,32 @@ potter-hub:
       publish:
         dockerimages:
           dashboard:
-            registry: 'potter-hub-image-registry-pipeline'
+            registry: 'potter-image-registry-pipeline'
             image: 'eu.gcr.io/sap-gcp-cp-k8s-stable-hub/potter/dashboard'
             dir: 'dashboard'
             tag_as_latest: true
           ui-backend:
-            registry: 'potter-hub-image-registry-pipeline'
+            registry: 'potter-image-registry-pipeline'
             image: 'eu.gcr.io/sap-gcp-cp-k8s-stable-hub/potter/ui-backend'
             dockerfile: 'ui-backend.Dockerfile'
             tag_as_latest: true
           apprepo:
-            registry: 'potter-hub-image-registry-pipeline'
+            registry: 'potter-image-registry-pipeline'
             image: 'eu.gcr.io/sap-gcp-cp-k8s-stable-hub/potter/apprepo'
             dockerfile: 'apprepo.Dockerfile'
             tag_as_latest: true
           hubtokenbutler:
-            registry: 'potter-hub-image-registry-pipeline'
+            registry: 'potter-image-registry-pipeline'
             image: 'eu.gcr.io/sap-gcp-cp-k8s-stable-hub/potter/hubtokenbutler'
             dockerfile: 'hubtokenbutler.Dockerfile'
             tag_as_latest: true
           kubectl:
-            registry: 'potter-hub-image-registry-pipeline'
+            registry: 'potter-image-registry-pipeline'
             image: 'eu.gcr.io/sap-gcp-cp-k8s-stable-hub/potter/kubectl'
             dockerfile: 'kubectl.Dockerfile'
             tag_as_latest: true
 #          mongodb:
-#            registry: 'potter-hub-image-registry-pipeline'
+#            registry: 'potter-image-registry-pipeline'
 #            image: 'eu.gcr.io/sap-gcp-cp-k8s-stable-hub/potter/mongodb'
 #            dockerfile: 'mongodb/Dockerfile'
 #            tag_as_latest: true
