@@ -1,4 +1,4 @@
-FROM eu.gcr.io/gardener-project/3rd/golang:1.17.5 as builder
+FROM eu.gcr.io/gardener-project/3rd/golang:1.17.8 as builder
 WORKDIR /app
 
 # Copy relevant code
