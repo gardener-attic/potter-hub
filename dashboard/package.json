@@ -23,7 +23,7 @@
     "@types/vfile-message": "^2.0.0",
     "@types/ws": "^6.0.0",
     "@types/yaml": "^1.0.2",
-    "axios": ">=0.22.0",
+    "axios": ">=0.21.1",
     "connected-react-router": "^4.5.0",
     "diff": "^4.0.1",
     "diff2html": "^2.12.1",
