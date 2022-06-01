@@ -221,6 +221,7 @@ func testGetNamespace(httpsBaseURL string, token string) error {
 	namespaceURL := httpsBaseURL + "/api/ui-backend/reverse-proxy/v1/api/v1/namespaces/"
 
 	log.Infof("Doing get ns request with auth")
+	log.Infof("namespaceURL=%s, token=%s", namespaceURL, token)
 	req := util.BuildApiProxyRequestWithBearerAuth("GET", namespaceURL, token, nil)
 	err := makeRequestWithExpectedResult(req, 200)
 
