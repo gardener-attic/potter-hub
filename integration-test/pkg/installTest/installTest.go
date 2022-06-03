@@ -8,8 +8,6 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-
-
 func Run(hpw *helmProxyWrapper.HelmProxyWrapper) {
 	runTestsForMongoDB(hpw)
 	runTestsForGrafana(hpw)
@@ -23,18 +21,18 @@ func runTestsForGrafana(helmProxyWrapper *helmProxyWrapper.HelmProxyWrapper) {
 	const labelSelector = "app.kubernetes.io/component=" + chartName + ",app.kubernetes.io/instance=" + releaseName
 	namespace := helmProxyWrapper.Namespace
 
-	helmProxyWrapper.InstallRelease(releaseName, chartName, "4.1.2", repo)
+	helmProxyWrapper.InstallRelease(releaseName, chartName, "7.9.1", repo)
 	log.Printf("\n == Checking Chart " + chartName + " == \n\n")
-	err := util.PollFunction(30, checkGrafana, helmProxyWrapper.KubeClient, namespace, labelSelector, "7.3.4-debian-10-r1", false)
+	err := util.PollFunction(30, checkGrafana, helmProxyWrapper.KubeClient, namespace, labelSelector, "8.5.3-debian-10-r0", false)
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)
 
 	helmProxyWrapper.GetRelease(releaseName)
-	helmProxyWrapper.UpgradeRelease(releaseName, chartName, "4.0.2", repo)
-	err = util.PollFunction(30, checkGrafana, helmProxyWrapper.KubeClient, namespace, labelSelector, "7.3.3-debian-10-r0", false)
+	helmProxyWrapper.UpgradeRelease(releaseName, chartName, "7.9.3", repo)
+	err = util.PollFunction(30, checkGrafana, helmProxyWrapper.KubeClient, namespace, labelSelector, "8.5.4-debian-10-r0", false)
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)
 
 	helmProxyWrapper.DeleteRelease(releaseName)
-	err = util.PollFunction(30, checkGrafana, helmProxyWrapper.KubeClient, namespace, labelSelector, "7.3.3-debian-10-r0", true)
+	err = util.PollFunction(30, checkGrafana, helmProxyWrapper.KubeClient, namespace, labelSelector, "8.5.4-debian-10-r0", true)
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)
 }
 
@@ -42,21 +40,21 @@ func runTestsForMongoDB(helmProxyWrapper *helmProxyWrapper.HelmProxyWrapper) {
 	const releaseName = "muh-mongo"
 	const chartName = "mongodb"
 	const repo = "bitnami"
-	const labelSelector = "app=" + chartName + ",release=" + releaseName
+	const labelSelector = "app.kubernetes.io/component=" + chartName + ",app.kubernetes.io/instance=" + releaseName
 	namespace := helmProxyWrapper.Namespace
 
-	helmProxyWrapper.InstallRelease(releaseName, chartName, "7.3.0", repo)
+	helmProxyWrapper.InstallRelease(releaseName, chartName, "12.1.11", repo)
 	log.Printf("\n == Checking Chart mongodb == \n\n")
-	err := util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, "4.0.12-debian-9-r43", false)
+	err := util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, "5.0.8-debian-10-r0", false)
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)
 
 	helmProxyWrapper.GetRelease(releaseName)
-	helmProxyWrapper.UpgradeRelease(releaseName, chartName, "7.3.2", repo)
-	err = util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, "4.0.13-debian-9-r0", false)
+	helmProxyWrapper.UpgradeRelease(releaseName, chartName, "12.1.15", repo)
+	err = util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, "5.0.9-debian-10-r0", false)
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)
 
 	helmProxyWrapper.DeleteRelease(releaseName)
-	err = util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, "4.0.13-debian-9-r0", true)
+	err = util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, "5.0.9-debian-10-r0", true)
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)
 }
 
