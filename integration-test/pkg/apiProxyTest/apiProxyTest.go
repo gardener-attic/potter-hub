@@ -184,7 +184,7 @@ func testGetAppRepossitories(httpsBaseURL string, token string) error {
 
 func testGetResources(httpsBaseURL, token, namespace string) error {
 	deploymentURL := httpsBaseURL + util.APIKube + util.DEPLOYMENT_API + "/namespaces/" + namespace + "/deployments/" + releaseName + "-grafana"
-	secretURL := httpsBaseURL + util.APIKube + util.CORE_V1_API + "/namespaces/" + namespace + "/secrets/" + releaseName + "-grafana"
+	secretURL := httpsBaseURL + util.APIKube + util.CORE_V1_API + "/namespaces/" + namespace + "/secrets/" + releaseName + "-grafana-admin"
 	serviceURL := httpsBaseURL + util.APIKube + util.CORE_V1_API + "/namespaces/" + namespace + "/services/" + releaseName + "-grafana"
 
 	log.Infof("Doing get deployment request with auth")
