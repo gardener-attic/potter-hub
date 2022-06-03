@@ -179,42 +179,61 @@ func testGetResources(httpsBaseURL, token, namespace string) error {
 	serviceURL := httpsBaseURL + util.APIKube + util.CORE_V1_API + "/namespaces/" + namespace + "/services/" + releaseName + "-grafana"
 
 	log.Infof("Doing get deployment request with auth")
+	log.Infof("DEBUG:\n  url=\n%s\n  token=\n%s", &deploymentURL, token)
 	req := util.BuildApiProxyRequestWithBearerAuth("GET", deploymentURL, token, nil)
-	err := makeRequestWithExpectedResult(req, 200)
+	if err := makeRequestWithExpectedResult(req, 200); err != nil {
+		return err
+	}
 
 	log.Infof("Doing get deployment request with invalid auth")
 	req = util.BuildApiProxyRequestWithBearerAuth("GET", deploymentURL, "foobar", nil)
-	err = makeRequestWithExpectedResult(req, 401)
+	if err := makeRequestWithExpectedResult(req, 401); err != nil {
+		return err
+	}
 
 	log.Infof("Doing get deployment request without auth")
 	req = util.BuildApiProxyRequestWithoutAuth("GET", deploymentURL, nil)
-	err = makeRequestWithExpectedResult(req, 400)
+	if err := makeRequestWithExpectedResult(req, 400); err != nil {
+		return err
+	}
 
 	log.Infof("Doing get secret request with auth")
 	req = util.BuildApiProxyRequestWithBearerAuth("GET", secretURL, token, nil)
-	err = makeRequestWithExpectedResult(req, 200)
+	if err := makeRequestWithExpectedResult(req, 200); err != nil {
+		return err
+	}
 
 	log.Infof("Doing get secret request with invalid auth")
 	req = util.BuildApiProxyRequestWithBearerAuth("GET", secretURL, "foobar", nil)
-	err = makeRequestWithExpectedResult(req, 401)
+	if err := makeRequestWithExpectedResult(req, 401); err != nil {
+		return err
+	}
 
 	log.Infof("Doing get secret request without auth")
 	req = util.BuildApiProxyRequestWithoutAuth("GET", secretURL, nil)
-	err = makeRequestWithExpectedResult(req, 400)
+	if err := makeRequestWithExpectedResult(req, 400); err != nil {
+		return err
+	}
 
 	log.Infof("Doing get service request with auth")
 	req = util.BuildApiProxyRequestWithBearerAuth("GET", serviceURL, token, nil)
-	err = makeRequestWithExpectedResult(req, 200)
+	if err := makeRequestWithExpectedResult(req, 200); err != nil {
+		return err
+	}
 
 	log.Infof("Doing get service request with invalid auth")
 	req = util.BuildApiProxyRequestWithBearerAuth("GET", serviceURL, "foobar", nil)
-	err = makeRequestWithExpectedResult(req, 401)
+	if err := makeRequestWithExpectedResult(req, 401); err != nil {
+		return err
+	}
 
 	log.Infof("Doing get service request without auth")
 	req = util.BuildApiProxyRequestWithoutAuth("GET", serviceURL, nil)
-	err = makeRequestWithExpectedResult(req, 400)
+	if err := makeRequestWithExpectedResult(req, 400); err != nil {
+		return err
+	}
 
-	return err
+	return nil
 }
 
 func testGetNamespace(httpsBaseURL string, token string) error {
