@@ -154,7 +154,7 @@ def replace_chart_placeholder(chart_path: str, image_version: str, chart_version
     # for public repo check latest version at: https://github.com/bitnami/charts/blob/master/bitnami/mongodb/values.yaml
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_REGISTRY>", "docker.io")
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_REPOSITORY>", "bitnami/mongodb")
-    replace_placeholder_in_yaml(values_yaml, "<MONGODB_TAG>", "4.4.3-debian-10-r21")
+    replace_placeholder_in_yaml(values_yaml, "<MONGODB_TAG>", "5.0.9-debian-10-r0")
 
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REGISTRY>", "eu.gcr.io")
     replace_placeholder_in_yaml(values_yaml, "<MONGODB_EXPORTER_REPOSITORY>", image_repo_3rd + "mongodb-exporter")
