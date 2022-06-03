@@ -43,9 +43,11 @@ func runTestsForMongoDB(helmProxyWrapper *helmProxyWrapper.HelmProxyWrapper) {
 	const labelSelector = "app.kubernetes.io/component=" + chartName + ",app.kubernetes.io/instance=" + releaseName
 	namespace := helmProxyWrapper.Namespace
 
-	helmProxyWrapper.InstallRelease(releaseName, chartName, "12.1.11", repo)
-	log.Printf("\n == Checking Chart mongodb == \n\n")
-	err := util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, "5.0.8-debian-10-r0", false)
+	chartVersion := "12.1.11"
+	imageVersion := "5.0.8-debian-10-r24"
+	helmProxyWrapper.InstallRelease(releaseName, chartName, chartVersion, repo)
+	log.Printf("\n == Checking Chart mongodb %s, image %s == \n\n", chartVersion, imageVersion)
+	err := util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, imageVersion, false)
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)
 
 	helmProxyWrapper.GetRelease(releaseName)
