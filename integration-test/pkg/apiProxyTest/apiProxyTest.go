@@ -2,6 +2,7 @@ package apiProxyTest
 
 import (
 	"crypto/tls"
+	"errors"
 	"fmt"
 	"integration-test/pkg/helmProxyWrapper"
 	"integration-test/pkg/util"
@@ -136,18 +137,24 @@ func testWS(baseURL, token, namespace string) error {
 	secretWsURL := url.URL{Scheme: "wss", Host: baseURL, Path: secretWsPath, RawQuery: queryParams}
 
 	log.Info("Doing deployment ws request")
-	err := makeWSRequest(deploymentWsURL, token)
+	if err := makeWSRequest(deploymentWsURL, token); err != nil {
+		return err
+	}
 	fmt.Println()
 
 	log.Info("Doing service ws request")
-	err = makeWSRequest(serviceWsURL, token)
+	if err := makeWSRequest(serviceWsURL, token); err != nil {
+		return err
+	}
 	fmt.Println()
 
 	log.Info("Doing secret ws request")
-	err = makeWSRequest(secretWsURL, token)
+	if err := makeWSRequest(secretWsURL, token); err != nil {
+		return err
+	}
 	fmt.Println()
 
-	return err
+	return nil
 }
 
 func testGetAppRepossitories(httpsBaseURL string, token string) error {
@@ -155,7 +162,9 @@ func testGetAppRepossitories(httpsBaseURL string, token string) error {
 
 	log.Println("Doing apprepo request with correct auth header -> 200")
 	req := util.BuildApiProxyRequestWithBearerAuth("GET", apprepoURL, token, nil)
-	err := makeRequestWithExpectedResult(req, 200)
+	if err := makeRequestWithExpectedResult(req, 200); err != nil {
+		return err
+	}
 
 	// TODO: Inline as soon as auth check in k8s-api-proxy is implemented
 	//log.Println("Doing apprepo request with incorrect auth header -> 401")
@@ -170,7 +179,7 @@ func testGetAppRepossitories(httpsBaseURL string, token string) error {
 	//log.Println("Doing apprepo request in wrong namespace -> 403")
 	//req = util.BuildApiProxyRequestWithoutAuth("GET", apprepoURL, nil)
 	//err = makeRequestWithExpectedResult(req, 403)
-	return err
+	return nil
 }
 
 func testGetResources(httpsBaseURL, token, namespace string) error {
@@ -241,39 +250,48 @@ func testGetNamespace(httpsBaseURL string, token string) error {
 
 	log.Infof("Doing get ns request with auth")
 	req := util.BuildApiProxyRequestWithBearerAuth("GET", namespaceURL, token, nil)
-	err := makeRequestWithExpectedResult(req, 200)
+	if err := makeRequestWithExpectedResult(req, 200); err != nil {
+		return err
+	}
 
 	log.Infof("Doing get ns request with incorrect auth -> Unauthorized")
 	req = util.BuildApiProxyRequestWithBearerAuth("GET", namespaceURL, "foobar", nil)
-	err = makeRequestWithExpectedResult(req, 401)
+	if err := makeRequestWithExpectedResult(req, 401); err != nil {
+		return err
+	}
 
 	log.Infof("Doing get ns request without auth -> Bad Request")
 	req = util.BuildApiProxyRequestWithoutAuth("GET", namespaceURL, nil)
-	err = makeRequestWithExpectedResult(req, 400)
+	if err := makeRequestWithExpectedResult(req, 400); err != nil {
+		return err
+	}
 
-	return err
+	return nil
 }
 
-func makeRequestWithExpectedResult(req *http.Request, statusCode int) error {
+func makeRequestWithExpectedResult(req *http.Request, expectedStatusCode int) error {
 	res, err := client.Do(req)
 	if err != nil {
-		log.Fatal(err.Error())
+		return fmt.Errorf("request failed: %w", err)
 	}
 	if res == nil {
-		log.Fatal("response is empty")
+		return errors.New("response is empty")
 	}
 	defer util.CloseBody(res)
 
 	body, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		return err
+		return fmt.Errorf("reading response body failed: %w", err)
 	}
-	if res.StatusCode != statusCode {
-		log.Errorf("Expected statusCode does not match response statusCode. "+
-			"Expected: %v, Actual: %v", statusCode, res.StatusCode)
+
+	if res.StatusCode != expectedStatusCode {
+		errMsg := fmt.Sprintf("Expected statusCode does not match response statusCode. "+
+			"Expected: %v, Actual: %v", expectedStatusCode, res.StatusCode)
+		log.Error(errMsg)
 		log.Errorf("Request body was: %s", string(body))
-		return err
+		return errors.New(errMsg)
 	}
+
 	log.Printf("Call returned with expected statusCode %v", res.StatusCode)
 
 	defer fmt.Println()
