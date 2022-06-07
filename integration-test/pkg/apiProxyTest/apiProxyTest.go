@@ -158,7 +158,7 @@ func testWS(baseURL, token, namespace string) error {
 }
 
 func testGetAppRepossitories(httpsBaseURL string, token string) error {
-	apprepoURL := httpsBaseURL + util.APIKube + "/apis/kubeapps.com/v1alpha1/namespaces/hub/apprepositories"
+	apprepoURL := httpsBaseURL + util.APIKube + "/resourcecluster/apis/kubeapps.com/v1alpha1/namespaces/hub/apprepositories"
 
 	log.Println("Doing apprepo request with correct auth header -> 200")
 	req := util.BuildApiProxyRequestWithBearerAuth("GET", apprepoURL, token, nil)
