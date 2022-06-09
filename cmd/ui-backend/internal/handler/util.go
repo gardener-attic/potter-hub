@@ -52,10 +52,11 @@ func getTokenFromWSRequest(r *http.Request) (*string, error) {
 
 func newReverseProxy(targetURL string, encodedCAData []byte) (*httputil.ReverseProxy, error) {
 	pool := x509.NewCertPool()
-	ok := pool.AppendCertsFromPEM(encodedCAData)
 
-	if !ok {
-		return nil, errorUtils.InternalServerError.NewError("Couldn't add CA to cert pool")
+	if len(encodedCAData) > 0 {
+		if ok := pool.AppendCertsFromPEM(encodedCAData); !ok {
+			return nil, errorUtils.InternalServerError.NewError("Couldn't add CA to cert pool")
+		}
 	}
 
 	apiServerURL, err := url.Parse(targetURL)
