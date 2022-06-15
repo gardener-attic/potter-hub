@@ -23,7 +23,7 @@ def test_helm_binary(execPath):
 
 class HelmClient:
     def __init__(self):
-        self.helm_route = 'https://get.helm.sh/helm-v3.3.4-linux-amd64.tar.gz'
+        self.helm_route = 'https://get.helm.sh/helm-v3.9.0-linux-amd64.tar.gz'
         self.bin_path = 'helm'
         if not test_helm_binary(self.bin_path):
             tempdir = tempfile.gettempdir()
