@@ -471,7 +471,7 @@ mongodb:
     registry: <MONGODB_REGISTRY>
     repository: <MONGODB_REPOSITORY>
     tag: <MONGODB_TAG>
-    pullPolicy: <IMAGE_PULL_POLICY>
+    imagePullPolicy: <IMAGE_PULL_POLICY>
 
   volumePermissions:
     enabled: false
@@ -490,8 +490,7 @@ mongodb:
   # Potter-Hub uses MongoDB as a cache and persistence is not required
   persistence:
     enabled: false
-  auth:
-    existingSecret: kubeapps-mongodb
+  existingSecret: kubeapps-mongodb
   securityContext:
     enabled: false
   resources:

@@ -17,5 +17,5 @@ maintainers:
   email: DL_5DD55C9CB52A299DF06071EA@global.corp.sap
 dependencies:
 - name: mongodb
-  version: "10.31.5"
-  repository: https://charts.bitnami.com/bitnami
+  version: "7.10.10"
+  repository: https://potter-charts.storage.googleapis.com

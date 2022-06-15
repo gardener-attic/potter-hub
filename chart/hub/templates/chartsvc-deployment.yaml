@@ -37,7 +37,7 @@ spec:
         - name: MONGO_PASSWORD
           valueFrom:
             secretKeyRef:
-              name: {{ .Values.mongodb.auth.existingSecret }}
+              name: {{ .Values.mongodb.existingSecret }}
               key: mongodb-root-password
         ports:
         - name: http
