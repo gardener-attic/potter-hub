@@ -471,7 +471,7 @@ mongodb:
     registry: <MONGODB_REGISTRY>
     repository: <MONGODB_REPOSITORY>
     tag: <MONGODB_TAG>
-    imagePullPolicy: <IMAGE_PULL_POLICY>
+    pullPolicy: <IMAGE_PULL_POLICY>
 
   volumePermissions:
     enabled: false
