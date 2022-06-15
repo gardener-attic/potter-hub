@@ -25,7 +25,7 @@ spec:
         - /bin/sh
         args:
         - -c
-        - "kubectl delete secret -n {{ .Release.Namespace }} {{ .Values.mongodb.existingSecret }} || true"
+        - "kubectl delete secret -n {{ .Release.Namespace }} {{ .Values.mongodb.auth.existingSecret }} || true"
       restartPolicy: OnFailure
       serviceAccountName: {{ .Values.apprepository.mongodbJobCleanupServiceAccount }}
     {{- with .Values.hooks.nodeSelector }}
