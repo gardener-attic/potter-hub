@@ -490,7 +490,8 @@ mongodb:
   # Potter-Hub uses MongoDB as a cache and persistence is not required
   persistence:
     enabled: false
-  existingSecret: kubeapps-mongodb
+  auth:
+    existingSecret: kubeapps-mongodb
   securityContext:
     enabled: false
   resources:
