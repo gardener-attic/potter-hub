@@ -76,7 +76,7 @@ if __name__ == "__main__":
     chart_name = "k8s-potter-hub"
     chart_path = os.path.join(source_path, 'chart', 'hub')
 
-    helm_client.repo_add("bitnami", "https://charts.bitnami.com/bitnami")
+    helm_client.repo_add("potter-charts", "https://potter-charts.storage.googleapis.com")
 
     # Now override the place holders in helm chart with concrete values
     # To not override our source dir copy chart directory to temp dir
