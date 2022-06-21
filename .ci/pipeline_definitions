@@ -75,22 +75,15 @@ potter-hub:
         <<: *publish_prod_trait
       steps:
         <<: *code_test_trait
-        run_integration_test:
-          execute:
-          - dev_integration_test.py
-          output_dir: integration_test
         helm:
           trait_depends:
           - publish
-          depends:
-          - run_integration_test
           execute:
           - build_and_push_helm.py
           output_dir: helm_chart
         update_release:
           inputs:
             LINT_PATH: lint_path
-            INTEGRATION_TEST_PATH: integration_test_path
             BACKEND_TEST_PATH: backend_test_path
             FRONTEND_TEST_PATH: frontend_test_path
             HELM_CHART_PATH: helm_chart_path
@@ -98,5 +91,3 @@ potter-hub:
           - update_release.py
           trait_depends:
           - release
-          depends:
-          - run_integration_test
