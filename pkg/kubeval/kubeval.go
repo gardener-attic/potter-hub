@@ -16,6 +16,10 @@ func GetKubeconfigFromOidcCluster(token, namespace, secretName, oidcClusterURL s
 	var config *rest.Config
 	var err error
 
+	if len(decodedOidcClusterCA) == 0 {
+		decodedOidcClusterCA = nil
+	}
+
 	if oidcClusterURL != "" {
 		config = &rest.Config{
 			Host: oidcClusterURL,
