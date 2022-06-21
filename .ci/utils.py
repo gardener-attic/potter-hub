@@ -162,7 +162,7 @@ def replace_chart_placeholder(chart_path: str, image_version: str, chart_version
 
     replace_placeholder_in_yaml(values_yaml, "<MINIDEB_REGISTRY>", "eu.gcr.io")
     replace_placeholder_in_yaml(values_yaml, "<MINIDEB_REPOSITORY>", image_repo_3rd + "minideb")
-    replace_placeholder_in_yaml(values_yaml, "<MINIDEB_TAG>", "buster")
+    replace_placeholder_in_yaml(values_yaml, "<MINIDEB_TAG>", "bullseye")
 
     replace_placeholder_in_yaml(values_yaml, "<NGINX_REGISTRY>", "eu.gcr.io")
     replace_placeholder_in_yaml(values_yaml, "<NGINX_REPOSITORY>", image_repo_3rd + "nginx")

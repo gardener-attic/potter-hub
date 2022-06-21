@@ -188,7 +188,7 @@ func testGetResources(httpsBaseURL, token, namespace string) error {
 	serviceURL := httpsBaseURL + util.APIKube + util.CORE_V1_API + "/namespaces/" + namespace + "/services/" + releaseName + "-grafana"
 
 	log.Infof("Doing get deployment request with auth")
-	log.Infof("DEBUG:\n  url=\n%s\n  token=\n%s", deploymentURL, token)
+	//log.Infof("DEBUG:\n  url=\n%s\n  token=\n%s", deploymentURL, token)
 	req := util.BuildApiProxyRequestWithBearerAuth("GET", deploymentURL, token, nil)
 	if err := makeRequestWithExpectedResult(req, 200); err != nil {
 		return err
