@@ -44,7 +44,7 @@ func runTestsForMongoDB(helmProxyWrapper *helmProxyWrapper.HelmProxyWrapper) {
 	namespace := helmProxyWrapper.Namespace
 
 	chartVersion := "12.1.11"
-	imageVersion := "5.0.8-debian-10-r24"
+	imageVersion := "5.0.8"
 	helmProxyWrapper.InstallRelease(releaseName, chartName, chartVersion, repo)
 	log.Printf("\n == Checking Chart mongodb %s, image %s == \n\n", chartVersion, imageVersion)
 	err := util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, imageVersion, false)
@@ -52,11 +52,11 @@ func runTestsForMongoDB(helmProxyWrapper *helmProxyWrapper.HelmProxyWrapper) {
 
 	helmProxyWrapper.GetRelease(releaseName)
 	helmProxyWrapper.UpgradeRelease(releaseName, chartName, "12.1.15", repo)
-	err = util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, "5.0.9-debian-10-r0", false)
+	err = util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, "5.0.9", false)
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)
 
 	helmProxyWrapper.DeleteRelease(releaseName)
-	err = util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, "5.0.9-debian-10-r0", true)
+	err = util.PollFunction(30, checkMongo, helmProxyWrapper.KubeClient, namespace, labelSelector, "5.0.9", true)
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)
 }
 
