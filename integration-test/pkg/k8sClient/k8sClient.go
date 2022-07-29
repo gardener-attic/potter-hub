@@ -55,7 +55,7 @@ func (k *K8sClient) GetIngressURL(ingressName, namespace string) string {
 		metav1.GetOptions{},
 	)
 	if err != nil {
-		log.Fatal("Could not get URL")
+		log.Fatal("Could not get ingress URL of \""+ingressName+"\" in namespace \""+namespace+"\"", err)
 	}
 	host := ing.Spec.TLS
 	return host[0].Hosts[0]
