@@ -3,6 +3,7 @@ module github.com/gardener/potter-hub
 go 1.16
 
 replace (
+	github.com/Masterminds/squirrel => github.com/Masterminds/squirrel v1.5.3
 	github.com/docker/distribution => github.com/distribution/distribution v2.7.1+incompatible
 	github.com/docker/docker => github.com/moby/moby v20.10.5+incompatible
 )
