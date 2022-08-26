@@ -1,8 +1,8 @@
-FROM golang:1.17.13 as builder
+FROM golang:1.18.5 as builder
 WORKDIR /app
 
 RUN apt-get install git
-RUN go get github.com/go-delve/delve/cmd/dlv
+RUN go install github.com/go-delve/delve/cmd/dlv@v1.9.1
 
 COPY go.mod go.sum ./
 COPY cmd/apprepository-controller/ cmd/apprepository-controller/
