@@ -11,7 +11,7 @@ import subprocess
 import utils
 
 from google.cloud import storage
-from util import ctx
+from ci.util import ctx
 
 def uploadFolder(packagedChartsDir, bucketname):
     print("==== Upload directory", packagedChartsDir, "to GCS ====")

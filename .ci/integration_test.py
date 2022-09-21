@@ -7,7 +7,7 @@ import shutil
 import utils
 import yaml
 
-from util import ctx
+from ci.util import ctx
 
 print("Starting integration test")
 hub_path = os.environ['HUB_PATH']

@@ -1,5 +1,5 @@
 import kube.ctx
-from util import ctx
+from ci.util import ctx
 
 import base64
 from enum import Enum

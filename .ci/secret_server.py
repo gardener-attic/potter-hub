@@ -1,10 +1,10 @@
-import util
+import ci.util
 import kube.ctx
 from pprint import pprint
 
 class SecretServer:
     def __init__(self, cfg_set_name: str = 'hub'):
-        self.cfg_set = util.ctx().cfg_factory().cfg_set(cfg_set_name)
+        self.cfg_set = ci.util.ctx().cfg_factory().cfg_set(cfg_set_name)
 
     def get_landscape_config(self, cfg_name: str):
         return self.cfg_set.hub(cfg_name)
