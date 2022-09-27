@@ -145,7 +145,7 @@ def replace_chart_placeholder(chart_path: str, image_version: str, chart_version
     # 3rd party images
     replace_placeholder_in_yaml(values_yaml, "<AUTH_PROXY_REGISTRY>", image_registry)
     replace_placeholder_in_yaml(values_yaml, "<AUTH_PROXY_REPOSITORY>", image_repo_3rd + "keycloak-gatekeeper")
-    replace_placeholder_in_yaml(values_yaml, "<AUTH_PROXY_TAG>", "10.0.0")
+    replace_placeholder_in_yaml(values_yaml, "<AUTH_PROXY_TAG>", "2.3.0-scratch-r4")
 
     replace_placeholder_in_yaml(values_yaml, "<CHART_SERVICE_REGISTRY>", image_registry)
     replace_placeholder_in_yaml(values_yaml, "<CHART_SERVICE_REPOSITORY>", image_repo_3rd + "kubeapps-chartsvc")
