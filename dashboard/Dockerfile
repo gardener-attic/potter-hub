@@ -1,4 +1,4 @@
-FROM eu.gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/node:12.18.3 as build
+FROM eu.gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/node:12.22.12 as build
 WORKDIR /app
 
 COPY package.json yarn.lock tsconfig.json tsconfig.prod.json tslint.json ./
@@ -8,7 +8,9 @@ COPY public/ public/
 COPY src/ src/
 RUN yarn run build
 
-FROM eu.gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/nginx:1.23.0-alpine
+# check distroless image FROM cgr.dev/chainguard/nginx:1.23.2
+# ensure that there the nginx user is used, too
+FROM eu.gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/nginx:1.23.2-alpine
 
 WORKDIR /app
 # Serve the frontend
