@@ -4,7 +4,7 @@ set -x
 set -e
 set -o pipefail
 
-curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s v1.49.0
+curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh| sh -s v1.39.0
 
 mv bin/golangci-lint $SOURCE_PATH
 
