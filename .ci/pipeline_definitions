@@ -18,12 +18,12 @@ potter-hub:
         - start_yarn_test.sh
         output_dir: frontend_test
       backend-tests:
-        image: 'golang:1.16.11'
+        image: 'golang:1.18.8'
         execute:
         - start_go_tests.sh
         output_dir: backend_test
       run_linter:
-        image: 'golang:1.16.11'
+        image: 'golang:1.18.8'
         execute:
         - run_linter.sh
         output_dir: lint

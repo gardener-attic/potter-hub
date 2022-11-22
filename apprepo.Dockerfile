@@ -1,4 +1,4 @@
-FROM golang:1.18.6 as builder
+FROM golang:1.18.8 as builder
 WORKDIR /app
 
 RUN apt-get install git
