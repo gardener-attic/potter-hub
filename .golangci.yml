@@ -1,20 +1,34 @@
 # This is the configuration file for golangci-lint.
+# Options for analysis running.
+run:
+  # Which dirs to skip: issues from them won't be reported.
+  # Can use regexp here: `generated.*`, regexp is applied on full path.
+  # Default value is empty list,
+  # but default dirs are skipped independently of this option's value (see skip-dirs-use-default).
+  # "/" will be replaced by current OS file path separator to properly work on Windows.
+  skip-dirs:
+    - cmd/apprepository-controller
+    - pkg/external
+
 linters-settings:
-  govet:
-    check-shadowing: true
   goconst:
+    # Minimal length of string constant.
+    # Default: 3
     min-len: 2
+    # Minimum occurrences of constant string count to trigger issue.
+    # Default: 3
     min-occurrences: 3
-  misspell:
-    locale: US
   goimports:
     local-prefixes: github.com/gardener/potter-hub
   gocritic:
+    # Enable multiple checks by tags, run `GL_DEBUG=gocritic golangci-lint run` to see all tags and checks.
+    # See https://github.com/go-critic/go-critic#usage -> section "Tags".
+    # Default: []
     enabled-tags:
       - diagnostic
+      - performance
       - experimental
       - opinionated
-      - performance
       - style
     disabled-checks:
       - whyNoLint
@@ -22,6 +36,10 @@ linters-settings:
       - dupImport # https://github.com/go-critic/go-critic/issues/845
       - ifElseChain
       - unnamedResult
+  govet:
+    check-shadowing: true
+  misspell:
+    locale: US
 
 linters:
   # For a list of all supported linters, go here: https://github.com/golangci/golangci-lint#supported-linters
@@ -69,11 +87,6 @@ linters:
     #- maligned
     #- prealloc
     #- wsl
-
-run:
-  skip-dirs:
-    - cmd/apprepository-controller
-    - pkg/external
 
 issues:
   exclude-rules:
