@@ -64,9 +64,9 @@ linters:
     - gochecknoinits
     - goconst
     - gocritic
-    - goimports
+    #- goimports
     - golint
-    - gosec
+    #- gosec
     - gosimple
     - govet
     - ineffassign
