@@ -142,12 +142,14 @@ func (helmProxyWrapper *HelmProxyWrapper) InstallRelease(releaseName string, cha
 
 	client := &http.Client{}
 	resp, err := client.Do(request)
+	chartDisolayText := chartName + ":" + version + " from apprepository " + apprepository + ":" + err.Error() + ", URL=" + request.URL.RequestURI()
+
 	if err != nil {
-		message := "Error installing chart " + chartName + ":" + version + " from apprepository " + apprepository + ":" + err.Error() + ", URL=" + request.URL.RequestURI()
+		message := "Error installing chart " + chartDisolayText
 		panic(message)
 	}
 	defer util.CloseBody(resp)
-	log.Println("Installation call returned with status: " + resp.Status)
+	log.Println("Installation call for chart " + chartDisolayText + " returned with status: " + resp.Status)
 
 	if resp.Status == "409 Conflict" {
 		log.Println(releaseName + " has already been installed, removing it...")
