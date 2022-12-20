@@ -125,7 +125,7 @@ func (helmProxyWrapper *HelmProxyWrapper) DeleteRelease(releaseName string) {
 		panic(message)
 	}
 	defer util.CloseBody(resp)
-	log.Println("Deletion call returned with status: " + resp.Status)
+	log.Println("Deletion call for " + releaseName + " returned with status: " + resp.Status)
 }
 
 func (helmProxyWrapper *HelmProxyWrapper) InstallRelease(releaseName string, chartName string, version string, apprepository string) {
