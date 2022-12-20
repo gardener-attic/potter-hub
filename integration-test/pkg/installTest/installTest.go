@@ -21,7 +21,7 @@ func runTestsForGrafana(helmProxyWrapper *helmProxyWrapper.HelmProxyWrapper) {
 	const labelSelector = "app.kubernetes.io/component=" + chartName + ",app.kubernetes.io/instance=" + releaseName
 	namespace := helmProxyWrapper.Namespace
 
-	helmProxyWrapper.InstallRelease(releaseName, chartName, "7.9.1", repo)
+	helmProxyWrapper.InstallRelease(releaseName, chartName, "7.9.11", repo)
 	log.Printf("\n == Checking Chart " + chartName + " == \n\n")
 	err := util.PollFunction(30, checkGrafana, helmProxyWrapper.KubeClient, namespace, labelSelector, "8.5.3-debian-10-r5", false)
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)

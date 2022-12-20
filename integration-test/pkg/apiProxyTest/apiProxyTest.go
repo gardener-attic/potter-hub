@@ -19,7 +19,7 @@ import (
 
 var releaseName = "test"
 var chartName = "grafana"
-var version = "7.9.3"
+var version = "7.9.11"
 var apprepository = "bitnami"
 var client = http.Client{}
 
