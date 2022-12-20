@@ -27,7 +27,7 @@ func runTestsForGrafana(helmProxyWrapper *helmProxyWrapper.HelmProxyWrapper) {
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)
 
 	helmProxyWrapper.GetRelease(releaseName)
-	helmProxyWrapper.UpgradeRelease(releaseName, chartName, "7.9.3", repo)
+	helmProxyWrapper.UpgradeRelease(releaseName, chartName, "7.9.10", repo)
 	err = util.PollFunction(30, checkGrafana, helmProxyWrapper.KubeClient, namespace, labelSelector, "8.5.4-debian-10-r0", false)
 	helmProxyWrapper.CheckForErrors(err, chartName, releaseName)
 
