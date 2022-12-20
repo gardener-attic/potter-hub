@@ -129,7 +129,7 @@ func (helmProxyWrapper *HelmProxyWrapper) DeleteRelease(releaseName string) {
 }
 
 func (helmProxyWrapper *HelmProxyWrapper) InstallRelease(releaseName string, chartName string, version string, apprepository string) {
-	log.Println("Trying to install new chart " + chartName)
+	log.Println("Trying to install new chart " + chartName + ":" + version + " from apprepository " + apprepository)
 
 	releaseDetails := Details{
 		ChartName:                 chartName,
@@ -143,7 +143,7 @@ func (helmProxyWrapper *HelmProxyWrapper) InstallRelease(releaseName string, cha
 	client := &http.Client{}
 	resp, err := client.Do(request)
 	if err != nil {
-		message := "Error installing chart: " + chartName + err.Error()
+		message := "Error installing chart " + chartName + ":" + version + " from apprepository " + apprepository + ":" + err.Error()
 		panic(message)
 	}
 	defer util.CloseBody(resp)
