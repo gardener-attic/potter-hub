@@ -32,8 +32,10 @@ spec:
       paths:
       - path: {{ default "/" $h.path }}
         backend:
-          serviceName: {{ template "kubeapps.fullname" $ }}
-          servicePort: http
+          service:
+            name: {{ template "kubeapps.fullname" $ }}
+            port:
+              protocol: HTTP
   {{- end }}
   {{- end }}
   tls:

@@ -40,8 +40,10 @@ spec:
         # TODO: delete once pipeline avcheck and avs are migrated to the new endpoint
         - path: /.+/.+/api/ui-backend/availability
           backend:
-            serviceName: {{ $frontendFullname }}
-            servicePort: {{ $.Values.frontend.service.port }}
+            service:
+              name: {{ $frontendFullname }}
+              port:
+                number: {{ $.Values.frontend.service.port }}
   {{- end }}
   {{- end }}
   tls:
