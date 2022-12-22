@@ -31,6 +31,7 @@ spec:
     http:
       paths:
       - path: {{ default "/" $h.path }}
+        pathType: ImplementationSpecific
         backend:
           service:
             name: {{ template "kubeapps.fullname" $ }}

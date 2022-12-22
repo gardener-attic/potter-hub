@@ -34,11 +34,15 @@ spec:
     http:
       paths:
         - path: {{ $.Values.uiBackend.health.config.pathPrefix }}/.*
+          pathType: ImplementationSpecific
           backend:
-            serviceName: hub-k8s-potter-hub-ui-backend
-            servicePort: {{ $.Values.uiBackend.service.port }}
+            service:
+              name: hub-k8s-potter-hub-ui-backend
+              port:
+                number: {{ $.Values.uiBackend.service.port }}
         # TODO: delete once pipeline avcheck and avs are migrated to the new endpoint
         - path: /.+/.+/api/ui-backend/availability
+          pathType: ImplementationSpecific
           backend:
             service:
               name: {{ $frontendFullname }}
