@@ -36,7 +36,7 @@ spec:
           service:
             name: {{ template "kubeapps.fullname" $ }}
             port:
-              protocol: HTTP
+              number: 80
   {{- end }}
   {{- end }}
   tls:
