@@ -31,7 +31,7 @@ class ChartRepoCredentials:
 
 
 def get_helm3():
-    helm_url = 'https://get.helm.sh/helm-v3.1.2-linux-amd64.tar.gz'
+    helm_url = 'https://get.helm.sh/helm-v3.10.3-linux-amd64.tar.gz'
     file_name = helm_url.split('/')[-1]
     urllib.request.urlretrieve(helm_url, file_name)
 
