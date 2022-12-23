@@ -82,7 +82,7 @@ class HelmClient:
                        kubeconfig_path, "--repo", host, "--username", username,
                        "--password", password, "-f", helm_values_path, "-i"]
 
-        print(f"  Run helm upgrade {release_name} {chart_name} --namespace {namespace} --version {version if version else '<None>'}"
+        print(f"  potter-hub.deploy_chart(): Run helm upgrade {release_name} {chart_name} --namespace {namespace} --version {version if version else '<None>'}"
               f" --kubeconfig {kubeconfig_path} --repo {host} --username {username} --password *** -f {helm_values_path} -i\n")
         result = subprocess.run(command, capture_output=True, text=True)
         print(result.stdout)
