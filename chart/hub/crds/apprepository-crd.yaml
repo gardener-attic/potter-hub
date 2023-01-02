@@ -13,9 +13,13 @@ spec:
     shortNames:
       - apprepos
     singular: apprepository
-  preserveUnknownFields: true
   scope: Namespaced
   versions:
     - name: v1alpha1
+      schema:
+        openAPIV3Schema:
+          description: AppRepositories
+          type: object
+          x-kubernetes-preserve-unknown-fields: true
       served: true
       storage: true
