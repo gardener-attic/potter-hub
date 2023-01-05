@@ -23,6 +23,7 @@ metadata:
     {{ $key }}: {{ $value | quote }}
     {{- end }}
 spec:
+  ingressClassName: nginx
   rules:
   {{- range .Values.ingress.hosts }}
   {{- $h := . }}
