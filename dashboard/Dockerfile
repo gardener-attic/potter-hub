@@ -8,13 +8,15 @@ COPY public/ public/
 COPY src/ src/
 RUN yarn run build
 
-# check distroless image FROM cgr.dev/chainguard/nginx:1.23.2
+# check distroless image
+# FROM cgr.dev/chainguard/nginx:1.23.2
 # ensure that there the nginx user is used, too
 FROM eu.gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/nginx:1.23.2-alpine
 
 WORKDIR /app
 # Serve the frontend
 COPY --from=build /app/build ./
+
 ## add permissions for nginx user
 RUN chown -R nginx:nginx /app &&  \
     chmod -R 755 /app && \
