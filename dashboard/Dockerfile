@@ -9,9 +9,12 @@ COPY src/ src/
 RUN yarn run build
 
 # check distroless image
-# FROM cgr.dev/chainguard/nginx:1.23.2
+# FROM cgr.dev/chainguard/nginx:1.23.3
 # ensure that there the nginx user is used, too
-FROM eu.gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/nginx:1.23.2-alpine
+FROM eu.gcr.io/sap-gcp-cp-k8s-stable-hub/3rd/nginx:1.23.3-alpine
+
+RUN apk add "libtiff>4.5.0" & apk upgrade
+
 
 WORKDIR /app
 # Serve the frontend
